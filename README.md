@@ -1,6 +1,6 @@
-# dinar
+# Dinar
 
-money managment app
+Money Management app
 
 ## Getting Started
 

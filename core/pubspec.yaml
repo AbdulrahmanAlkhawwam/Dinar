@@ -1,0 +1,15 @@
+name: core
+description: core folder
+version: 0.1.0
+publish_to: "none"
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hexcolor: ^3.0.1
+
+dev_dependencies:
+  test: null
