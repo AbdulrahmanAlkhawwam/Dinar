@@ -21,8 +21,8 @@ class PrimaryButton extends StatelessWidget {
       width: 200,
       decoration: BoxDecoration(
         gradient: onPressed == null
-            ? LightColors.darkButtonColorDisabled
-            : LightColors.darkButtonColorEnabled,
+            ? LightColors.disabledButtonColor
+            : LightColors.primaryButtonColorEnabled,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Material(
@@ -45,7 +45,7 @@ class PrimaryButton extends StatelessWidget {
                     color: onPressed == null
                         ? MainColors.lightGray
                         : MainColors.mintCream, //context.colors.onPrimary,
-                    fontSize: 20,
+                    fontSize: 18,
                     //fontWeight: FontWeight.w500,
                   ),
                 ),

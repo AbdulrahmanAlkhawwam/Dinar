@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   hexcolor: ^3.0.1
+  flutter_inner_shadow: ^0.0.1
 
 dev_dependencies:
   test: null

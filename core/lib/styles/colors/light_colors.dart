@@ -2,8 +2,8 @@ import '../colors/main_colors.dart';
 import 'package:flutter/material.dart';
 
 class LightColors {
-  // for next button
-  static LinearGradient darkButtonColorEnabled = LinearGradient(
+  // for buttons
+  static LinearGradient primaryButtonColorEnabled = LinearGradient(
     colors: [
       MainColors.darkTeal,
       MainColors.forestGreen,
@@ -11,7 +11,15 @@ class LightColors {
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   );
-  static LinearGradient darkButtonColorDisabled = LinearGradient(
+  static LinearGradient secondaryButtonColorEnabled = LinearGradient(
+    colors: [
+      MainColors.forestGreen,
+      MainColors.mintCream,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight
+  );
+  static LinearGradient disabledButtonColor = LinearGradient(
     colors: [
       MainColors.darkGray,
       MainColors.lightGray,

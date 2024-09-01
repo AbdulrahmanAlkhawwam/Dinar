@@ -10,6 +10,8 @@ class MainColors {
   static final Color lightGray = HexColor("#ACACAC");
   static final Color darkGray = HexColor("#3A3A3A");
 
+// Error color
+  static final Color redwood = HexColor("#A74C4C");
 }
 // onPrimary color is mintCream
 //
