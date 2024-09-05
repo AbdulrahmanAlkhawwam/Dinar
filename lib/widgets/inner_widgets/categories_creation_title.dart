@@ -31,6 +31,6 @@ class CategoriesCreationTitle extends StatelessWidget {
           ],
         ),
       ],
-    );;
+    );
   }
 }

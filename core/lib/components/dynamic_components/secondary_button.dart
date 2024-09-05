@@ -5,24 +5,22 @@ import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryButton extends StatelessWidget {
-  SecondaryButton({
+  const SecondaryButton({
     super.key,
     this.onPressed,
     this.text = "ADD",
     this.child,
   });
 
-  Function()? onPressed;
-  String text;
-  Widget? child;
+  final Function()? onPressed;
+  final String text;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return InnerShadow(
       shadows: [
-
         Shadow(
-
           color: Colors.black.withOpacity(0.5),
           blurRadius: 32,
         )

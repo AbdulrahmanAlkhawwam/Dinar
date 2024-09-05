@@ -13,41 +13,49 @@ class DefaultTextFormField extends StatelessWidget {
     this.prefixIconButton,
     this.prefixIcon,
     this.onChanged,
-    this.onSubmitted,
     this.onTap,
+    this.validate,
+    this.validator,
   });
 
   final Function()? onTap;
 
   final Function(dynamic)? onChanged;
-
-  final Function(dynamic)? onSubmitted;
+  final FormFieldValidator<dynamic>? validator;
 
   final IconButton? suffixIconButton;
   final Icon? suffixIcon;
   final IconButton? prefixIconButton;
   final Icon? prefixIcon;
   final String? label;
+  final String? validate;
   final TextStyle? labelStyle;
   final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: !(onTap == null && onChanged == null)
+          ? validator ??
+              (value) {
+                if (value == null || value.isEmpty) {
+                  return validate;
+                } else {
+                  return null;
+                }
+              }
+          : null,
       autocorrect: true,
       onTap: onTap,
       onChanged: onChanged,
-      onSubmitted: onSubmitted,
-      enabled: onTap == null && onSubmitted == null && onChanged == null
-          ? false
-          : true,
+      enabled: onTap == null && onChanged == null ? false : true,
       cursorColor: MainColors.darkTeal,
       controller: controller,
       style: const TextStyle(
         height: 0,
       ),
       decoration: InputDecoration(
-        labelText: " $label",
+        labelText: label,
         labelStyle: labelStyle?.copyWith(color: MainColors.darkTeal),
         suffix: suffixIconButton ?? suffixIcon,
         prefix: prefixIconButton ?? prefixIcon,
@@ -56,18 +64,6 @@ class DefaultTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide(
             color: MainColors.lightGray,
-            width: 2,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: MainColors.forestGreen,
-            width: 3,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: MainColors.redwood,
             width: 3,
           ),
         ),
@@ -75,7 +71,28 @@ class DefaultTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide(
             color: MainColors.forestGreen,
-            width: 2,
+            width: 3,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide(
+            color: MainColors.forestGreen.withOpacity(0.5),
+            width: 3,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide(
+            color: MainColors.redwood,
+            width: 3,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide(
+            color: MainColors.redwood.withOpacity(0.5),
+            width: 3,
           ),
         ),
       ),

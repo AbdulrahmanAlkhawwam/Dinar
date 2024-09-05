@@ -2,14 +2,14 @@ import 'package:core/components/static_components/background.dart';
 import 'package:flutter/cupertino.dart';
 
 class Screen extends StatelessWidget {
-  Screen({
+  const Screen({
     super.key,
     required this.child,
     this.withoutBackground = false,
   });
 
-  bool withoutBackground;
-  Widget child;
+  final bool withoutBackground;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

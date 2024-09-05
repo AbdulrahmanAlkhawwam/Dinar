@@ -8,6 +8,9 @@ class CategoriesBottomSheet extends StatelessWidget {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController typeController = TextEditingController();
+  var globalKey = GlobalKey<FormState>();
+  String? title;
+  String? type;
 
   @override
   Widget build(BuildContext context) {
@@ -18,36 +21,47 @@ class CategoriesBottomSheet extends StatelessWidget {
         left: 24,
         right: 24,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "Create your category",
-            style: TextStyle(
-              color: MainColors.darkTeal,
-              fontSize: 24,
+      child: Form(
+        key: globalKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Create your category",
+              style: TextStyle(
+                color: MainColors.darkTeal,
+                fontSize: 24,
+              ),
             ),
-          ),
-          const SizedBox(height: 32),
-          DefaultTextFormField(
-            onSubmitted: (value)=>print(value),
-            controller: titleController,
-            label: "Title",
-          ),
-          const SizedBox(height: 16),
-          DefaultTextFormField(
-            onSubmitted: (value)=>print(value),
-            controller: typeController,
-            label: "Type",
-          ),
-          const SizedBox(height: 32),
-          PrimaryButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          const SizedBox(height: 24)
-        ],
+            const SizedBox(height: 32),
+            DefaultTextFormField(
+              // onChanged: (value){},
+              controller: titleController,
+              label: "Title",
+              validate: "this should not empty !",
+            ),
+            const SizedBox(height: 16),
+            DefaultTextFormField(
+              onChanged: (value){},
+              controller: typeController,
+              label: "Type",
+              validate: "this should not empty !",
+            ),
+            const SizedBox(height: 32),
+            PrimaryButton(
+              onPressed: () {
+                if(globalKey.currentState!.validate()){
+                  Navigator.pop(context);
+                }
+                globalKey.currentState?.save();
+                print(titleController.text);
+                print(typeController.text);
+
+              },
+            ),
+            const SizedBox(height: 24)
+          ],
+        ),
       ),
     );
   }

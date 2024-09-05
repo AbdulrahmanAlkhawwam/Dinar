@@ -1,3 +1,4 @@
+import 'package:Dinar/screens/categories_creation_screen.dart';
 import 'package:core/components/dynamic_components/primary_button.dart';
 import 'package:core/components/static_components/screen.dart';
 import '../widgets/inner_widgets/onboarding_title.dart';
@@ -29,7 +30,14 @@ class OnboardingScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: PrimaryButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => const CategoriesCreationScreen(),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

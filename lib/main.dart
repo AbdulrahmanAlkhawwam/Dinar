@@ -1,4 +1,3 @@
-import 'package:Dinar/screens/categories_creation_screen.dart';
 import 'package:core/styles/themes/light_theme.dart';
 import 'package:Dinar/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
       theme: lightTheme,
-      home: const CategoriesCreationScreen(),
+      home:  const OnboardingScreen(),
     );
   }
 }
