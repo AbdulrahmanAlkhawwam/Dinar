@@ -1,38 +1,31 @@
-import 'package:core/styles/colors/light_colors.dart';
-import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
+import '../../styles/colors/main_colors.dart';
+
+class EditionTextButton extends StatelessWidget {
+  const EditionTextButton({
     super.key,
     this.onPressed,
-    this.text = "NEXT",
     this.child,
+    this.text = "Back",
   });
 
   final Function()? onPressed;
-  final String text;
-  final Widget? child;
+  final Widget? child ;
+  final String text ;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 48,
       width: 200,
-      decoration: BoxDecoration(
-        gradient: onPressed == null
-            ? LightColors.disabledButtonColor
-            : LightColors.primaryButtonColorEnabled,
-        borderRadius: BorderRadius.circular(100),
-      ),
       child: Material(
-
         type: MaterialType.button,
         color: Colors.transparent,
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: MainColors.teaGreen,
+          splashColor: MainColors.mintCream,
           onTap: onPressed,
           child: Container(
             padding: const EdgeInsets.all(12),
@@ -45,7 +38,7 @@ class PrimaryButton extends StatelessWidget {
                       TextStyle(
                     color: onPressed == null
                         ? MainColors.lightGray
-                        : MainColors.mintCream, //context.colors.onPrimary,
+                        : MainColors.darkTeal, //context.colors.onPrimary,
                     fontSize: 18,
                     //fontWeight: FontWeight.w500,
                   ),

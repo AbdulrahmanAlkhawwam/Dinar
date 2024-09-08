@@ -1,16 +1,14 @@
+import 'package:Dinar/models/wallet.dart';
+import 'package:core/components/dynamic_components/default_text_form_feild.dart';
 import 'package:core/components/dynamic_components/primary_button.dart';
 import 'package:core/styles/colors/main_colors.dart';
-import 'package:core/components/dynamic_components/default_text_form_feild.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/category.dart';
-
-class CategoriesBottomSheet extends StatelessWidget {
-  CategoriesBottomSheet({super.key});
+class WalletsBottomSheet extends StatelessWidget {
+  WalletsBottomSheet({super.key});
 
   final globalKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController typeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +36,7 @@ class CategoriesBottomSheet extends StatelessWidget {
               isEnabled: true,
               controller: nameController,
               label: "Name",
-              validate: "this should not empty !",
-            ),
-            const SizedBox(height: 16),
-            DefaultTextFormField(
-              isEnabled: true,
-              controller: typeController,
-              label: "Type",
-              validator: (value) {
-                if (!value.toString().trim().toLowerCase().contains("income") &&
-                    !value
-                        .toString()
-                        .trim()
-                        .toLowerCase()
-                        .contains("payment")) {
-                  return "it must be 'Income' or 'Payment' !";
-                } else {
-                  return null;
-                }
-              },
+              validate: "this must not empty !",
             ),
             const SizedBox(height: 32),
             PrimaryButton(
@@ -65,12 +45,9 @@ class CategoriesBottomSheet extends StatelessWidget {
                   globalKey.currentState?.save();
                   Navigator.pop(
                     context,
-                    Category(
+                    Wallet(
                       "",
                       name: nameController.text,
-                      type: typeController.text.contains("income")
-                          ? "income"
-                          : "payment",
                     ),
                   );
                 }

@@ -5,6 +5,7 @@ import '../../styles/colors/main_colors.dart';
 class DefaultTextFormField extends StatelessWidget {
   const DefaultTextFormField({
     super.key,
+    required this.isEnabled,
     this.controller,
     this.label = "Text",
     this.labelStyle,
@@ -29,13 +30,15 @@ class DefaultTextFormField extends StatelessWidget {
   final Icon? prefixIcon;
   final String? label;
   final String? validate;
+  final bool isEnabled;
+
   final TextStyle? labelStyle;
   final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: !(onTap == null && onChanged == null)
+      validator: isEnabled
           ? validator ??
               (value) {
                 if (value == null || value.isEmpty) {
@@ -48,7 +51,7 @@ class DefaultTextFormField extends StatelessWidget {
       autocorrect: true,
       onTap: onTap,
       onChanged: onChanged,
-      enabled: onTap == null && onChanged == null ? false : true,
+      enabled: isEnabled,
       cursorColor: MainColors.darkTeal,
       controller: controller,
       style: const TextStyle(

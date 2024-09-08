@@ -1,4 +1,4 @@
-import 'package:Dinar/screens/categories_creation_screen.dart';
+import 'package:Dinar/screens/creation_screen.dart';
 import 'package:core/components/dynamic_components/primary_button.dart';
 import 'package:core/components/static_components/screen.dart';
 import '../widgets/inner_widgets/onboarding_title.dart';
@@ -10,6 +10,7 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print ("we are in onboarding screen");
     return Screen(
       child: Scaffold(
         body: Column(
@@ -34,7 +35,7 @@ class OnboardingScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (ctx) => const CategoriesCreationScreen(),
+                        builder: (ctx) => const CreationScreen(),
                       ),
                     );
                   },

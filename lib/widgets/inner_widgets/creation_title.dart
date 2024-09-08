@@ -1,9 +1,12 @@
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
+import '../../models/kind.dart';
 
-class CategoriesCreationTitle extends StatelessWidget {
-  const CategoriesCreationTitle({super.key});
+class CreationTitle extends StatelessWidget {
+  const CreationTitle({super.key, required this.kind});
+
+  final Kind kind;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,9 @@ class CategoriesCreationTitle extends StatelessWidget {
           ),
         ),
         GradientText(
-          const Text(
-            "Categories",
-            style: TextStyle(
+          Text(
+            kind != Kind.wallet ? "Categories" : "Wallets",
+            style: const TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.bold,
             ),
