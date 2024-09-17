@@ -11,14 +11,10 @@ class LightColors {
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   );
-  static LinearGradient secondaryButtonColorEnabled = LinearGradient(
-    colors: [
-      MainColors.forestGreen,
-      MainColors.mintCream,
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topRight
-  );
+  static LinearGradient secondaryButtonColorEnabled = LinearGradient(colors: [
+    MainColors.forestGreen,
+    MainColors.mintCream,
+  ], begin: Alignment.bottomCenter, end: Alignment.topRight);
   static LinearGradient disabledButtonColor = LinearGradient(
     colors: [
       MainColors.darkGray,
@@ -41,5 +37,15 @@ class LightColors {
     ],
     begin: Alignment.centerRight,
     end: Alignment.bottomLeft,
+  );
+
+  // for card
+  static LinearGradient widgetCardColor = LinearGradient(
+    colors: [
+      MainColors.teaGreen,
+      MainColors.mintCream,
+    ],
+    begin: Alignment.center,
+    end: Alignment.topRight,
   );
 }

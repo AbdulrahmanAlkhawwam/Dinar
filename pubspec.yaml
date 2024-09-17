@@ -19,6 +19,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   sqflite: ^2.3.3+1
   flutter_svg: ^2.0.10+1
+  easy_localization: ^3.0.7
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:
