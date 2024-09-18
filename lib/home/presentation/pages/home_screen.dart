@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 import '../../../src/features/incomes/presentation/widgets/income_chart.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
-  int balance = 152758000;
-  int monthlyAverage = 15000000;
-  int usage = 10215000;
+  final int balance = 152758000;
+  final int monthlyAverage = 15000000;
+  final int usage = 10215000;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          Container(
+                          SizedBox(
                             child: Text.rich(
                               TextSpan(
                                 children: [
@@ -138,39 +138,11 @@ class HomeScreen extends StatelessWidget {
                     height: 160,
                     child: WalletList(),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: MainColors.teaGreen,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: MainColors.forestGreen,
-                      ),
-                    ),
-                    height: 180,
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: IncomeChart(),
-                    ),
-                  ),
+                  const IncomeChart(),
                   const SizedBox(
                     height: 16,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: MainColors.teaGreen,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: MainColors.forestGreen,
-                      ),
-                    ),
-                    height: 180,
-                    width: double.infinity,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: PaymentChart(),
-                    ),
-                  ),
+                  const PaymentChart(),
                   const SizedBox(
                     height: 150,
                     child: CategoryList(),

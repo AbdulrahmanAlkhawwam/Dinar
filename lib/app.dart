@@ -1,5 +1,6 @@
 import 'package:Dinar/home/presentation/pages/home_screen.dart';
 import 'package:Dinar/home/presentation/pages/management_screen.dart';
+import 'package:Dinar/src/features/payments/presentation/pages/payments_screen.dart';
 import 'package:core/components/loading.dart';
 import 'package:core/styles/themes/light_theme.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class App extends StatelessWidget {
         theme: lightTheme,
         home: BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
-            return HomeScreen();
+            return PaymentsScreen();
             if (state is LoadedState) {
               return const ManagementScreen();
             }
