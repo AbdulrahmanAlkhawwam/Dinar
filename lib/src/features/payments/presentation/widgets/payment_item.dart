@@ -1,61 +1,77 @@
+import 'package:Dinar/src/features/payments/domain/entities/payment.dart';
+import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PaymentItem extends StatelessWidget {
-  const PaymentItem({super.key});
+  final Payment payment;
+
+  const PaymentItem({
+    super.key,
+    required this.payment,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 24.0,
+        horizontal: 24,
         vertical: 8,
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.colors.onSecondary,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: Colors.red,
+            color: context.colors.onErrorContainer,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "name",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      payment.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(
-                    "description : ....",
-                    style: TextStyle(
-                      fontSize: 16,
+                    payment.description != null
+                        ? Text(
+                            "description : ${payment.description}",
+                            style: const TextStyle(
+                              fontSize: 16,
+                            ),
+                      maxLines: 2,
+                      overflow: TextOverflow.fade,
+                          )
+                        : const SizedBox(),
+                    Text(
+                      "date : ${DateFormat.yMMMMd().format(payment.date)}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "date : 2024-12-30",
-                    style: TextStyle(
-                      fontSize: 16,
+                    Text(
+                      "value : ${payment.value}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "value : 12,500",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const Spacer(),
+              const SizedBox(width: 10),
               IconButton(
-                onPressed: () {},
+                onPressed: () {}, // we not do delete function yet
                 icon: const Icon(
                   Icons.delete_outline,
                   color: Colors.red,

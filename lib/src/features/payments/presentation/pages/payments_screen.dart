@@ -1,6 +1,6 @@
-import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/payment.dart';
 import '../widgets/payment_item.dart';
 
 class PaymentsScreen extends StatelessWidget {
@@ -8,24 +8,102 @@ class PaymentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("we are in payments screen");
+    // dome data .... but we should get data from bloc in next time
+    List<Payment> payments = [
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age asdl;fkjas;dlfkjad;sflkjad;lfskja;dsflk",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: "asd;lfkjasd;lkfja;lskdfj;lasdkfjla;skdjf;laskdjf;laksdjf;laksdjf;lkasjdf;lkasjdf;lkajsdf;lkaj",
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
+        type: "income",
+      ),
+    ];
+
     return Scaffold(
-      backgroundColor: MainColors.mintCream,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         title: const Text("title"),
-        centerTitle: true,
-        backgroundColor: MainColors.mintCream,
       ),
       body: ListView.separated(
-        itemBuilder: (context, index) => const PaymentItem(),
+        itemBuilder: (context, index) => PaymentItem(payment: payments[index]),
         separatorBuilder: (context, index) => const SizedBox(height: 15),
-        itemCount: 10,
+        itemCount: payments.length,
       ),
     );
   }
