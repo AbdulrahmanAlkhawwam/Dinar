@@ -1,6 +1,7 @@
-import 'package:core/components/linear_chart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/components/charts/linear_chart.dart';
 
 class IncomeChart extends StatelessWidget {
   const IncomeChart({super.key});

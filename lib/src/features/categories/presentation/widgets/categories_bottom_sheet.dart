@@ -1,8 +1,9 @@
-import 'package:core/components/buttons/primary_button.dart';
-import 'package:core/styles/colors/main_colors.dart';
-import 'package:core/components/default_text_form_feild.dart';
+
+import 'package:Dinar/src/core/components/inters/input_field.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/styles/colors/main_colors.dart';
 import '../../domain/entities/category.dart';
 
 class CategoriesBottomSheet extends StatelessWidget {
@@ -34,14 +35,14 @@ class CategoriesBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
-            DefaultTextFormField(
+            InputField(
               isEnabled: true,
               controller: nameController,
               label: "Name",
               validate: "this should not empty !",
             ),
             const SizedBox(height: 16),
-            DefaultTextFormField(
+            InputField(
               isEnabled: true,
               controller: typeController,
               label: "Type",

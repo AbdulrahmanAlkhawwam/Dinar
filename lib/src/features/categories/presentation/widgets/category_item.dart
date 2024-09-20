@@ -1,7 +1,8 @@
 import 'package:Dinar/src/features/categories/domain/entities/category.dart';
-import 'package:core/styles/colors/light_colors.dart';
-import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/styles/colors/light_colors.dart';
+import '../../../../core/styles/colors/main_colors.dart';
 
 class CategoryItem extends StatelessWidget {
   CategoryItem({super.key});

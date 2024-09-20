@@ -1,12 +1,14 @@
-import 'package:Dinar/home/presentation/pages/management_screen.dart';
-import 'package:Dinar/src/features/payments/presentation/pages/payments_screen.dart';
-import 'package:core/components/loading.dart';
-import 'package:core/styles/colors/light_colors.dart';
-import 'package:core/styles/themes/light_theme.dart';
+import 'package:Dinar/src/core/styles/colors/light_colors.dart';
+import 'package:Dinar/src/core/styles/themes/light_theme.dart';
+import 'package:Dinar/src/features/app/presentation/pages/home_screen.dart';
+import 'package:Dinar/src/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home/presentation/manager/general/general_bloc.dart';
+import 'src/features/app/presentation/pages/loading.dart';
+import '../src/features/app/presentation/pages/management_screen.dart';
+import '../src/features/payments/presentation/pages/payments_screen.dart';
+import '../src/features/app/presentation/manager/general/general_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -34,7 +36,7 @@ class App extends StatelessWidget {
         theme: lightTheme.copyWith(colorScheme: LightColors.lightScheme),
         home: BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
-            return const PaymentsScreen();
+            return const OnboardingScreen();
             if (state is LoadedState) {
               return const ManagementScreen();
             }

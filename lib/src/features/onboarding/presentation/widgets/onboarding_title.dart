@@ -1,6 +1,7 @@
-import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
+
+import '../../../../core/styles/colors/main_colors.dart';
 
 class OnboardingTitle extends StatelessWidget {
   const OnboardingTitle({super.key});

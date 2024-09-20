@@ -1,14 +1,14 @@
+import 'package:Dinar/src/core/components/buttons/clear_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../home/presentation/manager/general/general_bloc.dart';
+import '../../../../core/components/buttons/secondary_button.dart';
+import '../../../../core/styles/colors/main_colors.dart';
+import '../../../app/presentation/manager/general/general_bloc.dart';
 import '../../../categories/domain/entities/category.dart';
-import 'package:core/components/buttons/secondary_button.dart';
-import 'package:core/components/buttons/edition_text_button.dart';
-import 'package:core/styles/colors/main_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../models/kind.dart';
+// import '../../../../../models/kind.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 
 class CheckBottomSheet extends StatelessWidget {
@@ -26,7 +26,7 @@ class CheckBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Kind kind = context.read<GeneralBloc>().kind;
+    // final Kind kind = context.read<GeneralBloc>().kind;
 
     return Padding(
       padding: EdgeInsets.only(
@@ -43,7 +43,7 @@ class CheckBottomSheet extends StatelessWidget {
               radius: 40,
               backgroundColor: Colors.white,
               child: SvgPicture.asset(
-                "assets/local_assets/svgs/task_alt.svg",
+                "assets/local_assets/svgs/check_task.svg",
                 width: 32,
                 height: 32,
                 alignment: AlignmentDirectional.center,
@@ -67,31 +67,32 @@ class CheckBottomSheet extends StatelessWidget {
                 children: [
                   TextSpan(
                     text:
-                        "Are you sure you want to add new ${kind.name == Kind.twice.name ? Kind.category.name : kind.name} with ",
+                        "Are you sure you want to add new {kind.name == Kind.twice.name ? Kind.category.name : kind.name} with ",
                     style: TextStyle(
                       color: MainColors.darkTeal,
                       fontSize: 16,
                     ),
                   ),
                   TextSpan(
-                    text: kind != Kind.wallet ? category?.name : wallet?.name,
+                    text: /*kind != Kind.wallet */
+                        true ? category?.name : wallet?.name,
                     style: TextStyle(
                         color:
-                            kind != Kind.wallet && category?.type == "income" ||
-                                    kind == Kind.wallet
-                                ? MainColors.forestGreen
-                                : MainColors.redwood,
+                            /* kind != Kind.wallet && category?.type == "income" ||
+                                    kind == Kind.wallet*/
+                            true ? MainColors.forestGreen : MainColors.redwood,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: kind == Kind.wallet ? " as name " : " as name and ",
+                    text: /* kind == Kind.wallet*/
+                        true ? " as name " : " as name and ",
                     style: TextStyle(
                       color: MainColors.darkTeal,
                       fontSize: 16,
                     ),
                   ),
-                  kind != Kind.wallet
+                  /*kind != Kind.wallet*/ true
                       ? TextSpan(
                           text: category?.type,
                           style: TextStyle(
@@ -102,7 +103,7 @@ class CheckBottomSheet extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         )
                       : const TextSpan(),
-                  kind != Kind.wallet
+                  /*kind != Kind.wallet*/ true
                       ? TextSpan(
                           text: " as type",
                           style: TextStyle(
@@ -122,7 +123,7 @@ class CheckBottomSheet extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          EditionTextButton(
+          ClearButton(
             onPressed: () {
               Navigator.pop(context, false);
             },

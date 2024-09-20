@@ -1,5 +1,5 @@
+import 'package:Dinar/src/core/utils/app_context.dart';
 import 'package:Dinar/src/features/payments/domain/entities/payment.dart';
-import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -50,8 +50,8 @@ class PaymentItem extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 16,
                             ),
-                      maxLines: 2,
-                      overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            overflow: TextOverflow.fade,
                           )
                         : const SizedBox(),
                     Text(

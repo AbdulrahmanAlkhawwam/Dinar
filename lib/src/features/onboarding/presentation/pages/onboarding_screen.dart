@@ -1,9 +1,8 @@
 import 'package:Dinar/src/features/onboarding/presentation/pages/creation_screen.dart';
-import 'package:core/components/buttons/primary_button.dart';
-import 'package:core/components/screen.dart';
-
 import 'package:flutter/material.dart';
 
+import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/components/screen.dart';
 import '../widgets/onboarding_title.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -11,9 +10,10 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print ("we are in onboarding screen");
+    print("we are in onboarding screen");
     return Screen(
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
