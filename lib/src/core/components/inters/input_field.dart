@@ -17,6 +17,7 @@ class InputField extends StatelessWidget {
     this.onTap,
     this.validate,
     this.validator,
+    this.keyboardType,
   });
 
   final Function()? onTap;
@@ -25,6 +26,7 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final IconButton? suffixIconButton;
   final Icon? suffixIcon;
+  final TextInputType? keyboardType;
   final IconButton? prefixIconButton;
   final TextStyle? labelStyle;
   final Icon? prefixIcon;
@@ -35,6 +37,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType ?? TextInputType.text,
       validator: isEnabled
           ? validator ??
               (value) {

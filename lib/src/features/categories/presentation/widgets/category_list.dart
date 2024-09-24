@@ -1,6 +1,8 @@
+import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
+import 'package:Dinar/src/features/categories/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 
-import 'category_item.dart';
+import 'category_item_horizontal.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({super.key});
@@ -11,7 +13,14 @@ class CategoryList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => CategoryItem(),
+        itemBuilder: (context, index) =>
+            CategoryItemHorizontal(
+              category: Category(
+                "",
+                name: "name",
+                type: OperationType.income,
+              ),
+            ),
         separatorBuilder: (context, index) => const SizedBox(width: 16),
         itemCount: 15,
       ),

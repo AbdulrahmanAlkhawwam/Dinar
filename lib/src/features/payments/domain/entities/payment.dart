@@ -1,28 +1,16 @@
-class Payment {
-  final String id;
+import 'package:Dinar/src/features/app/domain/entities/operation.dart';
+import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
 
-  final String name;
-
-  final double value;
-
-  final String? description;
-
-  final String categoryId;
-
-  final String walletId;
-
-  final DateTime date;
-
-  final String type; // it should be income / payment
+class Payment extends Operation {
+  final type = OperationType.payment;
 
   Payment(
-    this.id, {
-    required this.name,
-    required this.value,
-    required this.description,
-    required this.categoryId,
-    required this.walletId,
-    required this.date,
-    required this.type,
+    super.id, {
+    required super.name,
+    required super.value,
+    required super.description,
+    required super.categoryId,
+    required super.walletId,
+    required super.date,
   });
 }

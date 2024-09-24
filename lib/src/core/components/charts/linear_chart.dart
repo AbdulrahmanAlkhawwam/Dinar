@@ -91,94 +91,73 @@ class LinearChart extends StatelessWidget {
           color: mainColor ?? MainColors.forestGreen,
         ),
       ),
-      height: 200,
       width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Center(
-            child: AspectRatio(
-              aspectRatio: 19 / 9,
-              child: LineChart(
-                LineChartData(
-                  gridData: FlGridData(
-                    show: true,
-                    drawVerticalLine: true,
-                    horizontalInterval: valueY,
-                    verticalInterval: valueX,
-                    getDrawingHorizontalLine: (value) {
-                      return FlLine(
-                        color: mainColor?.withOpacity(0.5) ??
-                            MainColors.forestGreen.withOpacity(0.5),
-                        strokeWidth: 1,
-                      );
-                    },
-                    getDrawingVerticalLine: (value) {
-                      return const FlLine(
-                        color: Colors.transparent,
-                        strokeWidth: 1,
-                      );
-                    },
-                  ),
-                  titlesData: const FlTitlesData(
-                    show: true,
-                    rightTitles: AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    topTitles: AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: false,
-                        // getTitlesWidget: bottomTitleWidgets,
-                      ),
-                    ),
-                    leftTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: false, // was true
-                        // getTitlesWidget: leftTitleWidgets,
-                      ),
-                    ),
-                  ),
-                  borderData: FlBorderData(
-                      show: true,
-                      border: Border(
-                        left: BorderSide(
-                            color: mainColor ?? MainColors.forestGreen),
-                        bottom: BorderSide(
-                            color: mainColor ?? MainColors.forestGreen),
-                      )),
-                  minX: minX,
-                  maxX: maxX,
-                  minY: minY - valueY * 1.5,
-                  maxY: maxY + valueY * 1.5,
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: values,
-                      isCurved: true,
-                      gradient: color ??
-                          LinearGradient(
-                            colors: colors,
-                          ),
-                      barWidth: 2,
-                      isStrokeCapRound: true,
-                      dotData: const FlDotData(
-                        show: false,
-                      ),
-                      belowBarData: BarAreaData(
-                        show: true,
-                        gradient: LinearGradient(
-                          colors: color?.colors ??
-                              colors
-                                  .map((color) => color.withOpacity(0.5))
-                                  .toList(),
-                        ),
-                      ),
-                    ),
-                  ],
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 19 / 9,
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: LineChart(
+              LineChartData(
+                gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: true,
+                  horizontalInterval: valueY,
+                  verticalInterval: valueX,
+                  getDrawingHorizontalLine: (value) {
+                    return FlLine(
+                      color: mainColor?.withOpacity(0.5) ??
+                          MainColors.forestGreen.withOpacity(0.5),
+                      strokeWidth: 1,
+                    );
+                  },
+                  getDrawingVerticalLine: (value) {
+                    return const FlLine(
+                      color: Colors.transparent,
+                      strokeWidth: 1,
+                    );
+                  },
                 ),
+                titlesData: const FlTitlesData(
+                  show: true,
+                  rightTitles:
+                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  topTitles:
+                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  bottomTitles:
+                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  leftTitles:
+                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                ),
+                borderData: FlBorderData(show: false),
+                minX: minX,
+                maxX: maxX,
+                minY: minY - valueY * 1.5,
+                maxY: maxY + valueY * 1.5,
+                lineBarsData: [
+                  LineChartBarData(
+                    spots: values,
+                    isCurved: true,
+                    gradient: color ??
+                        LinearGradient(
+                          colors: colors,
+                        ),
+                    barWidth: 2,
+                    isStrokeCapRound: true,
+                    dotData: const FlDotData(
+                      show: false,
+                    ),
+                    belowBarData: BarAreaData(
+                      show: true,
+                      gradient: LinearGradient(
+                        colors: color?.colors ??
+                            colors
+                                .map((color) => color.withOpacity(0.5))
+                                .toList(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

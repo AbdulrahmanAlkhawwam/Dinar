@@ -1,13 +1,12 @@
+import 'package:Dinar/src/core/components/buttons/primary_button.dart';
+import 'package:Dinar/src/core/service_locator/service_locator.dart';
 import 'package:Dinar/src/core/styles/colors/light_colors.dart';
 import 'package:Dinar/src/core/styles/themes/light_theme.dart';
-import 'package:Dinar/src/features/app/presentation/pages/home_screen.dart';
-import 'package:Dinar/src/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:Dinar/src/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'src/features/app/presentation/pages/loading.dart';
 import '../src/features/app/presentation/pages/management_screen.dart';
-import '../src/features/payments/presentation/pages/payments_screen.dart';
 import '../src/features/app/presentation/manager/general/general_bloc.dart';
 
 class App extends StatelessWidget {
@@ -15,32 +14,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(context) {
-    // return MultiBlocProvider(
-    //     providers: [
-    //       BlocProvider(
-    //         create: (context) => GeneralBloc(),
-    //       )
-    //     ],
-    //     child: MaterialApp(
-    //       home: BlocBuilder(
-    //         builder: (context, state) => const HomeScreen(),
-    //       ),
-    //     ));
     print("we are in main screen");
-    return BlocProvider<GeneralBloc>(
-      create: (context) => GeneralBloc()
-        ..add(
-          InitialisationEvent(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<GeneralBloc>(
+          create: (context) => GeneralBloc(),
         ),
+      ],
       child: MaterialApp(
-        theme: lightTheme.copyWith(colorScheme: LightColors.lightScheme),
+        // theme: AppTheme,
         home: BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
-            return const OnboardingScreen();
-            if (state is LoadedState) {
-              return const ManagementScreen();
-            }
-            return const Loading();
+            return const ManagementScreen();
           },
         ),
       ),

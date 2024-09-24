@@ -11,7 +11,7 @@
 // import '../../features/home/presentation/manager/home_bloc.dart';
 // import '../../features/home/presentation/manager/scrolling_notifier.dart';
 //
-// Future<void> initializeHomeServices(GetIt sl) async {
+Future<void> initializeHomeServices(/*GetIt */sl) async {}
 //   sl.registerLazySingleton<HomeLocalDataSource>(
 //     () => HomeLocalDataSourceImpl(storage: sl()),
 //   );

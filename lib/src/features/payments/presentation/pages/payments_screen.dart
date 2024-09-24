@@ -18,27 +18,16 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
         name: "age",
         value: 15000,
-        description: "asd;lfkjasd;lkfja;lskdfj;lasdkfjla;skdjf;laskdjf;laksdjf;laksdjf;lkasjdf;lkasjdf;lkajsdf;lkaj",
+        description:
+            "asd;lfkjasd;lkfja;lskdfj;lasdkfjla;skdjf;laskdjf;laksdjf;laksdjf;lkasjdf;lkasjdf;lkajsdf;lkaj",
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
-      ),
-      Payment(
-        "dsaflkja;lkdvj213543",
-        name: "age",
-        value: 15000,
-        description: null,
-        categoryId: "109348701",
-        walletId: "2304987143",
-        date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
@@ -48,7 +37,6 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
@@ -58,7 +46,6 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
@@ -68,7 +55,6 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
@@ -78,7 +64,6 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
       ),
       Payment(
         "dsaflkja;lkdvj213543",
@@ -88,7 +73,15 @@ class PaymentsScreen extends StatelessWidget {
         categoryId: "109348701",
         walletId: "2304987143",
         date: DateTime.now(),
-        type: "income",
+      ),
+      Payment(
+        "dsaflkja;lkdvj213543",
+        name: "age",
+        value: 15000,
+        description: null,
+        categoryId: "109348701",
+        walletId: "2304987143",
+        date: DateTime.now(),
       ),
     ];
 
@@ -98,7 +91,7 @@ class PaymentsScreen extends StatelessWidget {
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
-        title: const Text("title"),
+        title: const Text("Payments"),
       ),
       body: ListView.separated(
         itemBuilder: (context, index) => PaymentItem(payment: payments[index]),

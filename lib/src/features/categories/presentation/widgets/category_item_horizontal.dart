@@ -1,13 +1,17 @@
+import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
 import 'package:Dinar/src/features/categories/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/styles/colors/light_colors.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 
-class CategoryItem extends StatelessWidget {
-  CategoryItem({super.key});
+class CategoryItemHorizontal extends StatelessWidget {
+  final Category category;
 
-  final Category category = Category("", name: "name", type: "category");
+  const CategoryItemHorizontal({
+    super.key,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {

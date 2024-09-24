@@ -1,5 +1,5 @@
-
 import 'package:Dinar/src/core/components/inters/input_field.dart';
+import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/components/buttons/primary_button.dart';
@@ -69,9 +69,11 @@ class CategoriesBottomSheet extends StatelessWidget {
                     Category(
                       "",
                       name: nameController.text,
-                      type: typeController.text.contains("income")
+                      type: OperationType
+                          .payment, /*typeController.text.contains("income")
                           ? "income"
                           : "payment",
+                    */
                     ),
                   );
                 }

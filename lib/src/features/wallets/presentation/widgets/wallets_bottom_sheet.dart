@@ -48,6 +48,7 @@ class WalletsBottomSheet extends StatelessWidget {
                     context,
                     Wallet(
                       "",
+                      0.0,
                       name: nameController.text,
                     ),
                   );

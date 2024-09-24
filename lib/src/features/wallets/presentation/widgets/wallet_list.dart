@@ -1,4 +1,4 @@
-import 'package:Dinar/src/features/wallets/presentation/widgets/wallet_item.dart';
+import 'package:Dinar/src/features/wallets/presentation/widgets/wallet_item_horizontal.dart';
 import 'package:flutter/material.dart';
 
 class WalletList extends StatelessWidget {
@@ -10,7 +10,7 @@ class WalletList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => WalletItem(),
+        itemBuilder: (context, index) => WalletItemHorizontal(),
         separatorBuilder: (context, index) => const SizedBox(width: 16),
         itemCount: 15,
       ),

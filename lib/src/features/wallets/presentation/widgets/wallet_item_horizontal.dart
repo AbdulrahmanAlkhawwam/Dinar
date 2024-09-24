@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/styles/colors/light_colors.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 
-class WalletItem extends StatelessWidget {
-  WalletItem({super.key});
+class WalletItemHorizontal extends StatelessWidget {
+  WalletItemHorizontal({super.key});
 
-  final Wallet wallet = Wallet("", name: "name");
+  final Wallet wallet = Wallet(
+    "",
+    0.0,
+    name: "name",
+  );
 
   @override
   Widget build(BuildContext context) {

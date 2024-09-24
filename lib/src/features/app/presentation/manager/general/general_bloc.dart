@@ -15,9 +15,9 @@ part 'general_state.dart';
 class GeneralBloc extends Bloc<GeneralEvent, GeneralState> {
   GeneralBloc() : super(GeneralInitial()) {
     on<InitialisationEvent>(_initialisationApp);
-    on<AddCategoryEvent>(_addCategory);
-    on<AddWalletEvent>(_addWallet);
-    on<CheckEvent>(_checker);
+    // on<AddCategoryEvent>(_addCategory);
+    // on<AddWalletEvent>(_addWallet);
+    // on<CheckEvent>(_checker);
   }
 
   late Database database;

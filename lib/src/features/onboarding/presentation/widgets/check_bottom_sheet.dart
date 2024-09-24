@@ -94,7 +94,7 @@ class CheckBottomSheet extends StatelessWidget {
                   ),
                   /*kind != Kind.wallet*/ true
                       ? TextSpan(
-                          text: category?.type,
+                          text: category?.type.toString(),
                           style: TextStyle(
                               color: category?.type == "income"
                                   ? MainColors.forestGreen
