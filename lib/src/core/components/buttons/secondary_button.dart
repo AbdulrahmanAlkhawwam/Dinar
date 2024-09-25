@@ -2,6 +2,7 @@ import 'package:Dinar/src/core/constants/styles.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
 import '../../styles/colors/main_colors.dart';
 import '../../styles/colors/light_colors.dart';
 
@@ -31,7 +32,7 @@ class SecondaryButton extends StatelessWidget {
         width: 200,
         decoration: BoxDecoration(
           gradient: onPressed == null
-              ? LightColors.disabledButtonColor
+              ? GradientLightColor.disabledColor
               : LightColors.secondaryButtonColorEnabled,
           borderRadius: BorderRadius.circular(circle),
         ),

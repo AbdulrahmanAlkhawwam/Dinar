@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../styles/colors/main_colors.dart';
+
+/// LIGHT MODE COLOR
+///
+///
+/// COLOR THEME : [lightColorScheme] , but it's only for light THEME
+/// it it's created by [Material.io] which you can visited it in this link
+/// ( https://amaterial-foundation.github.io/material-theme-builder/ )
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xff2c6a45),
@@ -48,6 +56,30 @@ const lightColorScheme = ColorScheme(
   surfaceContainerHigh: Color(0xffe5e9e1),
   surfaceContainerHighest: Color(0xffe0e4dc),
 );
+
+/// LINEAR GRADIENT class : [GradientLightColor]
+class GradientLightColor {
+  /// disabled color used when some thing don't used at all ,like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onSurfaceVariant], [outlineVariant]
+  static LinearGradient disabledColor = LinearGradient(
+    colors: <Color>[
+      lightColorScheme.onSurfaceVariant,
+      lightColorScheme.outlineVariant,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  );
+
+  static LinearGradient primaryColor = LinearGradient(
+    colors: [
+      lightColorScheme.onTertiaryFixed,
+      lightColorScheme.primary,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  );
+}
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,

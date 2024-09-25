@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/app_context.dart';
 
 class ClearButton extends StatelessWidget {
-  /// [onPressed] we added for to thing :-
+  /// [onPressed] we added for two thing :-
   ///   1. for do some thing when you click button
   ///   2. for DISABLED button when you don't want to do some thing
   final Function()? onPressed;
@@ -35,7 +35,6 @@ class ClearButton extends StatelessWidget {
           splashColor: context.colors.onPrimary,
           onTap: onPressed,
           child: Container(
-            padding: const EdgeInsets.all(12),
             alignment: Alignment.center,
             child: child ??
                 Text(

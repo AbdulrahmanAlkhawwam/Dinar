@@ -1,3 +1,4 @@
+import 'package:Dinar/src/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles/colors/light_colors.dart';
@@ -24,8 +25,8 @@ class MenuButton extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: onPressed == null
-            ? LightColors.disabledButtonColor
-            : LightColors.primaryButtonColorEnabled,
+            ? GradientLightColor.disabledColor
+            : GradientLightColor.primaryColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
@@ -49,7 +50,7 @@ class MenuButton extends StatelessWidget {
                           text,
                           textAlign: TextAlign.start,
                           style: /*context.textTheme.bodyMedium?.copyWith.*/
-                              TextStyle(
+                          TextStyle(
                             color: onPressed == null
                                 ? MainColors.lightGray
                                 : MainColors.mintCream,
