@@ -1,3 +1,4 @@
+import 'package:Dinar/src/core/constants/colors.dart';
 import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
 import 'package:Dinar/src/features/categories/presentation/widgets/categories_bottom_sheet.dart';
 import 'package:Dinar/src/features/onboarding/presentation/widgets/check_bottom_sheet.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    gradient: LightColors.secondaryButtonColorEnabled,
+                    gradient: GradientLightColor.secondaryColor,
                     border: Border.all(
                       color: MainColors.forestGreen,
                       width: 2,
@@ -158,7 +159,12 @@ class HomeScreen extends StatelessWidget {
         child: PrimaryButton(
           onPressed: () {
             showModalBottomSheet(
-                context: context, builder: (_) => CategoriesBottomSheet());
+                context: context,
+                builder: (_) => const CheckBottomSheet(
+                      type: "income",
+                      category: null,
+                      wallet: null,
+                    ));
             print("*** click more ***");
           },
           text: "more".toUpperCase(),

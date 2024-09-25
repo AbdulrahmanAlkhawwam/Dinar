@@ -44,7 +44,7 @@ class ClearButton extends StatelessWidget {
                     /// we use IF condition here to appear if it DISABLED or not
                     color: onPressed == null
                         ? context.colors.outlineVariant
-                        : context.colors.onTertiaryContainer,
+                        : context.colors.onTertiaryFixed,
                     fontSize: 18,
                   ),
                 ),

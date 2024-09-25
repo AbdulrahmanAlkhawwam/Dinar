@@ -3,37 +3,46 @@ import 'package:flutter/material.dart';
 
 import '../../constants/styles.dart';
 import '../../constants/colors.dart';
-import '../../styles/colors/main_colors.dart';
-import '../../styles/colors/light_colors.dart';
+import '../../utils/app_context.dart';
 
 class SecondaryButton extends StatelessWidget {
+  /// [onPressed] we added for two thing :-
+  ///   1. for do some thing when you click button
+  ///   2. for DISABLED button when you don't want to do some thing
   final Function()? onPressed;
-  final String text;
+
+  /// we added [child] if you want to add Row not a Text
+  /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
+  final String? text;
 
   const SecondaryButton({
     super.key,
     this.onPressed,
-    this.text = "ADD",
+    this.text,
     this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     return InnerShadow(
-      shadows: [
-        Shadow(
-          color: Colors.black.withOpacity(0.5),
+      shadows: <Shadow>[
+        BoxShadow(
+          color: context.colors.shadow.withOpacity(0.33),
           blurRadius: 32,
-        )
+          blurStyle: BlurStyle.inner,
+          spreadRadius: 500,
+        ),
       ],
       child: Container(
+        /// fixed size
         height: 48,
         width: 200,
         decoration: BoxDecoration(
+          /// we use IF condition here to appear if it DISABLED or not
           gradient: onPressed == null
               ? GradientLightColor.disabledColor
-              : LightColors.secondaryButtonColorEnabled,
+              : GradientLightColor.secondaryColor,
           borderRadius: BorderRadius.circular(circle),
         ),
         child: Material(
@@ -42,23 +51,21 @@ class SecondaryButton extends StatelessWidget {
           shape: const StadiumBorder(),
           clipBehavior: Clip.hardEdge,
           child: InkWell(
-            splashColor: MainColors.teaGreen,
+            splashColor: context.colors.surface,
             onTap: onPressed,
             child: Container(
-              padding: const EdgeInsets.all(12),
               alignment: Alignment.center,
               child: child ??
                   Text(
-                    text,
+                    text ?? "ADD",
                     textAlign: TextAlign.center,
-                    style: /*context.textTheme.bodyMedium?.copyWith.*/
-                        TextStyle(
+                    style: context.textTheme.bodyMedium?.copyWith(
+                      /// we use IF condition here to appear if it DISABLED or not
                       color: onPressed == null
-                          ? MainColors.lightGray
-                          : MainColors.darkTeal,
+                          ? context.colors.outlineVariant
+                          : context.colors.onTertiaryFixed,
                       //context.colors.onPrimary,
                       fontSize: 18,
-                      //fontWeight: FontWeight.w500,
                     ),
                   ),
             ),

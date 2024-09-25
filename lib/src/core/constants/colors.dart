@@ -71,10 +71,25 @@ class GradientLightColor {
     end: Alignment.topRight,
   );
 
+  /// primary color used in any thing like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onTertiaryFixed], [primary]
   static LinearGradient primaryColor = LinearGradient(
     colors: [
       lightColorScheme.onTertiaryFixed,
       lightColorScheme.primary,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  );
+
+  /// secondary color used in any thing like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [primary], [surface]
+  static LinearGradient secondaryColor = LinearGradient(
+    colors: [
+      lightColorScheme.primary,
+      lightColorScheme.surface,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,

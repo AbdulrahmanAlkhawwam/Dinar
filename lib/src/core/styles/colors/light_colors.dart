@@ -4,11 +4,6 @@ import 'main_colors.dart';
 
 class LightColors {
   // for buttons
-  static LinearGradient secondaryButtonColorEnabled = LinearGradient(colors: [
-    MainColors.forestGreen,
-    MainColors.mintCream,
-  ], begin: Alignment.bottomCenter, end: Alignment.topRight);
-
 
   // for onboarding text
   static LinearGradient onBoardingTextColor = LinearGradient(
