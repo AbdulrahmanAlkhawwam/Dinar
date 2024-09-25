@@ -1,7 +1,7 @@
-import 'package:Dinar/src/core/constants/styles.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/styles.dart';
 import '../../constants/colors.dart';
 import '../../styles/colors/main_colors.dart';
 import '../../styles/colors/light_colors.dart';

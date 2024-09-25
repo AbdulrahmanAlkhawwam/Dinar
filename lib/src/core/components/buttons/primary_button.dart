@@ -55,7 +55,6 @@ class PrimaryButton extends StatelessWidget {
                         ? context.colors.outlineVariant
                         : context.colors.onPrimary,
                     fontSize: 18,
-                    //fontWeight: FontWeight.w500,
                   ),
                 ),
           ),
