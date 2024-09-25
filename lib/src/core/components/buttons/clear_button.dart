@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
-import '../../styles/colors/main_colors.dart';
+import '../../utils/app_context.dart';
 
 class ClearButton extends StatelessWidget {
+  /// [onPressed] we added for to thing :-
+  ///   1. for do some thing when you click button
+  ///   2. for DISABLED button when you don't want to do some thing
+  final Function()? onPressed;
+
+  /// we added [child] if you want to add Row not a Text
+  /// like Icon with Text but we not support it as Item we support it as Row
+  final Widget? child;
+  final String? text;
+
   const ClearButton({
     super.key,
     this.onPressed,
     this.child,
-    this.text = "Back",
+    this.text,
   });
-
-  final Function()? onPressed;
-  final Widget? child ;
-  final String text ;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      /// fixed size
       height: 48,
       width: 200,
       child: Material(
@@ -25,22 +32,21 @@ class ClearButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: MainColors.mintCream,
+          splashColor: context.colors.onPrimary,
           onTap: onPressed,
           child: Container(
             padding: const EdgeInsets.all(12),
             alignment: Alignment.center,
             child: child ??
                 Text(
-                  text,
+                  text ?? "Back",
                   textAlign: TextAlign.center,
-                  style: /*context.textTheme.bodyMedium?.copyWith.*/
-                      TextStyle(
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    /// we use IF condition here to appear if it DISABLED or not
                     color: onPressed == null
-                        ? MainColors.lightGray
-                        : MainColors.darkTeal, //context.colors.onPrimary,
+                        ? context.colors.outlineVariant
+                        : context.colors.onTertiaryContainer,
                     fontSize: 18,
-                    //fontWeight: FontWeight.w500,
                   ),
                 ),
           ),

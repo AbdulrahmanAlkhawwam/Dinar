@@ -1,3 +1,6 @@
+import 'package:Dinar/src/features/app/domain/entities/operation_type.dart';
+import 'package:Dinar/src/features/onboarding/presentation/widgets/check_bottom_sheet.dart';
+
 import '../../../categories/presentation/widgets/category_list.dart';
 import '../../../incomes/presentation/widgets/income_chart.dart';
 import '../../../payments/presentation/widgets/payment_chart.dart';
@@ -153,6 +156,10 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 32.0),
         child: PrimaryButton(
           onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (_) => CheckBottomSheet(
+                    type: "income", category: null, wallet: null));
             print("*** click more ***");
           },
           text: "more".toUpperCase(),

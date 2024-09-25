@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import '../styles/colors/light_colors.dart';
 
 class Screen extends StatelessWidget {
+  final bool withoutBackground;
+  final Widget child;
+
   const Screen({
     super.key,
     required this.child,
     this.withoutBackground = false,
   });
-
-  final bool withoutBackground;
-  final Widget child;
 
   @override
   Widget build(BuildContext context) {

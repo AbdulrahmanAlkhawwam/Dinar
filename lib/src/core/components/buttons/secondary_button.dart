@@ -1,3 +1,4 @@
+import 'package:Dinar/src/core/constants/styles.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter/material.dart';
 
@@ -5,16 +6,16 @@ import '../../styles/colors/main_colors.dart';
 import '../../styles/colors/light_colors.dart';
 
 class SecondaryButton extends StatelessWidget {
+  final Function()? onPressed;
+  final String text;
+  final Widget? child;
+
   const SecondaryButton({
     super.key,
     this.onPressed,
     this.text = "ADD",
     this.child,
   });
-
-  final Function()? onPressed;
-  final String text;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class SecondaryButton extends StatelessWidget {
           gradient: onPressed == null
               ? LightColors.disabledButtonColor
               : LightColors.secondaryButtonColorEnabled,
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(circle),
         ),
         child: Material(
           type: MaterialType.button,

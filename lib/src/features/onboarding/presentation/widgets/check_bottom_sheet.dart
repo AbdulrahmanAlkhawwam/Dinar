@@ -125,7 +125,7 @@ class CheckBottomSheet extends StatelessWidget {
           const SizedBox(height: 16),
           ClearButton(
             onPressed: () {
-              Navigator.pop(context, false);
+              // Navigator.pop(context, false);
             },
           ),
         ],

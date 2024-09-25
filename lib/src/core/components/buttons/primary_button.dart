@@ -1,7 +1,7 @@
-import 'package:Dinar/src/core/components/tag_card.dart';
 import 'package:Dinar/src/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/styles.dart';
 import '../../styles/colors/light_colors.dart';
 import '../../styles/colors/main_colors.dart';
 
@@ -26,7 +26,7 @@ class PrimaryButton extends StatelessWidget {
         gradient: onPressed == null
             ? LightColors.disabledButtonColor
             : LightColors.primaryButtonColorEnabled,
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
         type: MaterialType.button,

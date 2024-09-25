@@ -1,20 +1,21 @@
-import 'package:Dinar/src/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles/colors/light_colors.dart';
 import '../../styles/colors/main_colors.dart';
+import '../../utils/app_context.dart';
+import '../../constants/styles.dart';
 
 class MenuButton extends StatelessWidget {
+  final Function()? onPressed;
+  final Widget? child;
+  final String text;
+
   const MenuButton({
     super.key,
     required this.text,
-    this.child,
     this.onPressed,
+    this.child,
   });
-
-  final Function()? onPressed;
-  final String text;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class MenuButton extends StatelessWidget {
         gradient: onPressed == null
             ? LightColors.disabledButtonColor
             : LightColors.primaryButtonColorEnabled,
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
         type: MaterialType.button,

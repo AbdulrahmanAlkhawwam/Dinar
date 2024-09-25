@@ -4,6 +4,17 @@ import 'package:flutter/material.dart';
 import '../../styles/colors/main_colors.dart';
 
 class LinearChart extends StatelessWidget {
+  final List<FlSpot> values;
+  late List<Color> colors;
+  LinearGradient? color;
+  final Color? mainColor;
+  double maxY = 0.0;
+  double maxX = 0.0;
+  double minY = 0.0;
+  double minX = 0.0;
+  double valueX = 0.0;
+  double valueY = 0.0;
+
   LinearChart({
     super.key,
     required this.values,
@@ -23,17 +34,6 @@ class LinearChart extends StatelessWidget {
     _checkData(values);
     _getChartData(values);
   }
-
-  final List<FlSpot> values;
-  late List<Color> colors;
-  LinearGradient? color;
-  final Color? mainColor;
-  double maxY = 0.0;
-  double maxX = 0.0;
-  double minY = 0.0;
-  double minX = 0.0;
-  double valueX = 0.0;
-  double valueY = 0.0;
 
   _checkData(List<FlSpot> values) {
     double lastValue = values[0].x.toDouble();
