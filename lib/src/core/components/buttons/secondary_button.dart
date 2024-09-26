@@ -60,7 +60,8 @@ class SecondaryButton extends StatelessWidget {
                     text ?? "ADD",
                     textAlign: TextAlign.center,
                     style: context.textTheme.bodyMedium?.copyWith(
-                      /// we use IF condition here to appear if it DISABLED or not
+                      /// we use IF condition here to appear if it
+                      /// DISABLED or not
                       color: onPressed == null
                           ? context.colors.outlineVariant
                           : context.colors.onTertiaryFixed,

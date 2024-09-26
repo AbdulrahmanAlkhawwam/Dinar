@@ -63,7 +63,7 @@ class AddIncomeScreen extends StatelessWidget {
               const SizedBox(height: 48),
               InputField(
                 isEnabled: true,
-                label: "name",
+                hint: "name",
                 controller: nameController,
                 validator: (value) {
                   if (value == "" || value.trim() == "") {
@@ -81,7 +81,7 @@ class AddIncomeScreen extends StatelessWidget {
               InputField(
                 keyboardType: TextInputType.number,
                 isEnabled: true,
-                label: "value",
+                hint: "value",
                 validator: (value) {
                   if (value == "" || value.trim() == "") {
                     return "value must not be empty";
@@ -95,7 +95,7 @@ class AddIncomeScreen extends StatelessWidget {
               const SizedBox(height: 24),
               InputField(
                 isEnabled: true,
-                label: "description",
+                hint: "description",
                 controller: descriptionController,
               ),
               const SizedBox(

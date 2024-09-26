@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-import '../styles/colors/light_colors.dart';
+import '../constants/colors.dart';
+
 
 class Screen extends StatelessWidget {
   final bool withoutBackground;
@@ -20,7 +21,7 @@ class Screen extends StatelessWidget {
             ? const SizedBox()
             : Container(
                 decoration: BoxDecoration(
-                  gradient: LightColors.backgroundColor,
+                  gradient: GradientLightColor.backgroundColor,
                 ),
               ),
         child,

@@ -36,16 +36,16 @@ class CategoriesBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             InputField(
-              isEnabled: true,
+              isEnabled: false,
               controller: nameController,
-              label: "Name",
+              hint: "Name",
               validate: "this should not empty !",
             ),
             const SizedBox(height: 16),
             InputField(
               isEnabled: true,
               controller: typeController,
-              label: "Type",
+              hint: "Type",
               validator: (value) {
                 if (!value.toString().trim().toLowerCase().contains("income") &&
                     !value

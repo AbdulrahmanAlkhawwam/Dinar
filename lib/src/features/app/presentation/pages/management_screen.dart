@@ -1,4 +1,8 @@
+import 'package:Dinar/src/features/categories/presentation/pages/categories_screen.dart';
 import 'package:Dinar/src/features/home/presentation/pages/home_screen.dart';
+import 'package:Dinar/src/features/incomes/presentation/pages/incomes_screen.dart';
+import 'package:Dinar/src/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:Dinar/src/features/payments/presentation/pages/payments_screen.dart';
 
 import 'loading.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +61,7 @@ class ManagementScreen extends StatelessWidget {
               ]),
             );
           default:
-            return const HomeScreen();
+            return const PaymentsScreen();
         }
       },
     );

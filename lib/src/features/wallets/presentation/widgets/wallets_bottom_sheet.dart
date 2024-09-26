@@ -36,7 +36,7 @@ class WalletsBottomSheet extends StatelessWidget {
             InputField(
               isEnabled: true,
               controller: nameController,
-              label: "Name",
+              hint: "Name",
               validate: "this must not empty !",
             ),
             const SizedBox(height: 32),

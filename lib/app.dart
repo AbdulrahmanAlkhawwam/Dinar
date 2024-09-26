@@ -23,6 +23,8 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
         home: BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
             return const ManagementScreen();

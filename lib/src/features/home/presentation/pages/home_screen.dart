@@ -159,12 +159,7 @@ class HomeScreen extends StatelessWidget {
         child: PrimaryButton(
           onPressed: () {
             showModalBottomSheet(
-                context: context,
-                builder: (_) => const CheckBottomSheet(
-                      type: "income",
-                      category: null,
-                      wallet: null,
-                    ));
+                context: context, builder: (_) => CategoriesBottomSheet());
             print("*** click more ***");
           },
           text: "more".toUpperCase(),

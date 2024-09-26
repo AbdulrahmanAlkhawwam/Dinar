@@ -1,14 +1,82 @@
 import 'package:flutter/material.dart';
 
-import '../../styles/colors/main_colors.dart';
+import '../../utils/app_context.dart';
 
 class InputField extends StatelessWidget {
+  /// this function is do some thing when [InputField] clicked
+  /// this variable is Nullable ... so you can put [Null] or [Function]
+  final Function()? onTap;
+
+  /// this function is called when value of controller is changed
+  /// this function get value of controller to do what you want when it changed
+  /// this variable is Nullable ... so you can put [Null] or [Function]
+  final Function(dynamic)? onChanged;
+
+  /// [validator] is a function which take you a value of controller
+  ///
+  /// in this function you can check for some useCase for input value
+  ///
+  /// this variable is Nullable ... but you should use one of [validator] and
+  /// [validate]
+  final FormFieldValidator<dynamic>? validator;
+  final String? validate;
+
+  /// this variable take you a wide control by Text Form Field input value
+  ///
+  /// you can get value by controller [controller.text] or by [onChanged]
+  /// function
+  final TextEditingController? controller;
+
+  /// this IconButton is appear in left of text inter if [ltr] {left to right}
+  /// , and right of it if [rtl] {right to left}
+  ///
+  /// The [suffix] appears before the [suffixIcon], if both are specified
+  /// --copy from flutter documentation ©--
+  ///
+  /// this variable get Icon Button which do some thing when clicked ... but
+  /// you should use one of [suffixIcon] and [suffixIconButton]
+  final IconButton? suffixIconButton;
+
+  /// this is same of the previous variable [suffixIconButton] but when clicked
+  /// not do any thing
+  final Icon? suffixIcon;
+
+  /// this IconButton is appear in right of text inter if [ltr] {left to right}
+  /// , and left of it if [rtl] {right to left}
+  ///
+  /// The [prefix] appears before the [prefixIcon], if both are specified
+  /// --copy from flutter documentation ©--
+  ///
+  /// this variable get Icon Button which do some thing when clicked ... but
+  /// you should use one of [prefixIcon] and [prefixIconButton]
+  final IconButton? prefixIconButton;
+
+  /// this is same of the previous variable [prefixIconButton] but when clicked
+  /// not do any thing
+  final Icon? prefixIcon;
+
+  /// this variable made for the time which you want to input only [Integer] ,
+  /// [Characters] , [password] ... etc
+  ///
+  /// it's Nullable . so, the initial value is [text]
+  final TextInputType? keyboardType;
+
+  /// hint style is the style of [text] which appear before Tap on text inter
+  ///
+  /// If null, defaults to a value derived from the base [TextStyle] for the
+  /// input field and the current [Theme].
+  final TextStyle? hintStyle;
+  final String? hint;
+
+  /// if Text Form Field is Not enabled so , this mean you can't use it
+  final bool isEnabled;
+
   const InputField({
     super.key,
     required this.isEnabled,
     this.controller,
-    this.label = "Text",
-    this.labelStyle,
+    this.hint,
+    this.hintStyle,
     this.suffixIconButton,
     this.suffixIcon,
     this.prefixIconButton,
@@ -20,83 +88,39 @@ class InputField extends StatelessWidget {
     this.keyboardType,
   });
 
-  final Function()? onTap;
-  final Function(dynamic)? onChanged;
-  final FormFieldValidator<dynamic>? validator;
-  final TextEditingController? controller;
-  final IconButton? suffixIconButton;
-  final Icon? suffixIcon;
-  final TextInputType? keyboardType;
-  final IconButton? prefixIconButton;
-  final TextStyle? labelStyle;
-  final Icon? prefixIcon;
-  final String? label;
-  final String? validate;
-  final bool isEnabled;
-
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: keyboardType ?? TextInputType.text,
-      validator: isEnabled
-          ? validator ??
-              (value) {
-                if (value == null || value.isEmpty) {
-                  return validate;
-                } else {
-                  return null;
+    return SizedBox(
+      height: 64,
+      child: TextFormField(
+        keyboardType: keyboardType ?? TextInputType.text,
+        validator: isEnabled
+            ? validator ??
+                (value) {
+                  if (value == null || value.isEmpty) {
+                    return validate;
+                  } else {
+                    return null;
+                  }
                 }
-              }
-          : null,
-      autocorrect: true,
-      onTap: onTap,
-      onChanged: onChanged,
-      enabled: isEnabled,
-      cursorColor: MainColors.darkTeal,
-      controller: controller,
-      style: const TextStyle(
-        height: 0,
-      ),
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: labelStyle?.copyWith(color: MainColors.darkTeal),
-        suffix: suffixIconButton ?? suffixIcon,
-        prefix: prefixIconButton ?? prefixIcon,
-        border: InputBorder.none,
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(
-            color: MainColors.lightGray,
-            width: 3,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(
-            color: MainColors.forestGreen,
-            width: 3,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(
-            color: MainColors.forestGreen.withOpacity(0.5),
-            width: 3,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(
-            color: MainColors.redwood,
-            width: 3,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(
-            color: MainColors.redwood.withOpacity(0.5),
-            width: 3,
-          ),
+            : null,
+        autocorrect: true,
+        onTap: onTap,
+        onChanged: onChanged,
+        enabled: isEnabled,
+        cursorColor: context.colors.onTertiaryContainer,
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: !isEnabled
+              ? TextStyle(
+                  color: context.colors.outline,
+                  fontSize: 18,
+                )
+              : hintStyle,
+          suffix: suffixIconButton ?? suffixIcon,
+          prefix: prefixIconButton ?? prefixIcon,
+          border: InputBorder.none,
         ),
       ),
     );

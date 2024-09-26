@@ -1,3 +1,5 @@
+/// fix menu button
+
 import 'package:Dinar/src/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +52,7 @@ class MenuButton extends StatelessWidget {
                           text,
                           textAlign: TextAlign.start,
                           style: /*context.textTheme.bodyMedium?.copyWith.*/
-                          TextStyle(
+                              TextStyle(
                             color: onPressed == null
                                 ? MainColors.lightGray
                                 : MainColors.mintCream,

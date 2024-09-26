@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../styles/colors/main_colors.dart';
-
 /// LIGHT MODE COLOR
 ///
 ///
 /// COLOR THEME : [lightColorScheme] , but it's only for light THEME
 /// it it's created by [Material.io] which you can visited it in this link
-/// ( https://amaterial-foundation.github.io/material-theme-builder/ )
+/// [https://amaterial-foundation.github.io/material-theme-builder/]
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xff2c6a45),
@@ -77,7 +75,7 @@ class GradientLightColor {
   static LinearGradient primaryColor = LinearGradient(
     colors: [
       lightColorScheme.onTertiaryFixed,
-      lightColorScheme.primary,
+      lightColorScheme.primary.withGreen(150),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
@@ -85,14 +83,26 @@ class GradientLightColor {
 
   /// secondary color used in any thing like [bottom], [card] , ... etc
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [primary], [surface]
+  /// we used colors [secondaryFixedDim], [surface]
   static LinearGradient secondaryColor = LinearGradient(
     colors: [
-      lightColorScheme.primary,
+      lightColorScheme.secondaryFixedDim,
       lightColorScheme.surface,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
+  );
+
+  /// background color used only onboarding screen
+  /// it's begin [Alignment.centerRight] and end [Alignment.bottomLeft]
+  /// we used colors [inversePrimary], [primary]
+  static LinearGradient backgroundColor = LinearGradient(
+    colors: [
+      lightColorScheme.inversePrimary,
+      lightColorScheme.primary,
+    ],
+    begin: Alignment.centerRight,
+    end: Alignment.bottomLeft,
   );
 }
 

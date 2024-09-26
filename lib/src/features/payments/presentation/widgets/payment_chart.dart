@@ -9,11 +9,6 @@ class PaymentChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LinearChart(
-      mainColor: Colors.red,
-      colors: const [
-        Colors.brown,
-        Colors.red,
-      ],
       values: const [
         FlSpot(0, 7),
         FlSpot(2.6, 2),
