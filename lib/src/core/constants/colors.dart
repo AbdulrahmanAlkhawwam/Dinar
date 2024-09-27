@@ -43,6 +43,7 @@ const lightColorScheme = ColorScheme(
   secondaryFixedDim: Color(0xffa0d49b),
   onSecondaryFixedVariant: Color(0xff225025),
   tertiaryFixed: Color(0xffbeeaf7),
+  // don't use this var , use onTertiaryContainer
   onTertiaryFixed: Color(0xff001f26),
   tertiaryFixedDim: Color(0xffa3cddb),
   onTertiaryFixedVariant: Color(0xff214c57),

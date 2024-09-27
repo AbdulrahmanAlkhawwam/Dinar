@@ -1,4 +1,3 @@
-import 'package:Dinar/src/core/components/buttons/clear_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/components/buttons/secondary_button.dart';
@@ -123,10 +122,11 @@ class CheckBottomSheet extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          ClearButton(
+          TextButton(
             onPressed: () {
               // Navigator.pop(context, false);
             },
+            child: const Text("back"),
           ),
         ],
       ),

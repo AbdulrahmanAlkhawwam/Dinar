@@ -61,7 +61,7 @@ class ManagementScreen extends StatelessWidget {
               ]),
             );
           default:
-            return const PaymentsScreen();
+            return const IncomesScreen();
         }
       },
     );

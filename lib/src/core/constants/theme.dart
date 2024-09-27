@@ -12,25 +12,25 @@ class AppTheme {
   static _theme(ColorScheme colors) => ThemeData(
         colorScheme: colors,
         primaryColor: colors.primary,
-        canvasColor: colors.onTertiaryFixed,
+        canvasColor: colors.onTertiaryContainer,
         useMaterial3: true,
-        appBarTheme: _appBarTheme(colors),
         textTheme: _textTheme(colors),
+        appBarTheme: _appBarTheme(colors),
         scaffoldBackgroundColor: colors.surface,
+        textButtonTheme: _textButtonTheme(colors),
         inputDecorationTheme: _inputDecorationTheme(colors),
         bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
 
         /// we don't use default button . so, we cancel it temporary
         // elevatedButtonTheme: _elevatedButtonTheme(colors),
         // outlinedButtonTheme: _outlinedButtonTheme(colors),
-        // textButtonTheme: _textButtonTheme(colors),
         // dividerTheme: _buildDividerTheme(colors),
       );
 
   static AppBarTheme _appBarTheme(ColorScheme colors) {
     return AppBarTheme(
       titleTextStyle: GoogleFonts.poppins(
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
         fontSize: 26,
       ),
       centerTitle: true,
@@ -77,17 +77,32 @@ class AppTheme {
       labelStyle: GoogleFonts.poppins(
         height: 0,
         fontSize: 18,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       hintStyle: GoogleFonts.poppins(
         height: 0,
         fontSize: 18,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       errorStyle: GoogleFonts.poppins(
         height: 0,
         fontSize: 18,
         color: colors.error,
+      ),
+    );
+  }
+
+  static TextButtonThemeData _textButtonTheme(ColorScheme colors) {
+    return TextButtonThemeData(
+      style: ButtonStyle(
+        alignment: Alignment.center,
+        fixedSize: const WidgetStatePropertyAll(Size(200, 48)),
+        shape: const WidgetStatePropertyAll(StadiumBorder()),
+        textStyle: WidgetStatePropertyAll(
+          GoogleFonts.poppins(
+            fontSize: 20,
+          ),
+        ),
       ),
     );
   }
@@ -98,86 +113,86 @@ class AppTheme {
         fontSize: 42,
         fontWeight: FontWeight.w400,
         height: 46 / 40,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       displayMedium: GoogleFonts.poppins(
         fontSize: 36,
         fontWeight: FontWeight.w400,
         height: 28 / 32,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       displaySmall: null,
       headlineLarge: GoogleFonts.poppins(
         fontSize: 34,
         fontWeight: FontWeight.w500,
         height: 34 / 28,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       headlineMedium: GoogleFonts.poppins(
         fontSize: 30,
         fontWeight: FontWeight.w500,
         height: 30 / 24,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       headlineSmall: GoogleFonts.poppins(
         fontSize: 26,
         fontWeight: FontWeight.w500,
         height: 24 / 20,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       titleLarge: GoogleFonts.poppins(
         fontSize: 28,
         fontWeight: FontWeight.w700,
         height: 40 / 24,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       titleMedium: GoogleFonts.poppins(
         fontSize: 22,
         fontWeight: FontWeight.w700,
         height: 20 / 18,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       titleSmall: GoogleFonts.poppins(
         fontSize: 18,
         fontWeight: FontWeight.w700,
         height: 25 / 16,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       bodyLarge: GoogleFonts.poppins(
         fontSize: 24,
         fontWeight: FontWeight.w400,
         height: 28 / 22,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       bodyMedium: GoogleFonts.poppins(
         fontSize: 20,
         fontWeight: FontWeight.w400,
         height: 20 / 18,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       bodySmall: GoogleFonts.poppins(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         height: 20 / 16,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       labelLarge: GoogleFonts.poppins(
         fontSize: 18,
         fontWeight: FontWeight.w400,
         height: 18 / 16,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       labelMedium: GoogleFonts.poppins(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         height: 16 / 14,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
       labelSmall: GoogleFonts.poppins(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         height: 20 / 12,
-        color: colors.onTertiaryFixed,
+        color: colors.onTertiaryContainer,
       ),
     );
   }
@@ -208,19 +223,6 @@ class AppTheme {
             ),
         side: BorderSide(color: colors.onBackground),
         minimumSize: const Size(200, 50),
-        textStyle: GoogleFonts.poppins(
-          fontSize: 20,
-        ),
-      ),
-    );
-  }
-
-  static TextButtonThemeData _textButtonTheme(ColorScheme colors) {
-    return TextButtonThemeData(
-      style: TextButton.styleFrom(
-        shape: const RoundedRectangleBorder(
-            // borderRadius: BorderRadius.circular(smallRadius),
-            ),
         textStyle: GoogleFonts.poppins(
           fontSize: 20,
         ),
