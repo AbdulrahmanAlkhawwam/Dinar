@@ -196,43 +196,4 @@ class AppTheme {
       ),
     );
   }
-
-  static ElevatedButtonThemeData _elevatedButtonTheme(ColorScheme colors) {
-    return ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(
-            // borderRadius: BorderRadius.circular(mediumRadius),
-            ),
-        minimumSize: const Size(200, 50),
-        shadowColor: colors.shadow,
-        elevation: 8,
-        textStyle: GoogleFonts.poppins(
-          fontSize: 20,
-        ),
-        backgroundColor: colors.primary,
-        foregroundColor: colors.onPrimary,
-      ),
-    );
-  }
-
-  static OutlinedButtonThemeData _outlinedButtonTheme(ColorScheme colors) {
-    return OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        shape: const RoundedRectangleBorder(
-            // borderRadius: BorderRadius.circular(mediumRadius),
-            ),
-        side: BorderSide(color: colors.onBackground),
-        minimumSize: const Size(200, 50),
-        textStyle: GoogleFonts.poppins(
-          fontSize: 20,
-        ),
-      ),
-    );
-  }
-
-  static _buildDividerTheme(ColorScheme colors) {
-    return DividerThemeData(
-      color: colors.outline,
-    );
-  }
 }
