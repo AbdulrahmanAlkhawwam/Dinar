@@ -25,13 +25,16 @@ dependencies:
   fl_chart: ^0.69.0
   flutter_inner_shadow: ^0.0.1
   google_fonts: ^6.2.1
+  dartz: ^0.10.1
+  bloc: ^8.1.4
+  meta: ^1.15.0
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true

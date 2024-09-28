@@ -1,13 +1,12 @@
-import 'package:Dinar/src/core/components/buttons/primary_button.dart';
-import 'package:Dinar/src/core/service_locator/service_locator.dart';
-import 'package:Dinar/src/core/styles/colors/light_colors.dart';
-import 'package:Dinar/src/core/styles/themes/light_theme.dart';
+import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
+import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../src/features/app/presentation/pages/management_screen.dart';
-import '../src/core/constants/theme.dart';
-import '../src/features/app/presentation/manager/general/general_bloc.dart';
+import './core/constants/theme.dart';
+import './features/app/presentation/pages/management_screen.dart';
+import './features/app/presentation/manager/general/general_bloc.dart';
+import 'core/service_locator/service_locator.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -17,19 +16,20 @@ class App extends StatelessWidget {
     print("we are in main screen");
     return MultiBlocProvider(
       providers: [
-        BlocProvider<GeneralBloc>(
-          create: (context) => GeneralBloc(),
-        ),
+        // BlocProvider(create: (_) => GeneralBloc()),
+        BlocProvider(
+            create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent()))
       ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home: BlocBuilder<GeneralBloc, GeneralState>(
+        home:
+            const IncomesScreen(), /* BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
             return const ManagementScreen();
           },
-        ),
+        ),*/
       ),
     );
   }
