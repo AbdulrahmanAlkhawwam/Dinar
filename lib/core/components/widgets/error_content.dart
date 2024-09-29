@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ErrorContent extends StatelessWidget {
-  String message;
-  Widget errorMessage;
+  final String message;
+  final Widget errorMessage;
 
-  ErrorContent({
+  const ErrorContent({
     super.key,
     required this.message,
     required this.errorMessage,

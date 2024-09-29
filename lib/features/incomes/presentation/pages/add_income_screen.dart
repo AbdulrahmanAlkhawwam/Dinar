@@ -1,13 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:Dinar/core/components/dialog/time_dialog.dart';
+import 'package:Dinar/core/constants/strings.dart';
+import 'package:Dinar/features/app/domain/entities/operation_type.dart';
+import 'package:Dinar/features/categories/domain/entities/category.dart';
+import 'package:Dinar/features/incomes/domain/entities/income.dart';
+import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/components/buttons/primary_button.dart';
-import '../../../../core/components/dialog/menu_dialog.dart';
 import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 
 import '../../../../core/components/buttons/menu_button.dart';
+import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../manager/income_bloc.dart';
 
 class AddIncomeScreen extends StatelessWidget {
   AddIncomeScreen({super.key});
@@ -19,6 +26,11 @@ class AddIncomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categoryMenu = context.read<CategoriesBloc>().incomeCategories;
+    Category? selectedCategory;
+    Wallet? selectedWallet;
+    DateTime? date;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -97,31 +109,68 @@ class AddIncomeScreen extends StatelessWidget {
                 hint: "description",
                 controller: descriptionController,
               ),
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: 24),
               MenuButton(
-                menu: ["name ", "hour"],
-                text: "category",
+                menu: categoryMenu,
+                text: categoriesTable,
                 onTap: (index) {
-                  print("+++ $index");
+                  selectedCategory = categoryMenu[index];
                 },
               ),
-              const SizedBox(
-                height: 24,
-              ),
+              const SizedBox(height: 24),
               MenuButton(
                 text: "wallet",
                 menu: [],
-                onTap: (index) {},
+                onTap: (index) {
+                  selectedWallet = Wallet(
+                    index,
+                    name: "name",
+                  );
+                },
+              ),
+              const SizedBox(height: 24),
+              Center(
+                child: PrimaryButton(
+                  text: "Get Time",
+                  onPressed: () async {
+                    TimeOfDay output = await showDialog(
+                      context: context,
+                      builder: (ctx) => TimeDialog(),
+                    );
+                    date = DateTime.now().copyWith(
+                      hour: output.hour,
+                      minute: output.minute,
+                      microsecond: 0,
+                      millisecond: 0,
+                    );
+                    print(date);
+                  },
+                ),
               ),
               const Spacer(),
               Center(
                 child: PrimaryButton(
                   text: "add".toUpperCase(),
                   onPressed: () {
-                    globalKey.currentState?.validate();
-                    context.showSuccessSnackBar();
+                    if (globalKey.currentState!.validate() &&
+                        selectedCategory != null &&
+                        selectedWallet != null) {
+                      context.read<IncomeBloc>().add(
+                            AddIncomeEvent(
+                              income: Income(
+                                null,
+                                name: nameController.text,
+                                value: double.parse(valueController.text),
+                                description: descriptionController.text,
+                                categoryId: selectedCategory?.id ?? "",
+                                walletId: selectedWallet?.id ?? "",
+                                date: date ?? DateTime.now(),
+                                category: selectedCategory,
+                                wallet: selectedWallet,
+                              ),
+                            ),
+                          );
+                    }
                   },
                 ),
               )

@@ -1,6 +1,4 @@
-import 'package:Dinar/features/incomes/domain/entities/income.dart';
-
-import '../models/Income_model.dart';
+import '../models/income_model.dart';
 import '../../../wallets/data/models/wallet_model.dart';
 import '../../../categories/data/models/category_model.dart';
 import '../../../../core/helpers/database_helper.dart';
@@ -9,7 +7,7 @@ import '../../../../core/constants/strings.dart';
 abstract class IncomesLocalDataSource {
   Future<List<IncomeModel>> loadIncomes();
 
-  Future<int> addIncome(IncomeModel incomeModel);
+  Future<int> addIncome(incomeModel);
 }
 
 class IncomesLocalDataSourceImpl extends IncomesLocalDataSource {
@@ -46,7 +44,7 @@ class IncomesLocalDataSourceImpl extends IncomesLocalDataSource {
   }
 
   @override
-  Future<int> addIncome(IncomeModel incomeModel) async {
+  Future<int> addIncome(incomeModel) async {
     final id = await db.insert(
       operationsTable,
       incomeModel.toMap(),

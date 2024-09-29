@@ -19,12 +19,8 @@ class AppTheme {
         scaffoldBackgroundColor: colors.surface,
         textButtonTheme: _textButtonTheme(colors),
         inputDecorationTheme: _inputDecorationTheme(colors),
-        bottomSheetTheme: BottomSheetThemeData(backgroundColor: colors.surface),
-
-        /// we don't use default button . so, we cancel it temporary
-        // elevatedButtonTheme: _elevatedButtonTheme(colors),
-        // outlinedButtonTheme: _outlinedButtonTheme(colors),
-        // dividerTheme: _buildDividerTheme(colors),
+        bottomSheetTheme: _bottomSheetThemeData(colors),
+        timePickerTheme: _timePickerTheme(colors),
       );
 
   static AppBarTheme _appBarTheme(ColorScheme colors) {
@@ -37,9 +33,12 @@ class AppTheme {
     );
   }
 
+  static _bottomSheetThemeData(ColorScheme colors) {
+    return BottomSheetThemeData(backgroundColor: colors.surface);
+  }
+
   static InputDecorationTheme _inputDecorationTheme(ColorScheme colors) {
     return InputDecorationTheme(
-
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(circle),
         borderSide: BorderSide(
@@ -75,14 +74,19 @@ class AppTheme {
           width: 3,
         ),
       ),
+      labelStyle: GoogleFonts.poppins(
+        height: 0,
+        fontSize: 16,
+        color: colors.onTertiaryContainer,
+      ),
       hintStyle: GoogleFonts.poppins(
         height: 0,
-        fontSize: 18,
+        fontSize: 16,
         color: colors.onTertiaryContainer.withOpacity(0.5),
       ),
       errorStyle: GoogleFonts.poppins(
         height: 0,
-        fontSize: 18,
+        fontSize: 16,
         color: colors.error,
       ),
     );
@@ -98,6 +102,42 @@ class AppTheme {
           GoogleFonts.poppins(
             fontSize: 20,
           ),
+        ),
+      ),
+    );
+  }
+
+  static _timePickerTheme(ColorScheme colors) {
+    return TimePickerThemeData(
+      backgroundColor: colors.secondaryContainer,
+      dialBackgroundColor: colors.surface,
+      dayPeriodColor: colors.secondary.withOpacity(0.75),
+      dayPeriodTextColor: colors.surface,
+      hourMinuteColor: colors.primary.withOpacity(0.25),
+      dialHandColor: colors.primary,
+      dayPeriodBorderSide: BorderSide(
+        color: colors.primary,
+        width: 2,
+      ),
+      dialTextStyle: _textTheme(colors).bodyMedium,
+      timeSelectorSeparatorColor: WidgetStatePropertyAll(colors.primary),
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(semicircle),
+        borderSide: BorderSide(
+          color: colors.secondary,
+          width: 5,
+        ),
+      ),
+      confirmButtonStyle: ButtonStyle(
+        fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
+        textStyle: WidgetStatePropertyAll(
+          _textTheme(colors).titleSmall,
+        ),
+      ),
+      cancelButtonStyle: ButtonStyle(
+        fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
+        textStyle: WidgetStatePropertyAll(
+          _textTheme(colors).titleSmall,
         ),
       ),
     );

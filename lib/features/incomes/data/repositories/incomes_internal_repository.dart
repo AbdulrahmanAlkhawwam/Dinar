@@ -19,4 +19,14 @@ class IncomesInternalRepositoryImp extends IncomesRepository {
       return Left(DatabaseFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, int>> addIncome(income) async {
+    try {
+      final id = await localDataSource.addIncome(income);
+      return Right(id);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
 }

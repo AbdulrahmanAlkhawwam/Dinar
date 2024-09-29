@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../incomes/domain/entities/income.dart';
-import '../../../incomes/domain/use_cases/load_incomes_uc.dart';
+import '../../domain/entities/income.dart';
+import '../../domain/use_cases/add_income_uc.dart';
+import '../../domain/use_cases/load_incomes_uc.dart';
 import '../../../../core/utils/message.dart';
 
 part 'income_event.dart';
@@ -15,9 +16,14 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
   List<Income> incomes = [];
 
   final LoadIncomesUc loadIncomesUc;
+  final AddIncomeUc addIncomeUc;
 
-  IncomeBloc({required this.loadIncomesUc}) : super(IncomeInitial()) {
+  IncomeBloc({
+    required this.loadIncomesUc,
+    required this.addIncomeUc,
+  }) : super(IncomeInitial()) {
     on<IncomeInitEvent>(_initializeIncomes);
+    on<AddIncomeEvent>(_addIncome);
   }
 
   FutureOr<void> _initializeIncomes(
@@ -32,6 +38,20 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
           ..clear()
           ..addAll(incomes);
         emit(IncomeLoaded(incomes: incomes));
+      },
+    );
+  }
+
+  FutureOr<void> _addIncome(
+    AddIncomeEvent event,
+    Emitter<IncomeState> emit,
+  ) async {
+    emit(IncomeAdding());
+    final response = await addIncomeUc.call(param: event.income);
+    response.fold(
+      (failure) => emit(IncomeError(message: Message.fromFailure(failure))),
+      (id) {
+        emit(IncomeAdded());
       },
     );
   }

@@ -1,7 +1,7 @@
 part of 'income_bloc.dart';
 
 @immutable
-sealed class IncomeState {}
+abstract class IncomeState {}
 
 final class IncomeInitial extends IncomeState {}
 
@@ -18,3 +18,7 @@ final class IncomeLoaded extends IncomeState {
 
   IncomeLoaded({required this.incomes});
 }
+
+final class IncomeAdding extends IncomeState {}
+
+final class IncomeAdded extends IncomeState {}

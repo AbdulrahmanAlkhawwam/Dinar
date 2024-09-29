@@ -5,4 +5,6 @@ import '../../../../core/errors/failures.dart';
 
 abstract class IncomesRepository {
   Future<Either<Failure, List<Income>>> loadIncomes();
+
+  Future<Either<Failure, int>> addIncome(Income income);
 }

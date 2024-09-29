@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/styles.dart';
 import '../../utils/app_context.dart';
 
 class MenuDialog extends StatelessWidget {
@@ -22,7 +23,7 @@ class MenuDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: context.colors.secondaryContainer,
       shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(semicircle),
         borderSide: BorderSide(
           color: context.colors.secondary,
           width: 5,

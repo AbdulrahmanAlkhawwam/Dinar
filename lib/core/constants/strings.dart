@@ -50,11 +50,13 @@ import '../localization/keys.g.dart';
 // const habitsFilterFeatureKey = "habits_filter";
 // const habitTileFeatureKey = "habit_tile";
 //
-// Database
+
+/// Database
 const databaseFile = "main.db";
 const walletsTable = "wallets";
 const categoriesTable = "categories";
 const operationsTable = "operations";
+
 // const habitsTable = "habits";
 // const doneHabitsTable = "done_habits";
 // const periodsTable = "periods";

@@ -122,6 +122,10 @@ class InputField extends StatelessWidget {
         suffix: suffixIconButton ?? suffixIcon,
         prefix: prefixIconButton ?? prefixIcon,
         border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 12,
+          horizontal: 16,
+        ),
       ),
     );
   }

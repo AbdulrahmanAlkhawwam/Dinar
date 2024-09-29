@@ -1,30 +1,54 @@
-import '../../../onboarding/presentation/pages/creation_screen.dart';
+import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/components/buttons/primary_button.dart';
+import 'creation_screen.dart';
+import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/widgets/screen.dart';
-import '../widgets/onboarding_title.dart';
+import '../../../../core/components/buttons/primary_button.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print("we are in onboarding screen");
     return Screen(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(
+            Expanded(
               flex: 3,
               child: Padding(
-                padding: EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Column(
                   children: [
-                    Spacer(),
-                    OnboardingTitle(),
+                    const Spacer(),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Let’s\n Your",
+                          style: TextStyle(
+                            color: context.colors.onTertiaryContainer,
+                            fontSize: 35,
+                          ),
+                        ),
+                        GradientText(
+                          const Text(
+                            "Manage\n Money",
+                            style: TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          colors: [
+                            context.colors.onTertiaryContainer,
+                            context.colors.primary.withGreen(150),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -32,14 +56,12 @@ class OnboardingScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: PrimaryButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => const CreationScreen(),
-                      ),
-                    );
-                  },
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => const CreationScreen(),
+                    ),
+                  ),
                 ),
               ),
             ),
