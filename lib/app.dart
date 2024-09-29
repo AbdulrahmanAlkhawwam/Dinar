@@ -1,4 +1,5 @@
 import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
+import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
 import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,14 +19,16 @@ class App extends StatelessWidget {
       providers: [
         // BlocProvider(create: (_) => GeneralBloc()),
         BlocProvider(
-            create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent()))
+            create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent())),
+        // BlocProvider(
+        //     create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent())),
       ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
         home:
-            const IncomesScreen(), /* BlocBuilder<GeneralBloc, GeneralState>(
+            AddIncomeScreen(), /* BlocBuilder<GeneralBloc, GeneralState>(
           builder: (context, state) {
             return const ManagementScreen();
           },

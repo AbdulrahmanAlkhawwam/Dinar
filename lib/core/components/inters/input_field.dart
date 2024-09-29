@@ -90,38 +90,38 @@ class InputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 64,
-      child: TextFormField(
-        keyboardType: keyboardType ?? TextInputType.text,
-        validator: isEnabled
-            ? validator ??
-                (value) {
-                  if (value == null || value.isEmpty) {
-                    return validate;
-                  } else {
-                    return null;
-                  }
+    return TextFormField(
+      cursorHeight: 22,
+      keyboardType: keyboardType ?? TextInputType.text,
+      validator: isEnabled
+          ? validator ??
+              (value) {
+                if (value == null || value.isEmpty) {
+                  return validate;
+                } else {
+                  return null;
                 }
-            : null,
-        autocorrect: true,
-        onTap: onTap,
-        onChanged: onChanged,
-        enabled: isEnabled,
-        cursorColor: context.colors.onTertiaryContainer,
-        controller: controller,
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: !isEnabled
-              ? TextStyle(
-                  color: context.colors.outline,
-                  fontSize: 18,
-                )
-              : hintStyle,
-          suffix: suffixIconButton ?? suffixIcon,
-          prefix: prefixIconButton ?? prefixIcon,
-          border: InputBorder.none,
-        ),
+              }
+          : null,
+      autocorrect: true,
+      onTap: onTap,
+      onChanged: onChanged,
+      enabled: isEnabled,
+      cursorColor: context.colors.onTertiaryContainer,
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: hint,
+        hintStyle: !isEnabled
+            ? TextStyle(
+                color: context.colors.outline,
+                fontSize: 18,
+              )
+            : hintStyle?.copyWith(
+                color: context.colors.onTertiaryContainer.withOpacity(0.75),
+              ),
+        suffix: suffixIconButton ?? suffixIcon,
+        prefix: prefixIconButton ?? prefixIcon,
+        border: InputBorder.none,
       ),
     );
   }

@@ -39,6 +39,7 @@ class AppTheme {
 
   static InputDecorationTheme _inputDecorationTheme(ColorScheme colors) {
     return InputDecorationTheme(
+
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(circle),
         borderSide: BorderSide(
@@ -74,15 +75,10 @@ class AppTheme {
           width: 3,
         ),
       ),
-      labelStyle: GoogleFonts.poppins(
-        height: 0,
-        fontSize: 18,
-        color: colors.onTertiaryContainer,
-      ),
       hintStyle: GoogleFonts.poppins(
         height: 0,
         fontSize: 18,
-        color: colors.onTertiaryContainer,
+        color: colors.onTertiaryContainer.withOpacity(0.5),
       ),
       errorStyle: GoogleFonts.poppins(
         height: 0,

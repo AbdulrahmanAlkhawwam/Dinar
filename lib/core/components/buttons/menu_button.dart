@@ -1,31 +1,42 @@
-/// fix menu button
-
 import 'package:flutter/material.dart';
 
+import '../dialog/menu_dialog.dart';
 import '../../constants/colors.dart';
-import '../../styles/colors/main_colors.dart';
 import '../../utils/app_context.dart';
 import '../../constants/styles.dart';
 
 class MenuButton extends StatelessWidget {
-  final Function()? onPressed;
+  /// this [menu] is the list of dynamic widget or variable which will appear
+  /// when it clicked
+  ///
+  /// if this list is empty . so , this mean button is DISABLED
+  final List<dynamic> menu;
+
+  /// [onTap] we added for do some thing in menu dialog
+  final Function(dynamic) onTap;
+
+  /// we added [child] if you want to add Row not a Text
+  /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
   final String text;
 
   const MenuButton({
     super.key,
+    required this.menu,
     required this.text,
-    this.onPressed,
+    required this.onTap,
     this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      /// fixed size
       height: 48,
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: onPressed == null
+        /// we use IF condition here to appear if it DISABLED or not
+        gradient: menu.isEmpty
             ? GradientLightColor.disabledColor
             : GradientLightColor.primaryColor,
         borderRadius: BorderRadius.circular(circle),
@@ -36,8 +47,15 @@ class MenuButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.secondary,
-          onTap: onPressed,
+          splashColor: context.colors.primary,
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => MenuDialog(
+              menu: menu,
+              onTap: onTap,
+              text: text,
+            ),
+          ),
           child: Container(
             padding: const EdgeInsets.all(12),
             alignment: Alignment.center,
@@ -50,14 +68,12 @@ class MenuButton extends StatelessWidget {
                         Text(
                           text,
                           textAlign: TextAlign.start,
-                          style: /*context.textTheme.bodyMedium?.copyWith.*/
-                              TextStyle(
-                            color: onPressed == null
-                                ? MainColors.lightGray
-                                : MainColors.mintCream,
-                            //context.colors.onPrimary,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            /// we use IF condition here to appear if it DISABLED or not
+                            color: menu.isEmpty
+                                ? context.colors.outlineVariant
+                                : context.colors.onPrimary,
                             fontSize: 18,
-                            //fontWeight: FontWeight.w500,
                           ),
                         ),
                   ),

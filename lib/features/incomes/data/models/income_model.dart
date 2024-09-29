@@ -1,4 +1,7 @@
-import '../../../incomes/domain/entities/income.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import '../../domain/entities/income.dart';
+import '../../../app/domain/entities/operation_type.dart';
 
 class IncomeModel extends Income {
   IncomeModel(
@@ -36,4 +39,14 @@ class IncomeModel extends Income {
         category: object["category"],
         wallet: object["wallet"],
       );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "value": value,
+        "description": description,
+        "category_id": categoryId,
+        "wallet_id": walletId,
+        "date": DateFormat("yyyy-MM-dd a hh:mm '000Z'").format(date),
+        "type": OperationType.income.toString()
+      };
 }

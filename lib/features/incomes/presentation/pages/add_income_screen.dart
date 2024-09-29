@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/components/dialog/menu_dialog.dart';
 import '../../../../core/components/inters/input_field.dart';
@@ -68,13 +70,10 @@ class AddIncomeScreen extends StatelessWidget {
                 validator: (value) {
                   if (value == "" || value.trim() == "") {
                     return "Name must not be empty";
-                  } else if (value.trim().length < 8 ||
-                      value.trim().length > 20) {
-                    return "Name must consist of letters";
                   } else if (double.tryParse(value) != null) {
                     return "Name must consist of letters";
                   }
-                  return "";
+                  return null;
                 },
               ),
               const SizedBox(height: 24),
@@ -88,7 +87,7 @@ class AddIncomeScreen extends StatelessWidget {
                   } else if (double.tryParse(value) == null) {
                     return "value must consist of numbers";
                   }
-                  return "";
+                  return null;
                 },
                 controller: valueController,
               ),
@@ -102,10 +101,10 @@ class AddIncomeScreen extends StatelessWidget {
                 height: 24,
               ),
               MenuButton(
+                menu: ["name ", "hour"],
                 text: "category",
-                onPressed: () {
-                  showDialog(
-                      context: context, builder: (context) => MenuDialog());
+                onTap: (index) {
+                  print("+++ $index");
                 },
               ),
               const SizedBox(
@@ -113,7 +112,8 @@ class AddIncomeScreen extends StatelessWidget {
               ),
               MenuButton(
                 text: "wallet",
-                onPressed: () {},
+                menu: [],
+                onTap: (index) {},
               ),
               const Spacer(),
               Center(
@@ -121,7 +121,7 @@ class AddIncomeScreen extends StatelessWidget {
                   text: "add".toUpperCase(),
                   onPressed: () {
                     globalKey.currentState?.validate();
-                    context.showErrorSnackBar();
+                    context.showSuccessSnackBar();
                   },
                 ),
               )
