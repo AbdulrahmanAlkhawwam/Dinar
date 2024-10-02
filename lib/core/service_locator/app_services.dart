@@ -1,6 +1,7 @@
-import 'package:Dinar/core/helpers/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../core/helpers/database_helper.dart';
 
 Future<void> initializeAppServices(GetIt sl, bool firstInit) async {
   if (firstInit) {

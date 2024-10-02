@@ -30,7 +30,7 @@ class OnboardingScreen extends StatelessWidget {
                         Text(
                           "Let’s\n Your",
                           style: TextStyle(
-                            color: context.colors.onTertiaryContainer,
+                            color: context.colors.onTertiaryFixed,
                             fontSize: 35,
                           ),
                         ),
@@ -43,8 +43,9 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ),
                           colors: [
-                            context.colors.onTertiaryContainer,
-                            context.colors.primary.withGreen(150),
+                            context.colors.onTertiaryFixed,
+                            context.colors.onPrimaryFixedVariant
+                                .withOpacity(0.75),
                           ],
                         ),
                       ],

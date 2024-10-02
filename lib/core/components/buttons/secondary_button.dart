@@ -65,7 +65,6 @@ class SecondaryButton extends StatelessWidget {
                       color: onPressed == null
                           ? context.colors.outlineVariant
                           : context.colors.onTertiaryFixed,
-                      //context.colors.onPrimary,
                       fontSize: 18,
                     ),
                   ),

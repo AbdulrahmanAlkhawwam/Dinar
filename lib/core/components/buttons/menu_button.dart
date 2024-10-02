@@ -72,14 +72,14 @@ class MenuButton extends StatelessWidget {
                             /// we use IF condition here to appear if it DISABLED or not
                             color: menu.isEmpty
                                 ? context.colors.outlineVariant
-                                : context.colors.onPrimary,
+                                : context.colors.primaryFixed,
                             fontSize: 18,
                           ),
                         ),
                   ),
                   Icon(
                     Icons.arrow_drop_down,
-                    color: context.colors.surface,
+                    color: context.colors.primaryFixed,
                   )
                 ],
               ),

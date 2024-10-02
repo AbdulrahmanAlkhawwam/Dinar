@@ -53,7 +53,7 @@ class PrimaryButton extends StatelessWidget {
                     /// we use IF condition here to appear if it DISABLED or not
                     color: onPressed == null
                         ? context.colors.outlineVariant
-                        : context.colors.onPrimary,
+                        : context.colors.primaryFixed,
                     fontSize: 18,
                   ),
                 ),

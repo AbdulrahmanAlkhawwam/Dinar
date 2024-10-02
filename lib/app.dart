@@ -3,12 +3,15 @@ import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
 import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
 import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
+import 'package:Dinar/features/wallets/presentation/pages/wallets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './core/constants/theme.dart';
 import './features/app/presentation/pages/management_screen.dart';
 import './features/app/presentation/manager/general/general_bloc.dart';
+import 'core/constants/routes.dart';
 import 'core/service_locator/service_locator.dart';
 
 class App extends StatelessWidget {
@@ -27,17 +30,18 @@ class App extends StatelessWidget {
           create: (_) => sl.get<CategoriesBloc>()..add(CategoryInitEvent()),
           lazy: false,
         ),
+        BlocProvider(
+          create: (_) => sl.get<WalletsBloc>()..add(WalletInitEvent()),
+          lazy: false,
+        ),
       ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home:
-            OnboardingScreen(), /* BlocBuilder<GeneralBloc, GeneralState>(
-          builder: (context, state) {
-            return const ManagementScreen();
-          },
-        ),*/
+        home: WalletsScreen(),
+        initialRoute: Routes.onBoarding,
+        onGenerateRoute: Routes.onGenerateRoute,
       ),
     );
   }

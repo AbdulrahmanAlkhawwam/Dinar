@@ -130,7 +130,7 @@ const darkColorScheme = ColorScheme(
   onSurface: Color(0xffe0e4dc),
   onSurfaceVariant: Color(0xffbec8ca),
   outline: Color(0xff899294),
-  outlineVariant: Color(0xff3f484a),
+  outlineVariant: Color(0xffbec8ca),
   shadow: Color(0xff000000),
   scrim: Color(0xff000000),
   inverseSurface: Color(0xffe0e4dc),

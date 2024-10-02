@@ -1,7 +1,4 @@
-import '../../../../core/utils/app_context.dart';
-import '../../../app/domain/entities/operation_type.dart';
-import '../../../categories/domain/entities/category.dart';
-import '../../../categories/presentation/widgets/category_item_vertical.dart';
+
 import '../../../wallets/domain/entities/wallet.dart';
 import '../../../wallets/presentation/widgets/wallet_item_vertical.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,7 @@
-import '../../../../core/utils/app_context.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../categories/domain/entities/category.dart';
 import '../../../categories/presentation/widgets/category_item_vertical.dart';
 import 'package:flutter/material.dart';
-
-import '../../../payments/presentation/widgets/payment_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});

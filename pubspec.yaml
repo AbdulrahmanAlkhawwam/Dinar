@@ -29,6 +29,7 @@ dependencies:
   bloc: ^8.1.4
   meta: ^1.15.0
   shared_preferences: ^2.3.2
+  app_links: ^6.3.2
 
 
 
