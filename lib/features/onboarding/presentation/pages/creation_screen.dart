@@ -1,25 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/components/widgets/screen.dart';
+import '../widgets/creation_title.dart';
+import '../widgets/check_bottom_sheet.dart';
 import '../../../wallets/domain/entities/wallet.dart';
+import '../../../app/presentation/manager/general/general_bloc.dart';
+import '../../../categories/domain/entities/category.dart';
+import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
+import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
+import '../../../../core/constants/routes.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../../core/components/widgets/screen.dart';
+import '../../../../core/styles/colors/main_colors.dart';
 import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/components/buttons/secondary_button.dart';
-import '../../../../core/styles/colors/main_colors.dart';
-import '../../../app/presentation/manager/general/general_bloc.dart';
-import '../../../app/presentation/pages/management_screen.dart';
-
-import '../../../categories/domain/entities/category.dart';
-
-// import '../../../../../models/kind.dart';
-import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
-
-import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
-import '../widgets/check_bottom_sheet.dart';
-import '../widgets/creation_title.dart';
 
 class CreationScreen extends StatefulWidget {
-  const CreationScreen({super.key});
+  final String title;
+
+  const CreationScreen({
+    super.key,
+    required this.title,
+  });
 
   @override
   State<CreationScreen> createState() => _CreationScreenState();
@@ -30,33 +32,27 @@ class _CreationScreenState extends State<CreationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("we are in creation screen");
-
-    // final Kind kind = context
-    //     .read<GeneralBloc>()
-    //     .kind;
-
     return Screen(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(
+            Expanded(
               flex: 3,
               child: Padding(
                 padding: EdgeInsets.all(24.0),
                 child: Column(
                   children: [
                     Spacer(),
-                    CreationTitle(),
+                    TitleWidget(
+                      title: widget.title,
+                    ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            const SizedBox(height: 32),
             Expanded(
               child: Center(
                 child: Column(
@@ -64,27 +60,19 @@ class _CreationScreenState extends State<CreationScreen> {
                     PrimaryButton(
                       onPressed: !isEnabled
                           ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (ctx) => const ManagementScreen(),
-                                ),
-                              );
-                            },
+                          : () => widget.title == "Category"
+                              ? context.push(Routes.addWallets,
+                                  arguments: {"title": "Wallets"})
+                              : context.push(Routes.home),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
+                    const SizedBox(height: 16),
                     SecondaryButton(
                       onPressed: () async {
                         Object object = await showModalBottomSheet(
                           context: context,
-                          builder: (context) {
-                            return /* kind != Kind.wallet*/ true
-                                ? CategoriesBottomSheet()
-                                : WalletsBottomSheet();
-                          },
+                          builder: (context) => widget.title == "Category"
+                              ? CategoriesBottomSheet()
+                              : WalletsBottomSheet(),
                           sheetAnimationStyle: AnimationStyle(
                             duration: const Duration(milliseconds: 750),
                             reverseDuration: const Duration(milliseconds: 750),
@@ -99,12 +87,13 @@ class _CreationScreenState extends State<CreationScreen> {
                           context: context,
                           builder: (context) {
                             return CheckBottomSheet(
-                              type: /* kind != Kind.wallet*/
-                                  true ? "category" : "wallet",
-                              category: /*kind != Kind.wallet*/
-                                  true ? object as Category : null,
-                              wallet: /*kind == Kind.wallet*/
-                                  true ? object as Wallet : null,
+                              type: widget.title,
+                              category: widget.title == "Category"
+                                  ? object as Category
+                                  : null,
+                              wallet: widget.title != "Category"
+                                  ? object as Wallet
+                                  : null,
                             );
                           },
                           sheetAnimationStyle: AnimationStyle(
@@ -118,22 +107,20 @@ class _CreationScreenState extends State<CreationScreen> {
                           useSafeArea: true,
                         );
                         if (checked) {
-                          setState(() {
-                            isEnabled = true;
-                          });
-                          if (/*kind != Kind.wallet*/ true) {
-                            BlocProvider.of<GeneralBloc>(context).add(
-                              AddCategoryEvent(
-                                category: object as Category,
-                              ),
-                            );
+                          if (widget.title == "Category") {
+                            context.read<GeneralBloc>().add(
+                                  AddCategoryEvent(
+                                    category: object as Category,
+                                  ),
+                                );
                           } else {
-                            BlocProvider.of<GeneralBloc>(context).add(
-                              AddWalletEvent(
-                                wallet: object as Wallet,
-                              ),
-                            );
+                            context.read<GeneralBloc>().add(
+                                  AddWalletEvent(
+                                    wallet: object as Wallet,
+                                  ),
+                                );
                           }
+                          setState(() => isEnabled = true);
                         }
                       },
                     )

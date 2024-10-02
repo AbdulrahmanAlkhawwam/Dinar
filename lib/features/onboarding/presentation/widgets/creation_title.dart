@@ -1,12 +1,14 @@
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter/material.dart';
 
-// import '../../../../../models/kind.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 
-class CreationTitle extends StatelessWidget {
-  const CreationTitle({
+class TitleWidget extends StatelessWidget {
+  final String title;
+
+  const TitleWidget({
     super.key,
+    required this.title,
   });
 
   // final Kind? kind;

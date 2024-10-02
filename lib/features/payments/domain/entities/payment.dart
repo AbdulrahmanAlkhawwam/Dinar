@@ -12,5 +12,7 @@ class Payment extends Operation {
     required super.categoryId,
     required super.walletId,
     required super.date,
+    required super.category,
+    required super.wallet,
   });
 }

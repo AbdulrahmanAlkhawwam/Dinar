@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/wallets/presentation/manager/wallets_bloc.dart';
-import '../service_locator/service_locator.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
 import '../../features/history/presentation/pages/history_screen.dart';
 import '../../features/incomes/presentation/pages/incomes_screen.dart';
@@ -19,9 +18,11 @@ class Routes {
   static const String checker = "/home/checker";
   static const String onBoarding = "/on-boarding";
   static const String categories = "/categories";
-  static const String categoriesAdd = "/categories/Add";
+  static const String addCategories = "/categories/Add";
+  static const String addCategory = "/categories/Add/sheet";
   static const String wallets = "/wallets";
-  static const String walletsAdd = "/wallets/Add";
+  static const String addWallets = "/wallets/Add";
+  static const String addWallet = "/wallets/Add/sheet";
   static const String incomes = "/incomes";
   static const String payments = "/payments";
   static const String history = "/history";
@@ -58,8 +59,10 @@ class Routes {
     incomes: (context, arguments) => IncomesScreen(),
     payments: (context, arguments) => PaymentsScreen(),
     history: (context, arguments) => HistoryScreen(),
-    categoriesAdd: (context, arguments) => CreationScreen(),
-    walletsAdd: (context, arguments) => CreationScreen(),
+    addCategories: (context, arguments) =>
+        CreationScreen(title: arguments["title"]),
+    addWallets: (context, arguments) =>
+        CreationScreen(title: arguments["title"]),
   };
 
   static Route onGenerateRoute(setting) {
@@ -73,9 +76,9 @@ class Routes {
             userWallets.isEmpty) {
           return routes[onBoarding]!(context, null);
         } else if (payCategories.isEmpty && incCategories.isEmpty) {
-          return routes[categoriesAdd]!(context, null);
+          return routes[addCategories]!(context, {"title": "Category"});
         } else if (userWallets.isEmpty) {
-          return routes[walletsAdd]!(context, null);
+          return routes[addWallets]!(context, {"title": "Wallet"});
         } else {
           return routes[home]!(context, null);
         }

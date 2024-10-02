@@ -3,6 +3,8 @@ import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
 import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
 import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/onboarding_screen.dart';
+import 'package:Dinar/features/payments/presentation/manager/payment_bloc.dart';
+import 'package:Dinar/features/payments/presentation/pages/payments_screen.dart';
 import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
 import 'package:Dinar/features/wallets/presentation/pages/wallets_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,10 @@ class App extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider(
+          create: (_) => sl.get<PaymentBloc>()..add(PaymentInitEvent()),
+          lazy: false,
+        ),
+        BlocProvider(
           create: (_) => sl.get<CategoriesBloc>()..add(CategoryInitEvent()),
           lazy: false,
         ),
@@ -39,9 +45,9 @@ class App extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home: WalletsScreen(),
-        initialRoute: Routes.onBoarding,
-        onGenerateRoute: Routes.onGenerateRoute,
+        home: PaymentsScreen(),
+        // initialRoute: Routes.onBoarding,
+        // onGenerateRoute: Routes.onGenerateRoute,
       ),
     );
   }
