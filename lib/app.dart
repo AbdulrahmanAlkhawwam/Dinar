@@ -12,8 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './core/constants/theme.dart';
 import './features/app/presentation/pages/management_screen.dart';
-import './features/app/presentation/manager/general/general_bloc.dart';
-import 'core/constants/routes.dart';
 import 'core/service_locator/service_locator.dart';
 
 class App extends StatelessWidget {
@@ -21,7 +19,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(context) {
-    print("we are in main screen");
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -45,9 +42,7 @@ class App extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home: PaymentsScreen(),
-        // initialRoute: Routes.onBoarding,
-        // onGenerateRoute: Routes.onGenerateRoute,
+        home: ManagementScreen(),
       ),
     );
   }

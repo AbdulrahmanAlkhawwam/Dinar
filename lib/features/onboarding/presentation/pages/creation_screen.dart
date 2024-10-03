@@ -1,3 +1,4 @@
+import 'package:Dinar/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,6 @@ import '../../../app/presentation/manager/general/general_bloc.dart';
 import '../../../categories/domain/entities/category.dart';
 import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
 import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
-import '../../../../core/constants/routes.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/widgets/screen.dart';
 import '../../../../core/styles/colors/main_colors.dart';
@@ -61,9 +61,17 @@ class _CreationScreenState extends State<CreationScreen> {
                       onPressed: !isEnabled
                           ? null
                           : () => widget.title == "Category"
-                              ? context.push(Routes.addWallets,
-                                  arguments: {"title": "Wallets"})
-                              : context.push(Routes.home),
+                              ? context.push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CreationScreen(title: "Wallets"),
+                                  ),
+                                )
+                              : context.push(
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeScreen(),
+                                  ),
+                                ),
                     ),
                     const SizedBox(height: 16),
                     SecondaryButton(

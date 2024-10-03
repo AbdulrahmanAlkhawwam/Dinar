@@ -4,17 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../styles/colors/main_colors.dart';
 
 extension AppNavigation on BuildContext {
-  Future push(String route, {arguments}) => Navigator.pushNamed(
+  Future push(Route route) => Navigator.push(
         this,
         route,
-        arguments: arguments,
       );
 
-  Future pushReplacement(String route, {arguments}) =>
-      Navigator.pushReplacementNamed(
+  Future pushReplacement(Route route) => Navigator.pushReplacement(
         this,
         route,
-        arguments: arguments,
       );
 
   void pop([value]) => Navigator.pop(
