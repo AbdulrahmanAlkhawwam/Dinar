@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:Dinar/features/categories/domain/use_cases/add_category_uc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/utils/message.dart';
+import '../../../app/presentation/manager/general/general_bloc.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/use_cases/load_income_categories_uc.dart';
 import '../../domain/use_cases/load_payment_categories_uc.dart';
@@ -18,12 +20,15 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
 
   final LoadIncomeCategoriesUc loadIncomeCategoriesUc;
   final LoadPaymentCategoriesUc loadPaymentCategoriesUc;
+  final AddCategoryUc addCategoryUc;
 
   CategoriesBloc({
     required this.loadPaymentCategoriesUc,
     required this.loadIncomeCategoriesUc,
+    required this.addCategoryUc,
   }) : super(CategoriesInitial()) {
     on<CategoryInitEvent>(_initializeCategories);
+    on<AddCategoryEvent>(_addCategory);
   }
 
   FutureOr<void> _initializeCategories(
@@ -53,5 +58,10 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       incomeCategories: incomeCategories,
       paymentCategories: paymentCategories,
     ));
+  }
+
+  FutureOr<void> _addCategory(
+      AddCategoryEvent event, Emitter<CategoriesState> emit) async {
+    await addCategoryUc.call(param: event.category);
   }
 }

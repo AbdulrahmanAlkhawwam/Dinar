@@ -1,7 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
-
-import '../localization/keys.g.dart';
-
 // First week days options
 // List<String> get firstWeekDaysOptions => [
 //       LocaleKeys.common_friday.tr(),

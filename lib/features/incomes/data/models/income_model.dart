@@ -31,11 +31,11 @@ class IncomeModel extends Income {
   factory IncomeModel.fromMap(Map<String, dynamic> object) => IncomeModel(
         object["id"],
         name: object["name"],
-        value: object["value"],
+        value: double.parse(object["value"]),
         description: object["description"],
         categoryId: object["category_id"],
         walletId: object["wallet_id"],
-        date: object["date"],
+        date: DateTime.parse(object["date"]),
         category: object["category"],
         wallet: object["wallet"],
       );

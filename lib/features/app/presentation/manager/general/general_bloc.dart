@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
-// import '../../../../app/models/kind.dart';
 
 import '../../../../categories/domain/entities/category.dart';
 import '../../../../wallets/domain/entities/wallet.dart';
@@ -17,31 +16,30 @@ class GeneralBloc extends Bloc<GeneralEvent, GeneralState> {
 
   late Database database;
 
-  // Kind kind = Kind.non;
 
-  FutureOr<void> _addCategory(AddCategoryEvent event,
-      Emitter<GeneralState> emit,) async {
-    print("i'm here in adding new Category now ...");
-    emit(LoadingState());
-    try {
-      final id = await database.insert(
-        "categories",
-        {
-          "name": event.category.name,
-          "type": event.category.type,
-        },
-      );
-      print(await database.query(
-        "categories",
-        where: "id = ?",
-        whereArgs: [id],
-      ));
-    } catch (e) {
-      print("#### $e ####");
-      emit(ErrorState(message: e.toString()));
-    }
-    emit(LoadedState());
-  }
+  // FutureOr<void> _addCategory(AddCategoryEvent event,
+  //     Emitter<GeneralState> emit,) async {
+  //   print("i'm here in adding new Category now ...");
+  //   emit(LoadingState());
+  //   try {
+  //     final id = await database.insert(
+  //       "categories",
+  //       {
+  //         "name": event.category.name,
+  //         "type": event.category.type,
+  //       },
+  //     );
+  //     print(await database.query(
+  //       "categories",
+  //       where: "id = ?",
+  //       whereArgs: [id],
+  //     ));
+  //   } catch (e) {
+  //     print("#### $e ####");
+  //     emit(ErrorState(message: e.toString()));
+  //   }
+  //   emit(LoadedState());
+  // }
 
   FutureOr<void> _addWallet(AddWalletEvent event,
       Emitter<GeneralState> emit,) async {

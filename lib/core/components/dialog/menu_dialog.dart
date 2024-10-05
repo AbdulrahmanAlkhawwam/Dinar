@@ -55,7 +55,10 @@ class MenuDialog extends StatelessWidget {
                 for (var item in menu)
                   ListTile(
                     title: Text(item),
-                    onTap: () => onTap(item),
+                    onTap: () {
+                      onTap(item);
+                      context.pop();
+                    },
                     shape: StadiumBorder(),
                     splashColor: context.colors.secondary,
                   ),

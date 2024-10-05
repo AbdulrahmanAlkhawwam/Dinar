@@ -1,13 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:Dinar/core/utils/app_context.dart';
+import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 
 import '../../../../core/components/buttons/secondary_button.dart';
-import '../../../../core/styles/colors/main_colors.dart';
-import '../../../app/presentation/manager/general/general_bloc.dart';
+import '../../../../core/constants/res.dart';
 import '../../../categories/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-// import '../../../../../models/kind.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 
 class CheckBottomSheet extends StatelessWidget {
@@ -20,13 +19,10 @@ class CheckBottomSheet extends StatelessWidget {
 
   final String type;
   final Category? category;
-
   final Wallet? wallet;
 
   @override
   Widget build(BuildContext context) {
-    // final Kind kind = context.read<GeneralBloc>().kind;
-
     return Padding(
       padding: EdgeInsets.only(
         bottom: MediaQuery.viewInsetsOf(context).bottom + 32,
@@ -42,7 +38,7 @@ class CheckBottomSheet extends StatelessWidget {
               radius: 40,
               backgroundColor: Colors.white,
               child: SvgPicture.asset(
-                "assets/local_assets/svgs/check_task.svg",
+                Res.check,
                 width: 32,
                 height: 32,
                 alignment: AlignmentDirectional.center,
@@ -53,7 +49,7 @@ class CheckBottomSheet extends StatelessWidget {
           Text(
             "Create your $type",
             style: TextStyle(
-              color: MainColors.darkTeal,
+              color: context.colors.onTertiaryContainer,
               fontSize: 24,
             ),
           ),
@@ -65,48 +61,47 @@ class CheckBottomSheet extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text:
-                        "Are you sure you want to add new {kind.name == Kind.twice.name ? Kind.category.name : kind.name} with ",
+                    text: "Are you sure you want to add new $type with ",
                     style: TextStyle(
-                      color: MainColors.darkTeal,
+                      color: context.colors.onTertiaryContainer,
                       fontSize: 16,
                     ),
                   ),
                   TextSpan(
-                    text: /*kind != Kind.wallet */
-                        true ? category?.name : wallet?.name,
+                    text: type == "Category" ? category?.name : wallet?.name,
                     style: TextStyle(
-                        color:
-                            /* kind != Kind.wallet && category?.type == "income" ||
-                                    kind == Kind.wallet*/
-                            true ? MainColors.forestGreen : MainColors.redwood,
+                        color: type == "Category" &&
+                                    category?.type == OperationType.income ||
+                                type == "Wallet"
+                            ? context.colors.primary
+                            : context.colors.error,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: /* kind == Kind.wallet*/
-                        true ? " as name " : " as name and ",
+                    text: type == "Category" ? " as name and " : " as name ",
                     style: TextStyle(
-                      color: MainColors.darkTeal,
+                      color: context.colors.onTertiaryContainer,
                       fontSize: 16,
                     ),
                   ),
-                  /*kind != Kind.wallet*/ true
+                  type == "Category"
                       ? TextSpan(
-                          text: category?.type.toString(),
+                          text: category?.type.name,
                           style: TextStyle(
-                              color: category?.type == "income"
-                                  ? MainColors.forestGreen
-                                  : MainColors.redwood,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                            color: category?.type == OperationType.income
+                                ? context.colors.primary
+                                : context.colors.error,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       : const TextSpan(),
-                  /*kind != Kind.wallet*/ true
+                  type == "Category"
                       ? TextSpan(
                           text: " as type",
                           style: TextStyle(
-                            color: MainColors.darkTeal,
+                            color: context.colors.onTertiaryContainer,
                             fontSize: 16,
                           ),
                         )
@@ -118,13 +113,13 @@ class CheckBottomSheet extends StatelessWidget {
           const SizedBox(height: 32),
           SecondaryButton(
             onPressed: () {
-              // Navigator.pop(context, true);
+              Navigator.pop(context, true);
             },
           ),
           const SizedBox(height: 16),
           TextButton(
             onPressed: () {
-              // Navigator.pop(context, false);
+              Navigator.pop(context, false);
             },
             child: const Text("back"),
           ),

@@ -1,8 +1,9 @@
+import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
 import 'package:Dinar/features/home/presentation/pages/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 
-import '../widgets/creation_title.dart';
 import '../widgets/check_bottom_sheet.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 import '../../../app/presentation/manager/general/general_bloc.dart';
@@ -45,8 +46,25 @@ class _CreationScreenState extends State<CreationScreen> {
                 child: Column(
                   children: [
                     Spacer(),
-                    TitleWidget(
-                      title: widget.title,
+                    Text(
+                      "create your",
+                      style: TextStyle(
+                        color: MainColors.darkTeal,
+                        fontSize: 35,
+                      ),
+                    ),
+                    GradientText(
+                      Text(
+                        widget.title,
+                        style: const TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      colors: [
+                        MainColors.darkTeal,
+                        MainColors.forestGreen,
+                      ],
                     ),
                   ],
                 ),
@@ -116,7 +134,7 @@ class _CreationScreenState extends State<CreationScreen> {
                         );
                         if (checked) {
                           if (widget.title == "Category") {
-                            context.read<GeneralBloc>().add(
+                            context.read<CategoriesBloc>().add(
                                   AddCategoryEvent(
                                     category: object as Category,
                                   ),

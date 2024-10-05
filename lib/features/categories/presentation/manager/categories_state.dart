@@ -22,3 +22,5 @@ final class CategoriesLoaded extends CategoriesState {
     required this.paymentCategories,
   });
 }
+
+final class CategoryAdded extends CategoriesState {}

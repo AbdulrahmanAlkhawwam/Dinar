@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../constants/res.dart';
 
 import '../styles/colors/main_colors.dart';
 
@@ -63,7 +64,7 @@ extension AppSnackbar on BuildContext {
         content: Row(
           children: [
             SvgPicture.asset(
-              "assets/svgs/success_alert.svg",
+              Res.success,
               width: massage == null ? 36 : 48,
             ),
             const SizedBox(width: 20),
@@ -102,7 +103,7 @@ extension AppSnackbar on BuildContext {
         content: Row(
           children: [
             SvgPicture.asset(
-              "assets/svgs/error_alert.svg",
+              Res.error,
               width: massage == null ? 36 : 48,
             ),
             const SizedBox(width: 20),
@@ -122,45 +123,6 @@ extension AppSnackbar on BuildContext {
           ],
         ),
         backgroundColor: colors.errorContainer,
-      ),
-    );
-  }
-
-  void showWarningSnackBar({String? massage}) {
-    ScaffoldMessenger.of(this).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: MainColors.warningBorder,
-            width: 3,
-          ),
-        ),
-        duration: const Duration(seconds: 2),
-        content: Row(
-          children: [
-            SvgPicture.asset(
-              "assets/svgs/warning_alert.svg",
-              width: massage == null ? 36 : 48,
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                massage ?? "Warning",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: colors.onSurface,
-                  fontSize: massage == null ? 20 : 14,
-                  fontWeight:
-                      massage == null ? FontWeight.bold : FontWeight.w500,
-                ),
-              ),
-            )
-          ],
-        ),
-        backgroundColor: MainColors.warningBody,
       ),
     );
   }

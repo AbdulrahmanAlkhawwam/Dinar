@@ -5,6 +5,8 @@ import '../models/category_model.dart';
 
 abstract class CategoriesLocalDataSource {
   Future<List<CategoryModel>> loadCategories(OperationType type);
+
+  Future<int> addCategory(CategoryModel categoryModel);
 }
 
 class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
@@ -24,5 +26,14 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
         .toList();
 
     return categories;
+  }
+
+  @override
+  Future<int> addCategory(CategoryModel categoryModel) async {
+    final id = await db.insert(
+      categoriesTable,
+      categoryModel.toMap(),
+    );
+    return id;
   }
 }

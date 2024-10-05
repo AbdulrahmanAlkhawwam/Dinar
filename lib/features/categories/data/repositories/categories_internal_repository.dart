@@ -5,6 +5,7 @@ import '../../domain/repositories/categories_repository.dart';
 import '../../domain/entities/category.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../app/domain/entities/operation_type.dart';
+import '../models/category_model.dart';
 
 class CategoriesInternalRepository extends CategoriesRepository {
   final CategoriesLocalDataSource localDataSource;
@@ -19,6 +20,16 @@ class CategoriesInternalRepository extends CategoriesRepository {
           await localDataSource.loadCategories(type);
       return (Right(categories));
     } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> addCategory(Category category) async {
+    try{
+      final id = await localDataSource.addCategory(CategoryModel.fromEntity(category));
+      return right(id);
+    }catch(e){
       return Left(DatabaseFailure(e.toString()));
     }
   }
