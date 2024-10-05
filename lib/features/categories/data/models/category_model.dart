@@ -23,8 +23,7 @@ class CategoryModel extends Category {
       );
 
   Map<String, dynamic> toMap() => {
-    "name": name,
-    "type": type.name,
-    "balance": 0.0,
-  };
+        "name": name,
+        "type": type.name,
+      };
 }

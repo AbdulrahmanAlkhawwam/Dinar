@@ -5,13 +5,11 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/utils/message.dart';
-import '../../../app/presentation/manager/general/general_bloc.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/use_cases/load_income_categories_uc.dart';
 import '../../domain/use_cases/load_payment_categories_uc.dart';
 
 part 'categories_event.dart';
-
 part 'categories_state.dart';
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {

@@ -8,7 +8,6 @@ import '../../../wallets/presentation/manager/wallets_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class ManagementScreen extends StatelessWidget {
   const ManagementScreen({super.key});
 
@@ -17,7 +16,6 @@ class ManagementScreen extends StatelessWidget {
     final payCategories = context.read<CategoriesBloc>().paymentCategories;
     final incCategories = context.read<CategoriesBloc>().incomeCategories;
     final userWallets = context.read<WalletsBloc>().wallets;
-
     if (payCategories.isEmpty && incCategories.isEmpty && userWallets.isEmpty) {
       return OnboardingScreen();
     } else if (payCategories.isEmpty && incCategories.isEmpty) {
