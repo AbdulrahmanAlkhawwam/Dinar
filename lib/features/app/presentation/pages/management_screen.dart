@@ -1,4 +1,7 @@
+import 'package:Dinar/features/app/presentation/pages/loading.dart';
+import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
+import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
 
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../home/presentation/pages/home_screen.dart';
@@ -8,22 +11,70 @@ import '../../../wallets/presentation/manager/wallets_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ManagementScreen extends StatelessWidget {
+class ManagementScreen extends StatefulWidget {
   const ManagementScreen({super.key});
 
   @override
+  State<ManagementScreen> createState() => _ManagementScreenState();
+}
+
+class _ManagementScreenState extends State<ManagementScreen> {
+  bool _categoriesLoaded = false;
+  bool _walletsLoaded = false;
+
+  @override
   Widget build(BuildContext context) {
-    final payCategories = context.read<CategoriesBloc>().paymentCategories;
-    final incCategories = context.read<CategoriesBloc>().incomeCategories;
-    final userWallets = context.read<WalletsBloc>().wallets;
-    if (payCategories.isEmpty && incCategories.isEmpty && userWallets.isEmpty) {
-      return OnboardingScreen();
-    } else if (payCategories.isEmpty && incCategories.isEmpty) {
-      return CreationScreen(title: "Category");
-    } else if (userWallets.isEmpty) {
-      return CreationScreen(title: "Wallet");
-    } else {
-      return HomeScreen();
-    }
+    List<Category> payCategories =
+        context.read<CategoriesBloc>().paymentCategories;
+    List<Category> incCategories =
+        context.read<CategoriesBloc>().incomeCategories;
+    List<Wallet> userWallets = context.read<WalletsBloc>().wallets;
+
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CategoriesBloc, CategoriesState>(
+          listener: (context, state) {
+            if (state is CategoriesLoaded) {
+              payCategories = context.read<CategoriesBloc>().paymentCategories;
+              incCategories = context.read<CategoriesBloc>().incomeCategories;
+              setState(() => _categoriesLoaded = true);
+            }
+          },
+        ),
+        BlocListener<WalletsBloc, WalletsState>(
+          listener: (context, state) {
+            if (state is WalletsLoaded) {
+              userWallets = context.read<WalletsBloc>().wallets;
+              setState(() => _walletsLoaded = true);
+            }
+          },
+        ),
+      ],
+      child: Builder(
+        builder: (context) {
+          print("--- categ : $_categoriesLoaded");
+          print("--- walle : $_categoriesLoaded");
+          print("+++ pay == ${payCategories.toList().toString()}");
+          print("+++ inc == ${incCategories.toList().toString()}");
+          print("+++ user == ${userWallets.toList().toString()}");
+          if (_walletsLoaded && _categoriesLoaded) {
+            if (payCategories.isEmpty &&
+                incCategories.isEmpty &&
+                userWallets.isEmpty) {
+              return OnboardingScreen();
+            } else if (payCategories.isEmpty && incCategories.isEmpty) {
+              return CreationScreen(title: "Category");
+            } else if (userWallets.isEmpty) {
+              return CreationScreen(title: "Wallet");
+            } else {
+              return HomeScreen();
+            }
+          } else {
+            print("-+-+ loading -+-+");
+            return Loading();
+          }
+        },
+      ),
+    );
   }
 }

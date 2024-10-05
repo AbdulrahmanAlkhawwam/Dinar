@@ -19,7 +19,7 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
     final categoriesMap = await db.getData(
       categoriesTable,
       where: "type = ?",
-      args: [type.toString()],
+      args: [type.name],
     );
     final categories = categoriesMap
         .map((category) => CategoryModel.fromMap(category))

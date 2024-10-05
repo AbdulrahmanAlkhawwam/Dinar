@@ -1,12 +1,7 @@
 import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
 import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
-import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
-import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
-import 'package:Dinar/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:Dinar/features/payments/presentation/manager/payment_bloc.dart';
-import 'package:Dinar/features/payments/presentation/pages/payments_screen.dart';
 import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
-import 'package:Dinar/features/wallets/presentation/pages/wallets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,22 +13,22 @@ class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
+        BlocProvider<IncomeBloc>(
           create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent()),
           lazy: false,
         ),
-        BlocProvider(
+        BlocProvider<PaymentBloc>(
           create: (_) => sl.get<PaymentBloc>()..add(PaymentInitEvent()),
           lazy: false,
         ),
-        BlocProvider(
+        BlocProvider<CategoriesBloc>(
           create: (_) => sl.get<CategoriesBloc>()..add(CategoryInitEvent()),
           lazy: false,
         ),
-        BlocProvider(
+        BlocProvider<WalletsBloc>(
           create: (_) => sl.get<WalletsBloc>()..add(WalletInitEvent()),
           lazy: false,
         ),
@@ -42,7 +37,11 @@ class App extends StatelessWidget {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home: ManagementScreen(),
+        home: Builder(
+          builder: (context) {
+            return ManagementScreen();
+          },
+        ),
       ),
     );
   }

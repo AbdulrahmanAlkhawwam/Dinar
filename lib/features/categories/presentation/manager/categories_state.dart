@@ -23,4 +23,8 @@ final class CategoriesLoaded extends CategoriesState {
   });
 }
 
-final class CategoryAdded extends CategoriesState {}
+final class CategoryAdded extends CategoriesState {
+  final int id;
+
+  CategoryAdded({required this.id});
+}

@@ -19,7 +19,6 @@ class AppTheme {
         scaffoldBackgroundColor: colors.surface,
         textButtonTheme: _textButtonTheme(colors),
         inputDecorationTheme: _inputDecorationTheme(colors),
-        bottomSheetTheme: _bottomSheetThemeData(colors),
         timePickerTheme: _timePickerTheme(colors),
       );
 
@@ -31,10 +30,6 @@ class AppTheme {
       ),
       centerTitle: true,
     );
-  }
-
-  static _bottomSheetThemeData(ColorScheme colors) {
-    return BottomSheetThemeData(backgroundColor: colors.surface);
   }
 
   static InputDecorationTheme _inputDecorationTheme(ColorScheme colors) {

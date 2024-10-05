@@ -1,3 +1,4 @@
+import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 
 class CategoryModel extends Category {
@@ -18,8 +19,10 @@ class CategoryModel extends Category {
   factory CategoryModel.fromMap(Map<String, dynamic> object) => CategoryModel(
         object["id"],
         name: object["name"],
-        type: object["type"],
-        balance: object["balance"],
+        type: object["type"] == "income"
+            ? OperationType.income
+            : OperationType.payment,
+        balance: object["balance"] ?? 0.0,
       );
 
   Map<String, dynamic> toMap() => {

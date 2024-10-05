@@ -4,5 +4,5 @@ import 'core/service_locator/service_locator.dart';
 
 void main() async {
   await initializeApp();
-  runApp(const App());
+  runApp(App());
 }
