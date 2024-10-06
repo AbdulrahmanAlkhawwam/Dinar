@@ -18,7 +18,7 @@ class CategoriesInternalRepository extends CategoriesRepository {
     try {
       final List<Category> categories =
           await localDataSource.loadCategories(type);
-      return (Right(categories));
+      return Right(categories);
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));
     }
@@ -26,10 +26,11 @@ class CategoriesInternalRepository extends CategoriesRepository {
 
   @override
   Future<Either<Failure, int>> addCategory(Category category) async {
-    try{
-      final id = await localDataSource.addCategory(CategoryModel.fromEntity(category));
-      return right(id);
-    }catch(e){
+    try {
+      final id =
+          await localDataSource.addCategory(CategoryModel.fromEntity(category));
+      return Right(id);
+    } catch (e) {
       return Left(DatabaseFailure(e.toString()));
     }
   }

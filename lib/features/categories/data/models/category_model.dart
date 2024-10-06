@@ -6,7 +6,7 @@ class CategoryModel extends Category {
     super.id, {
     required super.name,
     required super.type,
-    required super.balance,
+    super.balance,
   });
 
   factory CategoryModel.fromEntity(Category category) => CategoryModel(
@@ -17,16 +17,23 @@ class CategoryModel extends Category {
       );
 
   factory CategoryModel.fromMap(Map<String, dynamic> object) => CategoryModel(
-        object["id"],
+        object["id"].toString(),
         name: object["name"],
         type: object["type"] == "income"
             ? OperationType.income
             : OperationType.payment,
-        balance: object["balance"] ?? 0.0,
+
+        /// don't forget to add balance in next time
       );
 
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "type": type.name,
-      };
+  Map<String, dynamic> toMap() => id == null
+      ? {
+          "name": name,
+          "type": type.name,
+        }
+      : {
+          "id": id,
+          "name": name,
+          "type": type.name,
+        };
 }

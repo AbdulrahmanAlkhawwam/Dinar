@@ -7,12 +7,15 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: LinearProgressIndicator(
-          minHeight: MediaQuery.of(context).size.height,
-          color: context.colors.onTertiaryContainer.withOpacity(0.25),
-          backgroundColor: Colors.transparent,
+    return GestureDetector(
+      child: Container(
+        color: Colors.black.withOpacity(0.5),
+        child: Center(
+          child: LinearProgressIndicator(
+            minHeight: double.infinity ,
+            color: context.colors.onTertiaryContainer.withOpacity(0.25),
+            backgroundColor: Colors.transparent,
+          ),
         ),
       ),
     );

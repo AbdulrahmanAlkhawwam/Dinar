@@ -24,7 +24,6 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
     final categories = categoriesMap
         .map((category) => CategoryModel.fromMap(category))
         .toList();
-
     return categories;
   }
 

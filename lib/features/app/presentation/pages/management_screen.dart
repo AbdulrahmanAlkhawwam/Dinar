@@ -52,11 +52,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
       ],
       child: Builder(
         builder: (context) {
-          print("--- categ : $_categoriesLoaded");
-          print("--- walle : $_categoriesLoaded");
-          print("+++ pay == ${payCategories.toList().toString()}");
-          print("+++ inc == ${incCategories.toList().toString()}");
-          print("+++ user == ${userWallets.toList().toString()}");
+          // print("--- category loaded : $_categoriesLoaded");
+          // print("--- wallet loaded : $_categoriesLoaded");
+          // print("+++ pay == ${payCategories.toList().toString()}");
+          // print("+++ inc == ${incCategories.toList().toString()}");
+          // print("+++ user == ${userWallets.toList().toString()}");
           if (_walletsLoaded && _categoriesLoaded) {
             if (payCategories.isEmpty &&
                 incCategories.isEmpty &&
@@ -70,7 +70,6 @@ class _ManagementScreenState extends State<ManagementScreen> {
               return HomeScreen();
             }
           } else {
-            print("-+-+ loading -+-+");
             return Loading();
           }
         },
