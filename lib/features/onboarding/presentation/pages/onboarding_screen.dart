@@ -1,7 +1,7 @@
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter/material.dart';
 
-import 'creation_screen.dart';
+import './creation_screen.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/widgets/screen.dart';
 import '../../../../core/components/buttons/primary_button.dart';
@@ -57,7 +57,7 @@ class OnboardingScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: PrimaryButton(
-                  onPressed: () => context.push(
+                  onPressed: () => context.pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => CreationScreen(title: "Category"),
                     ),

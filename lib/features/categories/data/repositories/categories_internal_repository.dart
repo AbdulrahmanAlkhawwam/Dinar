@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 
+import '../models/category_model.dart';
 import '../datasources/categories_local_data_source.dart';
 import '../../domain/repositories/categories_repository.dart';
 import '../../domain/entities/category.dart';
-import '../../../../core/errors/failures.dart';
 import '../../../app/domain/entities/operation_type.dart';
-import '../models/category_model.dart';
+import '../../../../core/errors/failures.dart';
 
 class CategoriesInternalRepository extends CategoriesRepository {
   final CategoriesLocalDataSource localDataSource;

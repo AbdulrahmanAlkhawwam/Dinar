@@ -1,13 +1,12 @@
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-
-import '../../../../core/components/buttons/secondary_button.dart';
-import '../../../../core/constants/res.dart';
-import '../../../categories/domain/entities/category.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../categories/domain/entities/category.dart';
 import '../../../wallets/domain/entities/wallet.dart';
+import '../../../../core/constants/res.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../../core/components/buttons/secondary_button.dart';
 
 class CheckBottomSheet extends StatelessWidget {
   const CheckBottomSheet({

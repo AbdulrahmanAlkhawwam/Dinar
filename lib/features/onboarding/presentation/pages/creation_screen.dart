@@ -1,18 +1,18 @@
-import 'package:Dinar/core/components/widgets/sheet.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
-import 'package:Dinar/features/home/presentation/pages/home_screen.dart';
+import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
 import '../widgets/check_bottom_sheet.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
-import '../../../categories/domain/entities/category.dart';
-import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
+import '../../../wallets/presentation/manager/wallets_bloc.dart';
 import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
+import '../../../categories/domain/entities/category.dart';
+import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
 import '../../../../core/utils/app_context.dart';
+import '../../../../core/components/widgets/sheet.dart';
 import '../../../../core/components/widgets/screen.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 import '../../../../core/components/buttons/primary_button.dart';
@@ -106,16 +106,21 @@ class _CreationScreenState extends State<CreationScreen> {
                     child: Column(
                       children: [
                         PrimaryButton(
+                          massage: "You should add new ${widget.title}",
                           onPressed: !_isEnabled
-                              ? null
+                              ? widget.title == "Wallets"
+                                  ? () => context.read<WalletsBloc>().add(
+                                      AddWalletEvent(
+                                          wallet: Wallet(name: "user")))
+                                  : null
                               : () => widget.title == "Category"
-                                  ? context.push(
+                                  ? context.pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             CreationScreen(title: "Wallets"),
                                       ),
                                     )
-                                  : context.push(
+                                  : context.pushReplacement(
                                       MaterialPageRoute(
                                         builder: (context) => HomeScreen(),
                                       ),

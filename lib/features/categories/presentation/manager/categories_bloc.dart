@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:Dinar/features/categories/domain/use_cases/add_category_uc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/utils/message.dart';
+import '../../domain/use_cases/add_category_uc.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/use_cases/load_income_categories_uc.dart';
 import '../../domain/use_cases/load_payment_categories_uc.dart';
+import '../../../../core/utils/message.dart';
 
 part 'categories_event.dart';
 

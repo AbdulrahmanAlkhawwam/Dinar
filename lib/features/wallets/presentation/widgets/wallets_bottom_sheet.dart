@@ -1,9 +1,8 @@
-import 'package:Dinar/core/utils/app_context.dart';
-
-import '../../../../core/components/inters/input_field.dart';
-import '../../../wallets/domain/entities/wallet.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/wallet.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
 
 class WalletsBottomSheet extends StatelessWidget {
@@ -27,7 +26,7 @@ class WalletsBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Create your category",
+              "Create your wallet",
               style: TextStyle(
                 color: context.colors.onTertiaryContainer,
                 fontSize: 24,

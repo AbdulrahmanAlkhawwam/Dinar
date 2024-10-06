@@ -1,8 +1,8 @@
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
-import 'package:Dinar/features/categories/domain/repositories/categories_repository.dart';
 import 'package:dartz/dartz.dart';
 
+import '../entities/category.dart';
+import '../repositories/categories_repository.dart';
+import '../../../app/domain/entities/operation_type.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/use_case/use_case.dart';
 

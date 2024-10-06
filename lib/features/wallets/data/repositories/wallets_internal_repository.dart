@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
+import '../models/wallet_model.dart';
 import '../datasources/wallets_local_data_source.dart';
 import '../../domain/repositories/wallets_repository.dart';
 import '../../domain/entities/wallet.dart';
 import '../../../../core/errors/failures.dart';
-import '../models/wallet_model.dart';
 
 class WalletsInternalRepository extends WalletsRepository {
   final WalletsLocalDataSource localDataSource;

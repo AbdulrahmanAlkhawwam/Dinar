@@ -1,7 +1,7 @@
-import 'package:Dinar/core/constants/strings.dart';
-import 'package:Dinar/core/helpers/database_helper.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 import '../models/category_model.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../../core/constants/strings.dart';
+import '../../../../core/helpers/database_helper.dart';
 
 abstract class CategoriesLocalDataSource {
   Future<List<CategoryModel>> loadCategories(OperationType type);

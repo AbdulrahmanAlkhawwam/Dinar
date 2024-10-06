@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:Dinar/features/wallets/domain/use_cases/add_wallet_uc.dart';
-import 'package:Dinar/features/wallets/domain/use_cases/load_wallets_uc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/utils/message.dart';
+import '../../domain/use_cases/load_wallets_uc.dart';
+import '../../domain/use_cases/add_wallet_uc.dart';
 import '../../domain/entities/wallet.dart';
+import '../../../../core/utils/message.dart';
 
 part 'wallets_event.dart';
 

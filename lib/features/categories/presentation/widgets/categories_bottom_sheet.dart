@@ -1,13 +1,12 @@
-import 'package:Dinar/core/utils/app_context.dart';
-
-import '../../../../core/components/buttons/menu_button.dart';
-import '../../../../core/components/inters/input_field.dart';
-import '../../../app/domain/entities/operation_type.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/entities/category.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../../core/components/buttons/menu_button.dart';
+import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/styles/colors/main_colors.dart';
-import '../../domain/entities/category.dart';
 
 class CategoriesBottomSheet extends StatefulWidget {
   CategoriesBottomSheet({super.key});

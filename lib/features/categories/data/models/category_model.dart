@@ -1,5 +1,5 @@
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
+import '../../domain/entities/category.dart';
+import '../../../app/domain/entities/operation_type.dart';
 
 class CategoryModel extends Category {
   CategoryModel({

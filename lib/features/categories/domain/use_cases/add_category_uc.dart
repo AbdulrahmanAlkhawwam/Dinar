@@ -1,8 +1,9 @@
-import 'package:Dinar/core/errors/failures.dart';
-import 'package:Dinar/core/use_case/use_case.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
-import 'package:Dinar/features/categories/domain/repositories/categories_repository.dart';
 import 'package:dartz/dartz.dart';
+
+import '../entities/category.dart';
+import '../repositories/categories_repository.dart';
+import '../../../../core/use_case/use_case.dart';
+import '../../../../core/errors/failures.dart';
 
 class AddCategoryUc extends UseCase<int , Category>{
   final CategoriesRepository repository ;

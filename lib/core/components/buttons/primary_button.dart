@@ -15,11 +15,16 @@ class PrimaryButton extends StatelessWidget {
   final Widget? child;
   final String? text;
 
+  /// this massage was added for appear when the button is DISABLED for tell
+  /// user what he/she do
+  final String? massage;
+
   const PrimaryButton({
     super.key,
     this.onPressed,
     this.text,
     this.child,
+    this.massage,
   });
 
   @override
@@ -42,7 +47,7 @@ class PrimaryButton extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: InkWell(
           splashColor: context.colors.primary,
-          onTap: onPressed,
+          onTap: onPressed ?? () => context.showErrorSnackBar(massage: massage),
           child: Container(
             alignment: Alignment.center,
             child: child ??
