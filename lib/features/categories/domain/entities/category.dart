@@ -22,12 +22,10 @@ class Category {
   Category copyWith({
     String? name,
     OperationType? type,
-    double? balance,
   }) {
     return Category(
       name: name ?? this.name,
       type: type ?? this.type,
-      balance: balance ?? this.balance,
     );
   }
 }

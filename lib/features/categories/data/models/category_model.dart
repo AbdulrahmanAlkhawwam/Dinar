@@ -3,7 +3,7 @@ import 'package:Dinar/features/categories/domain/entities/category.dart';
 
 class CategoryModel extends Category {
   CategoryModel({
-    id,
+    super.id,
     required super.name,
     required super.type,
     super.balance,
@@ -16,14 +16,13 @@ class CategoryModel extends Category {
         balance: category.balance,
       );
 
-  factory CategoryModel.fromMap(Map<String, dynamic> object) => CategoryModel(
-        id: object["id"],
-        name: object["name"],
-        type: object["type"] == "income"
+  factory CategoryModel.fromMap(Map<String, dynamic> json) => CategoryModel(
+        id: json["id"],
+        name: json["name"],
+        type: json["type"] == "income"
             ? OperationType.income
             : OperationType.payment,
-
-        /// don't forget to add balance in next time
+        // don't forget to add balance in next time
       );
 
   Map<String, dynamic> toMap() => {

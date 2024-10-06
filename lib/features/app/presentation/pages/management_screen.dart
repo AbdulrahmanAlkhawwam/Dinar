@@ -52,11 +52,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
       ],
       child: Builder(
         builder: (context) {
-          // print("--- category loaded : $_categoriesLoaded");
-          // print("--- wallet loaded : $_categoriesLoaded");
-          // print("+++ pay == ${payCategories.toList().toString()}");
-          // print("+++ inc == ${incCategories.toList().toString()}");
-          // print("+++ user == ${userWallets.toList().toString()}");
+          print("--- category loaded : $_categoriesLoaded");
+          print("--- wallet loaded : $_categoriesLoaded");
+          print("+++ pay == ${payCategories.toList().toString()}");
+          print("+++ inc == ${incCategories.toList().toString()}");
+          print("+++ user == ${userWallets.toList().toString()}");
           if (_walletsLoaded && _categoriesLoaded) {
             if (payCategories.isEmpty &&
                 incCategories.isEmpty &&

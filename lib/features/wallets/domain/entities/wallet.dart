@@ -12,18 +12,14 @@ class Wallet {
     required this.name,
     this.balance,
   }) {
-    id ??= uuid.v4();
+    id = "wal--${uuid.v4()}";
   }
 
   Wallet copyWith({
-    String? id,
     String? name,
-    double? balance,
   }) {
     return Wallet(
-      id: id ?? this.id,
       name: name ?? this.name,
-      balance: balance ?? this.balance,
     );
   }
 }

@@ -13,11 +13,10 @@ class WalletModel extends Wallet {
         balance: wallet.balance,
       );
 
-  factory WalletModel.fromMap(Map<String, dynamic> object) => WalletModel(
-        id: object["id"].toString(),
-        name: object["name"],
-
-        /// don't forget to add balance in next time
+  factory WalletModel.fromMap(Map<String, dynamic> json) => WalletModel(
+        id: json["id"],
+        name: json["name"],
+        // don't forget to add balance in next time
       );
 
   Map<String, dynamic> toMap() => {

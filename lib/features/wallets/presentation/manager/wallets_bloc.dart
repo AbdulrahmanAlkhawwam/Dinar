@@ -35,7 +35,7 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
     response.fold(
       (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
       (wallets) {
-        wallets
+        this.wallets
           ..clear()
           ..addAll(wallets);
       },
