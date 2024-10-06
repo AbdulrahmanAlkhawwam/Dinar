@@ -1,4 +1,3 @@
-
 import '../../../wallets/domain/entities/wallet.dart';
 import '../../../wallets/presentation/widgets/wallet_item_vertical.dart';
 import 'package:flutter/material.dart';
@@ -10,32 +9,32 @@ class WalletsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Wallet> wallets = [
       Wallet(
-        "",
+        id: "",
         balance: 0.0,
         name: "food",
       ),
       Wallet(
-        "",
+        id: "",
         balance: 0.0,
         name: "food",
       ),
       Wallet(
-        "",
+        id: "",
         balance: 0,
         name: "food",
       ),
       Wallet(
-        "",
+        id: "",
         balance: 0,
         name: "food",
       ),
       Wallet(
-        "",
+        id: "",
         balance: 0,
         name: "food",
       ),
       Wallet(
-        "",
+        id: "",
         balance: 0,
         name: "food",
       ),

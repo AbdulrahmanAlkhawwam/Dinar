@@ -5,7 +5,7 @@ import '../../../categories/domain/entities/category.dart';
 import '../../../../core/errors/failures.dart';
 
 abstract class CategoriesRepository {
-  Future<Either<Failure, List<Category>>> loadCategory(OperationType type);
+  Future<Either<Failure, List<Category>>> loadCategories(OperationType type);
 
   Future<Either<Failure,int>> addCategory (Category category);
 }

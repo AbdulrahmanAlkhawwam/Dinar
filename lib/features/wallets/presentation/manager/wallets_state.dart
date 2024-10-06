@@ -20,3 +20,9 @@ final class WalletsLoaded extends WalletsState {
     required this.wallets,
   });
 }
+
+final class WalletAdded extends WalletsState {
+  final int id;
+
+  WalletAdded({required this.id});
+}

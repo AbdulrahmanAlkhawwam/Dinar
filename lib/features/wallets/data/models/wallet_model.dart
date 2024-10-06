@@ -1,21 +1,27 @@
 import '../../domain/entities/wallet.dart';
 
 class WalletModel extends Wallet {
-  WalletModel(
-    super.id, {
+  WalletModel({
+    super.id,
     required super.name,
     super.balance,
   });
 
   factory WalletModel.fromEntity(Wallet wallet) => WalletModel(
-        wallet.id,
+        id: wallet.id,
         name: wallet.name,
         balance: wallet.balance,
       );
 
   factory WalletModel.fromMap(Map<String, dynamic> object) => WalletModel(
-        object["id"],
+        id: object["id"].toString(),
         name: object["name"],
-        balance: object["balance"],
+
+        /// don't forget to add balance in next time
       );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+      };
 }

@@ -2,22 +2,22 @@ import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 
 class CategoryModel extends Category {
-  CategoryModel(
-    super.id, {
+  CategoryModel({
+    id,
     required super.name,
     required super.type,
     super.balance,
   });
 
   factory CategoryModel.fromEntity(Category category) => CategoryModel(
-        category.id,
+        id: category.id,
         name: category.name,
         type: category.type,
         balance: category.balance,
       );
 
   factory CategoryModel.fromMap(Map<String, dynamic> object) => CategoryModel(
-        object["id"].toString(),
+        id: object["id"],
         name: object["name"],
         type: object["type"] == "income"
             ? OperationType.income
@@ -26,14 +26,9 @@ class CategoryModel extends Category {
         /// don't forget to add balance in next time
       );
 
-  Map<String, dynamic> toMap() => id == null
-      ? {
-          "name": name,
-          "type": type.name,
-        }
-      : {
-          "id": id,
-          "name": name,
-          "type": type.name,
-        };
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "type": type.name,
+      };
 }

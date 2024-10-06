@@ -1,26 +1,30 @@
+import 'package:uuid/uuid.dart';
+
 import '../../../app/domain/entities/operation_type.dart';
 
+final uuid = Uuid();
+
 class Category {
-  final String? id;
+  String? id;
   final String name;
   final OperationType type;
   final double? balance;
 
-  Category(
-    this.id, {
+  Category({
+    this.id,
     required this.name,
     required this.type,
     this.balance,
-  });
+  }) {
+    id = "cat--${uuid.v4()}";
+  }
 
   Category copyWith({
-    String? id,
     String? name,
     OperationType? type,
     double? balance,
   }) {
     return Category(
-      id ?? this.id,
       name: name ?? this.name,
       type: type ?? this.type,
       balance: balance ?? this.balance,

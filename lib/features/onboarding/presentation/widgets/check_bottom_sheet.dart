@@ -36,7 +36,7 @@ class CheckBottomSheet extends StatelessWidget {
           Center(
             child: CircleAvatar(
               radius: 40,
-              backgroundColor: Colors.white,
+              backgroundColor: context.colors.onPrimary,
               child: SvgPicture.asset(
                 Res.check,
                 width: 32,

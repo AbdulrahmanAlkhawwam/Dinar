@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:Dinar/features/categories/domain/use_cases/add_category_uc.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/utils/message.dart';
@@ -61,7 +60,9 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   }
 
   FutureOr<void> _addCategory(
-      AddCategoryEvent event, Emitter<CategoriesState> emit) async {
+    AddCategoryEvent event,
+    Emitter<CategoriesState> emit,
+  ) async {
     emit(CategoriesLoading());
     final response = await addCategoryUc.call(param: event.category);
     response.fold(

@@ -10,32 +10,26 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Category> categories = [
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),
       Category(
-        "",
         name: "food",
         type: OperationType.payment,
       ),

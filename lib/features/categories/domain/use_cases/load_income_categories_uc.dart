@@ -13,6 +13,6 @@ class LoadIncomeCategoriesUc extends UseCaseNoParam<List<Category>> {
 
   @override
   Future<Either<Failure, List<Category>>> call() {
-    return repository.loadCategory(OperationType.income);
+    return repository.loadCategories(OperationType.income);
   }
 }

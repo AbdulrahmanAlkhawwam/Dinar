@@ -8,7 +8,7 @@ class WalletItemHorizontal extends StatelessWidget {
   WalletItemHorizontal({super.key});
 
   final Wallet wallet = Wallet(
-    "",
+    id: "",
     balance: 0.0,
     name: "name",
   );

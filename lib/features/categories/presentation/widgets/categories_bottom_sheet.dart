@@ -81,7 +81,6 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
                   Navigator.pop(
                     context,
                     Category(
-                      "",
                       name: nameController.text,
                       type: _selectedType ?? OperationType.income,
                     ),

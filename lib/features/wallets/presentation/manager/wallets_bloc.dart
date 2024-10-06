@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Dinar/features/wallets/domain/use_cases/add_wallet_uc.dart';
 import 'package:Dinar/features/wallets/domain/use_cases/load_wallets_uc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -15,11 +16,14 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
   List<Wallet> wallets = [];
 
   final LoadWalletsUc loadWallets;
+  final AddWalletUc addWalletUc;
 
   WalletsBloc({
     required this.loadWallets,
+    required this.addWalletUc,
   }) : super(WalletsInitial()) {
     on<WalletInitEvent>(_initializeWallets);
+    on<AddWalletEvent>(_addWallet);
   }
 
   FutureOr<void> _initializeWallets(
@@ -37,5 +41,16 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
       },
     );
     emit(WalletsLoaded(wallets: wallets));
+  }
+
+  FutureOr<void> _addWallet(
+    AddWalletEvent event,
+    Emitter<WalletsState> emit,
+  ) async {
+    emit(WalletsLoading());
+    final response = await addWalletUc.call(param: event.wallet);
+    response.fold(
+        (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
+        (id) => emit(WalletAdded(id: id)));
   }
 }

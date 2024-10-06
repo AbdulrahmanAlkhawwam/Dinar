@@ -1,9 +1,10 @@
+import 'package:Dinar/core/utils/app_context.dart';
+
 import '../../../../core/components/inters/input_field.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/components/buttons/primary_button.dart';
-import '../../../../core/styles/colors/main_colors.dart';
 
 class WalletsBottomSheet extends StatelessWidget {
   WalletsBottomSheet({super.key});
@@ -28,7 +29,7 @@ class WalletsBottomSheet extends StatelessWidget {
             Text(
               "Create your category",
               style: TextStyle(
-                color: MainColors.darkTeal,
+                color: context.colors.onTertiaryContainer,
                 fontSize: 24,
               ),
             ),
@@ -47,8 +48,7 @@ class WalletsBottomSheet extends StatelessWidget {
                   Navigator.pop(
                     context,
                     Wallet(
-                      "",
-                      balance: 0.0,
+                      id: "",
                       name: nameController.text,
                     ),
                   );

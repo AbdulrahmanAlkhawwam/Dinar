@@ -29,6 +29,7 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
 
   @override
   Future<int> addCategory(CategoryModel categoryModel) async {
+    print("*** ${categoryModel.toMap().toString()}");
     final id = await db.insert(
       categoriesTable,
       categoryModel.toMap(),

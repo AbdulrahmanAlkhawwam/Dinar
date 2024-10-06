@@ -13,14 +13,12 @@ class CategoryList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) =>
-            CategoryItemHorizontal(
-              category: Category(
-                "",
-                name: "name",
-                type: OperationType.income,
-              ),
-            ),
+        itemBuilder: (context, index) => CategoryItemHorizontal(
+          category: Category(
+            name: "name",
+            type: OperationType.income,
+          ),
+        ),
         separatorBuilder: (context, index) => const SizedBox(width: 16),
         itemCount: 15,
       ),

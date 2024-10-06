@@ -13,7 +13,7 @@ class CategoriesInternalRepository extends CategoriesRepository {
   CategoriesInternalRepository({required this.localDataSource});
 
   @override
-  Future<Either<Failure, List<Category>>> loadCategory(
+  Future<Either<Failure, List<Category>>> loadCategories(
       OperationType type) async {
     try {
       final List<Category> categories =

@@ -123,7 +123,7 @@ class AddIncomeScreen extends StatelessWidget {
                 menu: [],
                 onTap: (index) {
                   selectedWallet = Wallet(
-                    index,
+                    id: index,
                     name: "name",
                   );
                 },

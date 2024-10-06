@@ -60,7 +60,7 @@ extension AppSnackbar on BuildContext {
             width: 3,
           ),
         ),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 5),
         content: Row(
           children: [
             SvgPicture.asset(
@@ -99,7 +99,7 @@ extension AppSnackbar on BuildContext {
             width: 3,
           ),
         ),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 5),
         content: Row(
           children: [
             SvgPicture.asset(

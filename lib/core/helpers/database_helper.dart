@@ -80,7 +80,7 @@ class DatabaseHelperImpl implements DatabaseHelper {
   static FutureOr<void> onCreate(Database db, int version) async {
     await db.execute(
       """CREATE TABLE $categoriesTable(
-      id                INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL,
+      id                TEXT PRIMARY KEY                      NOT NULL,
       name              TEXT                                  NOT NULL,
       type              TEXT                                  NOT NULL
       -- type like ( income / payment )
@@ -88,25 +88,25 @@ class DatabaseHelperImpl implements DatabaseHelper {
     );
     await db.execute(
       """CREATE TABLE $walletsTable(
-      id                INTEGER PRIMARY KEY AUTOINCREMENT     NOT NULL,
+      id                TEXT PRIMARY KEY                      NOT NULL,
       name              TEXT                                  NOT NULL
     )""",
     );
     await db.execute(
       """CREATE TABLE $operationsTable(
-    id INTEGER PRIMARY KEY AUTOINCREMENT                    NOT NULL,
-            name              TEXT                                  NOT NULL,
-            value             DOUBLE                                NOT NULL,
-            description       TEXT                                  ,
-            category_id       INTEGER                               NOT NULL,
-            wallet_id         INTEGER                               NOT NULL,
-            date              TEXT                                  NOT NULL,
-            -- date like ( 2024-05-10 PM 10:45 000Z ) 
-            type              TEXT                                  NOT NULL,
-            -- type like ( income / payment )
-            FOREIGN KEY (wallet_id) REFERENCES wallets (id),
-            FOREIGN KEY (category_id) REFERENCES categories (id) 
-          )""",
+      id                TEXT PRIMARY KEY                      NOT NULL,
+      name              TEXT                                  NOT NULL,
+      value             DOUBLE                                NOT NULL,
+      description       TEXT                                  ,
+      category_id       TEXT                                  NOT NULL,
+      wallet_id         TEXT                                  NOT NULL,
+      date              TEXT                                  NOT NULL,
+      -- date like ( 2024-05-10 PM 10:45 000Z ) 
+      type              TEXT                                  NOT NULL,
+      -- type like ( income / payment )
+      FOREIGN KEY (wallet_id) REFERENCES wallets (id),
+      FOREIGN KEY (category_id) REFERENCES categories (id) 
+    )""",
     );
   }
 }

@@ -4,3 +4,9 @@ part of 'wallets_bloc.dart';
 sealed class WalletsEvent {}
 
 class WalletInitEvent extends WalletsEvent {}
+
+class AddWalletEvent extends WalletsEvent {
+  final Wallet wallet;
+
+  AddWalletEvent({required this.wallet});
+}
