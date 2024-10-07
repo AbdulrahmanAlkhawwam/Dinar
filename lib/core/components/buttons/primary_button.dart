@@ -46,7 +46,7 @@ class PrimaryButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.primary,
+          splashColor: context.colors.onPrimaryFixedVariant,
           onTap: onPressed ?? () => context.showErrorSnackBar(massage: massage),
           child: Container(
             alignment: Alignment.center,

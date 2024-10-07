@@ -38,10 +38,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
           children: [
             Text(
               "Create your category",
-              style: TextStyle(
-                color: MainColors.darkTeal,
-                fontSize: 24,
-              ),
+              style: context.textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
             InputField(
@@ -52,7 +49,8 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
             ),
             const SizedBox(height: 16),
             MenuButton(
-              text: _selectedType?.name ?? "Type",
+              selected: _selectedType?.name,
+              text: "Type",
               menu: OperationType.values
                   .map(
                     (operation) => operation.name,

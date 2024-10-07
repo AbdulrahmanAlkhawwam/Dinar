@@ -38,7 +38,7 @@ class FloatButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.primary,
+          splashColor: context.colors.onPrimaryFixedVariant,
           onTap: onPressed,
           child: Container(
             alignment: Alignment.center,

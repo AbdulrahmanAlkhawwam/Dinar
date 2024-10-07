@@ -51,7 +51,7 @@ class SecondaryButton extends StatelessWidget {
           shape: const StadiumBorder(),
           clipBehavior: Clip.hardEdge,
           child: InkWell(
-            splashColor: context.colors.surface,
+            splashColor: context.colors.secondaryFixed,
             onTap: onPressed,
             child: Container(
               alignment: Alignment.center,

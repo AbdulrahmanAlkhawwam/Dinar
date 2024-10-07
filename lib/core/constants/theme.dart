@@ -20,6 +20,14 @@ class AppTheme {
         textButtonTheme: _textButtonTheme(colors),
         inputDecorationTheme: _inputDecorationTheme(colors),
         timePickerTheme: _timePickerTheme(colors),
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            fixedSize: WidgetStatePropertyAll(Size(24, 24)),
+          ),
+        ),
+        bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: colors.surface,
+        ),
       );
 
   static AppBarTheme _appBarTheme(ColorScheme colors) {
@@ -69,21 +77,15 @@ class AppTheme {
           width: 3,
         ),
       ),
-      labelStyle: GoogleFonts.poppins(
-        height: 0,
-        fontSize: 16,
-        color: colors.onTertiaryContainer,
-      ),
-      hintStyle: GoogleFonts.poppins(
-        height: 0,
-        fontSize: 16,
-        color: colors.onTertiaryContainer.withOpacity(0.5),
-      ),
-      errorStyle: GoogleFonts.poppins(
-        height: 0,
-        fontSize: 16,
-        color: colors.error,
-      ),
+      labelStyle: _textTheme(colors).labelLarge?.copyWith(
+            color: colors.onTertiaryContainer,
+          ),
+      hintStyle: _textTheme(colors).labelLarge?.copyWith(
+            color: colors.onTertiaryContainer.withOpacity(0.5),
+          ),
+      errorStyle: _textTheme(colors).labelLarge?.copyWith(
+            color: colors.error,
+          ),
     );
   }
 
@@ -94,9 +96,7 @@ class AppTheme {
         fixedSize: const WidgetStatePropertyAll(Size(200, 48)),
         shape: const WidgetStatePropertyAll(StadiumBorder()),
         textStyle: WidgetStatePropertyAll(
-          GoogleFonts.poppins(
-            fontSize: 20,
-          ),
+          _textTheme(colors).bodyMedium,
         ),
       ),
     );

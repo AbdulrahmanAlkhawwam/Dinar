@@ -18,7 +18,12 @@ class MenuButton extends StatelessWidget {
   /// we added [child] if you want to add Row not a Text
   /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
+
+  /// this is the type of list
   final String text;
+
+  /// this is selected item
+  final String? selected;
 
   const MenuButton({
     super.key,
@@ -26,6 +31,7 @@ class MenuButton extends StatelessWidget {
     required this.text,
     required this.onTap,
     this.child,
+    this.selected,
   });
 
   @override
@@ -47,7 +53,7 @@ class MenuButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.primary,
+          splashColor: context.colors.onPrimaryFixedVariant,
           onTap: () => showDialog(
             context: context,
             builder: (context) => MenuDialog(
@@ -66,7 +72,7 @@ class MenuButton extends StatelessWidget {
                   Expanded(
                     child: child ??
                         Text(
-                          text,
+                          selected ?? text,
                           textAlign: TextAlign.start,
                           style: context.textTheme.bodyMedium?.copyWith(
                             /// we use IF condition here to appear if it DISABLED or not

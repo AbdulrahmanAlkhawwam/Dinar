@@ -50,6 +50,7 @@ extension AppDirectionality on BuildContext {
 
 extension AppSnackbar on BuildContext {
   void showSuccessSnackBar({String? massage}) {
+    ScaffoldMessenger.of(this).clearSnackBars();
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
@@ -60,12 +61,13 @@ extension AppSnackbar on BuildContext {
             width: 3,
           ),
         ),
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 2),
         content: Row(
           children: [
             SvgPicture.asset(
               Res.success,
-              width: massage == null ? 36 : 48,
+              width: 36,
+              color: colors.primary,
             ),
             const SizedBox(width: 20),
             Expanded(
@@ -73,22 +75,20 @@ extension AppSnackbar on BuildContext {
                 massage ?? "Success",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: colors.onSurface,
-                  fontSize: massage == null ? 20 : 14,
-                  fontWeight:
-                      massage == null ? FontWeight.bold : FontWeight.w500,
+                style: textTheme.titleSmall?.copyWith(
+                  color: colors.primary,
                 ),
               ),
             )
           ],
         ),
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.primaryContainer,
       ),
     );
   }
 
   void showErrorSnackBar({String? massage}) {
+    ScaffoldMessenger.of(this).clearSnackBars();
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
@@ -99,12 +99,13 @@ extension AppSnackbar on BuildContext {
             width: 3,
           ),
         ),
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 2),
         content: Row(
           children: [
             SvgPicture.asset(
               Res.error,
-              width: massage == null ? 36 : 48,
+              width: 36,
+              color: colors.error,
             ),
             const SizedBox(width: 20),
             Expanded(
@@ -112,11 +113,8 @@ extension AppSnackbar on BuildContext {
                 massage ?? "Error",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: colors.onSurface,
-                  fontSize: massage == null ? 20 : 14,
-                  fontWeight:
-                      massage == null ? FontWeight.bold : FontWeight.w500,
+                style: textTheme.titleSmall?.copyWith(
+                  color: colors.error,
                 ),
               ),
             )

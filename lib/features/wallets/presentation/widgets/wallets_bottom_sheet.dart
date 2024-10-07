@@ -27,10 +27,7 @@ class WalletsBottomSheet extends StatelessWidget {
           children: [
             Text(
               "Create your wallet",
-              style: TextStyle(
-                color: context.colors.onTertiaryContainer,
-                fontSize: 24,
-              ),
+              style: context.textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
             InputField(

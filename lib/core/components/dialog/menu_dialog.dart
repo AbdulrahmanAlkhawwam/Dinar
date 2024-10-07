@@ -26,7 +26,7 @@ class MenuDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(semicircle),
         borderSide: BorderSide(
           color: context.colors.secondary,
-          width: 5,
+          width: border,
         ),
       ),
       alignment: Alignment.center,
@@ -36,31 +36,24 @@ class MenuDialog extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => context.pop(),
-                      icon: Icon(Icons.close),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      text,
-                      style: context.textTheme.headlineSmall,
-                    )
-                  ],
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 16),
                 for (var item in menu)
-                  ListTile(
-                    title: Text(item),
-                    onTap: () {
-                      onTap(item);
-                      context.pop();
-                    },
-                    shape: StadiumBorder(),
-                    splashColor: context.colors.secondary,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: ListTile(
+                      title: Text(item),
+                      onTap: () {
+                        onTap(item);
+                        context.pop();
+                      },
+                      shape: StadiumBorder(),
+                      splashColor: context.colors.secondary,
+                    ),
                   ),
               ],
             ),

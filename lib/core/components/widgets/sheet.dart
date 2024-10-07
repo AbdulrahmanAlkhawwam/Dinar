@@ -1,4 +1,3 @@
-import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> sheet({
@@ -14,7 +13,6 @@ Future<dynamic> sheet({
         curve: Curves.easeInSine,
         reverseCurve: Curves.easeOutSine,
       ),
-      backgroundColor: context.colors.surface,
       isScrollControlled: true,
       useSafeArea: true,
     );

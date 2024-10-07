@@ -32,6 +32,7 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   bool _isEnabled = false;
+  bool _isdefault = false;
   Category? category;
   Wallet? wallet;
   bool checked = false;
@@ -43,23 +44,32 @@ class _CreationScreenState extends State<CreationScreen> {
         BlocListener<CategoriesBloc, CategoriesState>(
           listener: (context, state) {
             if (state is CategoriesError) {
-              ScaffoldMessenger.of(context).clearSnackBars();
-
               context.showErrorSnackBar(massage: state.message.value);
             }
             if (state is CategoryAdded) {
               setState(() => _isEnabled = true);
+              context.showSuccessSnackBar(
+                  massage: "Add new ${widget.title} Successfully");
             }
           },
         ),
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
             if (state is WalletsError) {
-              ScaffoldMessenger.of(context).clearSnackBars();
               context.showErrorSnackBar(massage: state.message.value);
             }
             if (state is WalletAdded) {
               setState(() => _isEnabled = true);
+              context.showSuccessSnackBar(
+                  massage: "Add new ${widget.title} Successfully");
+              if (_isdefault) {
+                ScaffoldMessenger.of(context).clearSnackBars();
+                context.pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              }
             }
           },
         ),
@@ -111,9 +121,14 @@ class _CreationScreenState extends State<CreationScreen> {
                           massage: "You should add new ${widget.title}",
                           onPressed: !_isEnabled
                               ? widget.title == "Wallets"
-                                  ? () => context.read<WalletsBloc>().add(
-                                      AddWalletEvent(
-                                          wallet: Wallet(name: "user")))
+                                  ? () {
+                                      context.read<WalletsBloc>().add(
+                                            AddWalletEvent(
+                                              wallet: Wallet(name: "user"),
+                                            ),
+                                          );
+                                      setState(() => _isdefault = true);
+                                    }
                                   : null
                               : () => widget.title == "Category"
                                   ? context.pushReplacement(
