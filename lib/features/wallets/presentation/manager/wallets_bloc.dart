@@ -50,7 +50,9 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
     emit(WalletsLoading());
     final response = await addWalletUc.call(param: event.wallet);
     response.fold(
-        (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
-        (id) => emit(WalletAdded(id: id)));
+      (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
+      (id) => emit(WalletAdded(id: id)),
+    );
+    add(WalletInitEvent());
   }
 }

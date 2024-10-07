@@ -52,7 +52,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
             ),
             const SizedBox(height: 16),
             MenuButton(
-              text: "Type",
+              text: _selectedType?.name ?? "Type",
               menu: OperationType.values
                   .map(
                     (operation) => operation.name,

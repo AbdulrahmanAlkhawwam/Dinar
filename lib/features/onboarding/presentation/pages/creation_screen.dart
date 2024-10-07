@@ -33,6 +33,8 @@ class CreationScreen extends StatefulWidget {
 class _CreationScreenState extends State<CreationScreen> {
   bool _isEnabled = false;
   Category? category;
+  Wallet? wallet;
+  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -137,19 +139,20 @@ class _CreationScreenState extends State<CreationScreen> {
                                 : wallet = await sheet(
                                     context: context,
                                     content: WalletsBottomSheet()) as Wallet;
-
-                            bool checked = await sheet(
-                              context: context,
-                              content: CheckBottomSheet(
-                                type: widget.title,
-                                category: widget.title == "Category"
-                                    ? category
-                                    : null,
-                                wallet:
-                                    widget.title != "Category" ? wallet : null,
-                              ),
-                            ) as bool;
-
+                            if (wallet != null || category != null) {
+                              checked = await sheet(
+                                context: context,
+                                content: CheckBottomSheet(
+                                  type: widget.title,
+                                  category: widget.title == "Category"
+                                      ? category
+                                      : null,
+                                  wallet: widget.title != "Category"
+                                      ? wallet
+                                      : null,
+                                ),
+                              ) as bool;
+                            }
                             if (checked) {
                               if (widget.title == "Category" &&
                                   category != null) {

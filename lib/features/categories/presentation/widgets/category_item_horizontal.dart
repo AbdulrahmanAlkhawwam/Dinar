@@ -1,9 +1,9 @@
-import '../../../app/domain/entities/operation_type.dart';
-import '../../../categories/domain/entities/category.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles/colors/light_colors.dart';
-import '../../../../core/styles/colors/main_colors.dart';
+import '../../domain/entities/category.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../../core/constants/colors.dart';
 
 class CategoryItemHorizontal extends StatelessWidget {
   final Category category;
@@ -16,47 +16,40 @@ class CategoryItemHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 120,
+      width: 160,
       decoration: BoxDecoration(
-        gradient: LightColors.widgetCardColor,
+        gradient: GradientLightColor.cardColor,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: MainColors.teaGreen),
+        border: Border.all(
+          color: context.colors.secondaryContainer,
+        ),
       ),
-      child: const Padding(
+      child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Spacer(),
               Text(
-                "category.name",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
-                ),
+                category.name.toUpperCase(),
+                style: context.textTheme.titleMedium,
               ),
               Text(
-                "income",
-                style: TextStyle(
-                  fontSize: 16,
+                category.type.name,
+                style: context.textTheme.labelSmall?.copyWith(
+                  color: category.type == OperationType.payment
+                      ? context.colors.error
+                      : context.colors.primary,
                 ),
               ),
-              Spacer(),
               Center(
                 child: Text(
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  "total : 12120012",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w900,
-                  ),
+                  "Total : ${category.balance ?? 0.0}",
+                  style: context.textTheme.labelSmall,
                 ),
               ),
-              Spacer(),
             ],
           ),
         ),

@@ -105,6 +105,30 @@ class GradientLightColor {
     begin: Alignment.centerRight,
     end: Alignment.bottomLeft,
   );
+
+  /// card color used in [cards] at home screen
+  /// it's begin [Alignment.bottomLeft] and end [Alignment.topRight]
+  /// we used colors [secondaryContainer], [onSecondary]
+  static LinearGradient cardColor = LinearGradient(
+    colors: [
+      lightColorScheme.secondaryContainer,
+      lightColorScheme.onSecondary,
+    ],
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+  );
+
+  /// float color used in [FloatingActionButton] at home screen
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onTertiaryContainer], [primary]
+  static LinearGradient floatColor = LinearGradient(
+    colors: [
+      lightColorScheme.onTertiaryContainer.withOpacity(0.6),
+      lightColorScheme.primary.withGreen(150).withOpacity(0.6),
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  );
 }
 
 const darkColorScheme = ColorScheme(

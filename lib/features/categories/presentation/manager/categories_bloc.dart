@@ -26,11 +26,11 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     required this.loadIncomeCategoriesUc,
     required this.addCategoryUc,
   }) : super(CategoriesInitial()) {
-    on<CategoryInitEvent>(_initializeCategories);
+    on<CategoryInitEvent>(_loadCategories);
     on<AddCategoryEvent>(_addCategory);
   }
 
-  FutureOr<void> _initializeCategories(
+  FutureOr<void> _loadCategories(
     CategoryInitEvent event,
     Emitter<CategoriesState> emit,
   ) async {
@@ -69,5 +69,6 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (id) => emit(CategoryAdded(id: id)),
     );
+    add(CategoryInitEvent());
   }
 }

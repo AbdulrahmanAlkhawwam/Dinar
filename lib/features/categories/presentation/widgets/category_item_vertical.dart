@@ -25,7 +25,10 @@ class CategoryItemVertical extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.colors.onSecondary,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: MainColors.teaGreen),
+          border: Border.all(
+            color: context.colors.secondaryContainer,
+            width: 3,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,19 +43,14 @@ class CategoryItemVertical extends StatelessWidget {
                     children: [
                       Text(
                         category.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: context.textTheme.titleMedium,
                       ),
                       Text(
                         category.type.name,
-                        style: TextStyle(
+                        style: context.textTheme.labelSmall?.copyWith(
                           color: category.type == OperationType.income
                               ? context.colors.primary
                               : context.colors.error,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
                         ),
                       ),
                     ],

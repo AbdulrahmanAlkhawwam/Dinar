@@ -1,14 +1,12 @@
-import '../../../../core/constants/colors.dart';
-import '../../../app/domain/entities/operation_type.dart';
-import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
-import '../../../onboarding/presentation/widgets/check_bottom_sheet.dart';
+import 'package:Dinar/core/components/buttons/float_button.dart';
+import 'package:Dinar/core/utils/app_context.dart';
 
-import '../../../categories/presentation/widgets/category_list.dart';
+import '../../../../core/constants/colors.dart';
+
+import '../widget/category_list.dart';
 import '../../../incomes/presentation/widgets/income_chart.dart';
 import '../../../payments/presentation/widgets/payment_chart.dart';
-import '../../../wallets/presentation/widgets/wallet_list.dart';
-import '../../../../core/components/buttons/primary_button.dart';
-import '../../../../core/styles/colors/light_colors.dart';
+import '../widget/wallet_list.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -24,25 +22,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String myNumber = ((usage / monthlyAverage) * 100.00).toString();
-    print("we are in home screen");
     print(usage / monthlyAverage);
     return Scaffold(
-      backgroundColor: MainColors.mintCream,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 32),
                   child: Text(
                     textAlign: TextAlign.start,
                     "Good \nMorning",
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
+                    style: context.textTheme.bodyLarge,
                   ),
                 ),
                 Container(
@@ -136,19 +130,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 160,
-                  child: WalletList(),
-                ),
+                const WalletList(),
                 const IncomeChart(),
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
                 const PaymentChart(),
-                const SizedBox(
-                  height: 150,
-                  child: CategoryList(),
-                ),
+                CategoryList(),
               ],
             ),
           ),
@@ -156,12 +142,8 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32.0),
-        child: PrimaryButton(
+        child: FloatButton(
           onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (_) => CheckBottomSheet(
-                    type: "income", category: null, wallet: null));
             print("*** click more ***");
           },
           text: "more".toUpperCase(),

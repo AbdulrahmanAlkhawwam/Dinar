@@ -16,16 +16,17 @@ class WalletItemVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Container(
         width: double.infinity,
         height: 80,
         decoration: BoxDecoration(
           color: context.colors.onSecondary,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: MainColors.teaGreen),
+          border: Border.all(
+            color: context.colors.secondaryContainer,
+            width: 3,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,18 +41,11 @@ class WalletItemVertical extends StatelessWidget {
                     children: [
                       Text(
                         wallet.name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: context.textTheme.titleMedium,
                       ),
                       Text(
-                        wallet.balance.toString() ?? "0.0",
-                        style: TextStyle(
-                          color: context.colors.onSurface,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        "${wallet.balance ?? 0.0}",
+                        style: context.textTheme.labelSmall,
                       ),
                     ],
                   ),
