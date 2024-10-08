@@ -10,3 +10,9 @@ class AddWalletEvent extends WalletsEvent {
 
   AddWalletEvent({required this.wallet});
 }
+
+class DeleteWalletEvent extends WalletsEvent {
+  final Wallet wallet;
+
+  DeleteWalletEvent({required this.wallet});
+}

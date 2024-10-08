@@ -1,8 +1,11 @@
-import 'package:Dinar/core/components/buttons/float_button.dart';
 import 'package:Dinar/core/utils/app_context.dart';
+import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
+import 'package:Dinar/features/wallets/presentation/widgets/wallets_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../wallets/domain/entities/wallet.dart';
+import '../../../../core/components/widgets/sheet.dart';
+import '../../../app/presentation/pages/loading.dart';
+import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
 import '../../../wallets/presentation/widgets/wallet_item_vertical.dart';
 import 'package:flutter/material.dart';
 
@@ -13,31 +16,71 @@ class WalletsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wallets = context.read<WalletsBloc>().wallets;
+    List<Wallet> wallets = context.read<WalletsBloc>().wallets;
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
-        title: const Text("Wallets"),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
+    return BlocConsumer<WalletsBloc, WalletsState>(
+      listener: (context, state) {
+        if (state is WalletsError) {
+          context.showErrorSnackBar(massage: state.message.value);
+        }
+        if (state is WalletsLoaded) {
+          wallets = context.read<WalletsBloc>().wallets;
+        }
+        if (state is WalletDeleted) {
+          context.showErrorSnackBar(
+              massage: "${state.wallet.name} :  was deleted");
+        }
+      },
+      builder: (context, state) {
+        if (state is WalletsLoading) {
+          return Loading();
+        }
+        return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () => wallets.isNotEmpty
+                  ? context.pop()
+                  : context.showErrorSnackBar(
+                      massage: "you should add new category"),
+              icon: const Icon(Icons.arrow_back_ios_new),
+            ),
+            title: const Text("Wallets"),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  final wallet = await sheet(
+                      context: context, content: WalletsBottomSheet());
+                  if (wallet != null) {
+                    final result = await sheet(
+                      context: context,
+                      content: AddCheckBottomSheet(
+                        type: "Wallets",
+                        category: null,
+                        wallet: wallet,
+                      ),
+                    );
+                    if (result) {
+                      context
+                          .read<WalletsBloc>()
+                          .add(AddWalletEvent(wallet: wallet));
+                    }
+                  }
+                },
+                icon: Icon(Icons.add),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: ListView.separated(
-          itemBuilder: (context, index) =>
-              WalletItemVertical(wallet: wallets[index]),
-          separatorBuilder: (context, index) => const SizedBox(height: 15),
-          itemCount: wallets.length,
-        ),
-      ),
+          body: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: ListView.separated(
+              itemBuilder: (context, index) =>
+                  WalletItemVertical(wallet: wallets[index]),
+              separatorBuilder: (context, index) => const SizedBox(height: 15),
+              itemCount: wallets.length,
+            ),
+          ),
+        );
+      },
     );
   }
 }

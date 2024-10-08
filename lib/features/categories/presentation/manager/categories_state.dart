@@ -28,3 +28,9 @@ final class CategoryAdded extends CategoriesState {
 
   CategoryAdded({required this.id});
 }
+
+final class CategoryDeleted extends CategoriesState {
+  final Category category;
+
+  CategoryDeleted({required this.category});
+}

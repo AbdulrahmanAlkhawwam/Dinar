@@ -26,3 +26,9 @@ final class WalletAdded extends WalletsState {
 
   WalletAdded({required this.id});
 }
+
+final class WalletDeleted extends WalletsState {
+  final Wallet wallet;
+
+  WalletDeleted({required this.wallet});
+}

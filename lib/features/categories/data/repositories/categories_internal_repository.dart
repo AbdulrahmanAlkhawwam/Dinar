@@ -34,4 +34,14 @@ class CategoriesInternalRepository extends CategoriesRepository {
       return Left(DatabaseFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteCategory(String id) async {
+    try {
+      await localDataSource.deleteCategory(id);
+      return Right(null);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
 }

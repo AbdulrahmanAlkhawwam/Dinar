@@ -16,7 +16,7 @@ class Category {
     required this.type,
     this.balance,
   }) {
-    id = "cat--${uuid.v4()}";
+    id ??= "cat--${uuid.v4()}";
   }
 
   Category copyWith({
@@ -27,5 +27,15 @@ class Category {
       name: name ?? this.name,
       type: type ?? this.type,
     );
+  }
+
+  @override
+  String toString() {
+    return "category {"
+        "id : $id ,"
+        "name : $name ,"
+        "type : $type ,"
+        "balance : $balance"
+        "}";
   }
 }

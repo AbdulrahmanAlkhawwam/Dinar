@@ -6,6 +6,8 @@ abstract class WalletsLocalDataSource {
   Future<List<WalletModel>> loadWallets();
 
   Future<int> addWallet(WalletModel walletModel);
+
+  Future<void> deleteWallet(String id);
 }
 
 class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
@@ -30,5 +32,14 @@ class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
       walletModel.toMap(),
     );
     return id;
+  }
+
+  @override
+  Future<void> deleteWallet(String id) async {
+    await db.delete(
+      walletsTable,
+      where: "id = ?",
+      args: [id],
+    );
   }
 }

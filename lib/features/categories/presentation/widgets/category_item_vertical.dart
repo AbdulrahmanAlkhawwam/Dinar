@@ -1,7 +1,11 @@
+import 'package:Dinar/core/components/widgets/sheet.dart';
+import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
+import 'package:Dinar/features/onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../app/domain/entities/operation_type.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles/colors/main_colors.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../domain/entities/category.dart';
 
@@ -57,7 +61,19 @@ class CategoryItemVertical extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final result = await sheet(
+                        context: context,
+                        content: DeleteCheckBottomSheet(
+                            type: "Category",
+                            category: category,
+                            wallet: null));
+                    if (result) {
+                      context.read<CategoriesBloc>().add(
+                            DeleteCategoryEvent(category: category),
+                          );
+                    }
+                  },
                   icon: Icon(
                     Icons.delete_outline,
                     color: context.colors.error,

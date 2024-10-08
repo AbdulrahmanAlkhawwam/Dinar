@@ -2,7 +2,7 @@ import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/check_bottom_sheet.dart';
+import '../widgets/add_check_bottom_sheet.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
@@ -157,7 +157,7 @@ class _CreationScreenState extends State<CreationScreen> {
                             if (wallet != null || category != null) {
                               checked = await sheet(
                                 context: context,
-                                content: CheckBottomSheet(
+                                content: AddCheckBottomSheet(
                                   type: widget.title,
                                   category: widget.title == "Category"
                                       ? category

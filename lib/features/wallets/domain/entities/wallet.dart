@@ -12,7 +12,7 @@ class Wallet {
     required this.name,
     this.balance,
   }) {
-    id = "wal--${uuid.v4()}";
+    id ??= "wal--${uuid.v4()}";
   }
 
   Wallet copyWith({
@@ -21,5 +21,14 @@ class Wallet {
     return Wallet(
       name: name ?? this.name,
     );
+  }
+
+  @override
+  String toString() {
+    return "wallet {"
+        "id : $id ,"
+        "name : $name ,"
+        "balance : $balance"
+        "}";
   }
 }

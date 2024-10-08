@@ -10,3 +10,9 @@ class AddCategoryEvent extends CategoriesEvent {
 
   AddCategoryEvent({required this.category});
 }
+
+class DeleteCategoryEvent extends CategoriesEvent {
+  final Category category;
+
+  DeleteCategoryEvent({required this.category});
+}

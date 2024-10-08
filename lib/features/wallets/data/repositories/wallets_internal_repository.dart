@@ -31,4 +31,14 @@ class WalletsInternalRepository extends WalletsRepository {
       return Left(DatabaseFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteWallet(String id) async {
+    try {
+      await localDataSource.deleteWallet(id);
+      return Right(null);
+    } catch (e) {
+      return Left(DatabaseFailure(e.toString()));
+    }
+  }
 }

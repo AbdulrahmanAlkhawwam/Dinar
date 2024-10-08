@@ -1,4 +1,5 @@
 import 'package:Dinar/features/wallets/domain/use_cases/add_wallet_uc.dart';
+import 'package:Dinar/features/wallets/domain/use_cases/delete_wallet_uc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/wallets/data/datasources/wallets_local_data_source.dart';
@@ -24,8 +25,15 @@ Future<void> initializeWalletServices(GetIt sl) async {
     () => AddWalletUc(repository: sl()),
   );
 
+  sl.registerLazySingleton<DeleteWalletUc>(
+    () => DeleteWalletUc(repository: sl()),
+  );
+
   sl.registerFactory<WalletsBloc>(
     () => WalletsBloc(
+      deleteWalletUc: DeleteWalletUc(
+        repository: sl(),
+      ),
       loadWallets: LoadWalletsUc(
         repository: sl(),
       ),

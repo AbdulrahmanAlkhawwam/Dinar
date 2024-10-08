@@ -8,8 +8,8 @@ import '../../../../core/constants/res.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/buttons/secondary_button.dart';
 
-class CheckBottomSheet extends StatelessWidget {
-  const CheckBottomSheet({
+class DeleteCheckBottomSheet extends StatelessWidget {
+  const DeleteCheckBottomSheet({
     super.key,
     required this.type,
     required this.category,
@@ -35,32 +35,34 @@ class CheckBottomSheet extends StatelessWidget {
           Center(
             child: CircleAvatar(
               radius: 40,
-              backgroundColor: context.colors.onPrimary,
+              backgroundColor: context.colors.errorContainer,
               child: SvgPicture.asset(
-                Res.check,
-                width: 32,
-                height: 32,
+                Res.delete,
+                width: 44,
+                height: 44,
                 alignment: AlignmentDirectional.center,
+                color: context.colors.error,
               ),
             ),
           ),
           const SizedBox(height: 32),
           Text(
-            "Create your $type",
+            "Delete $type",
             style: TextStyle(
               color: context.colors.onTertiaryContainer,
               fontSize: 24,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text.rich(
               textAlign: TextAlign.center,
               TextSpan(
                 children: [
                   TextSpan(
-                    text: "Are you sure you want to add new $type with ",
+                    text:
+                        "Are you sure you want to delete $type which name is ",
                     style: TextStyle(
                       color: context.colors.onTertiaryContainer,
                       fontSize: 16,
@@ -69,16 +71,17 @@ class CheckBottomSheet extends StatelessWidget {
                   TextSpan(
                     text: type == "Category" ? category?.name : wallet?.name,
                     style: TextStyle(
-                        color: type == "Category" &&
-                                    category?.type == OperationType.income ||
-                                type == "Wallet"
-                            ? context.colors.primary
-                            : context.colors.error,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: type == "Category" &&
+                                  category?.type == OperationType.income ||
+                              type != "Category"
+                          ? context.colors.primary
+                          : context.colors.error,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   TextSpan(
-                    text: type == "Category" ? " as name and " : " as name ",
+                    text: type == "Category" ? " and it's type is " : "",
                     style: TextStyle(
                       color: context.colors.onTertiaryContainer,
                       fontSize: 16,
@@ -96,15 +99,6 @@ class CheckBottomSheet extends StatelessWidget {
                           ),
                         )
                       : const TextSpan(),
-                  type == "Category"
-                      ? TextSpan(
-                          text: " as type",
-                          style: TextStyle(
-                            color: context.colors.onTertiaryContainer,
-                            fontSize: 16,
-                          ),
-                        )
-                      : const TextSpan(),
                 ],
               ),
             ),
@@ -114,6 +108,7 @@ class CheckBottomSheet extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context, true);
             },
+            text: "delete".toUpperCase(),
           ),
           const SizedBox(height: 16),
           TextButton(

@@ -1,3 +1,6 @@
+import 'package:Dinar/core/errors/failures.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../models/category_model.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../../core/constants/strings.dart';
@@ -7,6 +10,8 @@ abstract class CategoriesLocalDataSource {
   Future<List<CategoryModel>> loadCategories(OperationType type);
 
   Future<int> addCategory(CategoryModel categoryModel);
+
+  Future<void> deleteCategory(String id);
 }
 
 class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
@@ -21,6 +26,7 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
       where: "type = ?",
       args: [type.name],
     );
+    print("categories map is ::: ${categoriesMap.toList().toString()}");
     final categories = categoriesMap
         .map((category) => CategoryModel.fromMap(category))
         .toList();
@@ -34,5 +40,14 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
       categoryModel.toMap(),
     );
     return id;
+  }
+
+  @override
+  Future<void> deleteCategory(String id) async {
+    await db.delete(
+      categoriesTable,
+      where: "id = ?",
+      args: [id],
+    );
   }
 }

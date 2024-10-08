@@ -1,8 +1,13 @@
+import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/components/widgets/sheet.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/styles/colors/main_colors.dart';
 import '../../../../core/utils/app_context.dart';
+import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
 import '../../domain/entities/wallet.dart';
 
 class WalletItemVertical extends StatelessWidget {
@@ -51,7 +56,17 @@ class WalletItemVertical extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    final result = await sheet(
+                        context: context,
+                        content: DeleteCheckBottomSheet(
+                            type: "Wallets", category: null, wallet: wallet));
+                    if (result) {
+                      context.read<WalletsBloc>().add(
+                            DeleteWalletEvent(wallet: wallet),
+                          );
+                    }
+                  },
                   icon: Icon(
                     Icons.delete_outline,
                     color: context.colors.error,
