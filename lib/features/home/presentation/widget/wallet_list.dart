@@ -1,3 +1,4 @@
+import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -11,55 +12,62 @@ class WalletList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wallets = context.read<WalletsBloc>().wallets;
+    List<Wallet> wallets = context.read<WalletsBloc>().wallets;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Text(
-              "Wallets",
-              style: context.textTheme.titleSmall,
-            ),
-            const Spacer(),
-            TextButton(
-              style: ButtonStyle(
-                fixedSize: WidgetStatePropertyAll(
-                  Size(
-                    double.infinity,
-                    double.minPositive,
+    return BlocListener<WalletsBloc, WalletsState>(
+      listener: (context, state) {
+        if (state is WalletsLoaded) {
+          wallets = context.read<WalletsBloc>().wallets;
+        }
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Text(
+                "Wallets",
+                style: context.textTheme.titleSmall,
+              ),
+              const Spacer(),
+              TextButton(
+                style: ButtonStyle(
+                  fixedSize: WidgetStatePropertyAll(
+                    Size(
+                      double.infinity,
+                      double.minPositive,
+                    ),
                   ),
                 ),
-              ),
-              onPressed: () => context.push(
-                MaterialPageRoute(
-                  builder: (context) => WalletsScreen(),
+                onPressed: () => context.push(
+                  MaterialPageRoute(
+                    builder: (context) => WalletsScreen(),
+                  ),
+                ),
+                child: Text(
+                  "show more",
+                  style: context.textTheme.labelSmall,
                 ),
               ),
-              child: Text(
-                "show more",
-                style: context.textTheme.labelSmall,
+            ],
+          ),
+          SizedBox(
+            height: 130,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => WalletItemHorizontal(
+                  wallet: wallets[index],
+                ),
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
+                itemCount: wallets.length,
               ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 130,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => WalletItemHorizontal(
-                wallet: wallets[index],
-              ),
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
-              itemCount: wallets.length,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

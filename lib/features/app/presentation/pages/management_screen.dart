@@ -1,8 +1,10 @@
-import 'package:Dinar/features/app/presentation/pages/loading.dart';
+import 'package:Dinar/core/components/widgets/screen.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
+import '../../../../core/constants/colors.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../onboarding/presentation/pages/onboarding_screen.dart';
@@ -34,6 +36,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
       listeners: [
         BlocListener<CategoriesBloc, CategoriesState>(
           listener: (context, state) {
+            if (state is CategoriesLoading) {
+              context.loaderOverlay.show();
+            } else {
+              context.loaderOverlay.hide();
+            }
             if (state is CategoriesLoaded) {
               payCategories = context.read<CategoriesBloc>().paymentCategories;
               incCategories = context.read<CategoriesBloc>().incomeCategories;
@@ -43,6 +50,11 @@ class _ManagementScreenState extends State<ManagementScreen> {
         ),
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
+            if (state is WalletsLoading) {
+              context.loaderOverlay.show();
+            } else {
+              context.loaderOverlay.hide();
+            }
             if (state is WalletsLoaded) {
               userWallets = context.read<WalletsBloc>().wallets;
               setState(() => _walletsLoaded = true);
@@ -52,12 +64,12 @@ class _ManagementScreenState extends State<ManagementScreen> {
       ],
       child: Builder(
         builder: (context) {
-          print("--- category loaded : $_categoriesLoaded");
-          print("--- wallet loaded : $_categoriesLoaded");
-          print("+++ pay == ${payCategories.toList().toString()}");
-          print("+++ inc == ${incCategories.toList().toString()}");
-          print("+++ user == ${userWallets.toList().toString()}");
-          if (_walletsLoaded && _categoriesLoaded) {
+          // print("--- category loaded : $_categoriesLoaded");
+          // print("--- wallet loaded : $_categoriesLoaded");
+          // print("+++ pay == ${payCategories.toList().toString()}");
+          // print("+++ inc == ${incCategories.toList().toString()}");
+          // print("+++ user == ${userWallets.toList().toString()}");
+          if (_categoriesLoaded && _walletsLoaded) {
             if (payCategories.isEmpty &&
                 incCategories.isEmpty &&
                 userWallets.isEmpty) {
@@ -70,7 +82,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
               return HomeScreen();
             }
           } else {
-            return Loading();
+            return Screen(child: Container());
           }
         },
       ),

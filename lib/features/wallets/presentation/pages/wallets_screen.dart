@@ -1,10 +1,11 @@
+import 'package:Dinar/app.dart';
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
 import 'package:Dinar/features/wallets/presentation/widgets/wallets_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../core/components/widgets/sheet.dart';
-import '../../../app/presentation/pages/loading.dart';
 import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
 import '../../../wallets/presentation/widgets/wallet_item_vertical.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,9 @@ class WalletsScreen extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is WalletsLoading) {
-          return Loading();
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
         }
         return Scaffold(
           appBar: AppBar(

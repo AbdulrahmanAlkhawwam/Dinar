@@ -1,9 +1,10 @@
+import 'package:Dinar/app.dart';
 import 'package:Dinar/core/components/widgets/sheet.dart';
 import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/app/presentation/pages/loading.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/categories/presentation/widgets/categories_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../categories/presentation/widgets/category_item_vertical.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,11 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
     return BlocConsumer<CategoriesBloc, CategoriesState>(
       listener: (context, state) {
+        if (state is CategoriesLoading) {
+          context.loaderOverlay.show();
+        } else {
+          context.loaderOverlay.hide();
+        }
         if (state is CategoriesError) {
           context.showErrorSnackBar(massage: state.message.value);
         }
@@ -58,9 +64,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
         }
       },
       builder: (context, state) {
-        if (state is CategoriesLoading) {
-          return Loading();
-        }
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(

@@ -1,3 +1,4 @@
+import 'package:Dinar/app.dart';
 import 'package:flutter/material.dart';
 
 import '../dialog/menu_dialog.dart';
