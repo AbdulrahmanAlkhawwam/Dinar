@@ -1,3 +1,4 @@
+import 'package:Dinar/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../constants/res.dart';
@@ -25,6 +26,8 @@ extension AppTheme on BuildContext {
   ColorScheme get colors => Theme.of(this).colorScheme;
 
   TextTheme get textTheme => Theme.of(this).textTheme;
+
+  GradientColor get gradient => Theme.of(this).extension<GradientColor>()!;
 }
 
 extension AppResponsive on BuildContext {

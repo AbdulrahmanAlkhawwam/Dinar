@@ -5,30 +5,30 @@ import './colors.dart';
 import '../constants/styles.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme => _theme(lightColorScheme);
+  static ThemeData get lightTheme => _theme(lightColorScheme, lightGradient);
 
-  static ThemeData get darkTheme => _theme(darkColorScheme);
+  static ThemeData get darkTheme => _theme(darkColorScheme, darkGradient);
 
-  static _theme(ColorScheme colors) => ThemeData(
-        colorScheme: colors,
-        primaryColor: colors.primary,
-        canvasColor: colors.onTertiaryContainer,
-        useMaterial3: true,
-        textTheme: _textTheme(colors),
-        appBarTheme: _appBarTheme(colors),
-        scaffoldBackgroundColor: colors.surface,
-        textButtonTheme: _textButtonTheme(colors),
-        inputDecorationTheme: _inputDecorationTheme(colors),
-        timePickerTheme: _timePickerTheme(colors),
-        iconButtonTheme: IconButtonThemeData(
-          style: ButtonStyle(
-            fixedSize: WidgetStatePropertyAll(Size(24, 24)),
-          ),
+  static _theme(ColorScheme colors, GradientColor gradient) => ThemeData(
+      colorScheme: colors,
+      primaryColor: colors.primary,
+      canvasColor: colors.onTertiaryContainer,
+      useMaterial3: true,
+      textTheme: _textTheme(colors),
+      appBarTheme: _appBarTheme(colors),
+      scaffoldBackgroundColor: colors.surface,
+      textButtonTheme: _textButtonTheme(colors),
+      inputDecorationTheme: _inputDecorationTheme(colors),
+      timePickerTheme: _timePickerTheme(colors),
+      iconButtonTheme: IconButtonThemeData(
+        style: ButtonStyle(
+          fixedSize: WidgetStatePropertyAll(Size(24, 24)),
         ),
-        bottomSheetTheme: BottomSheetThemeData(
-          backgroundColor: colors.surface,
-        ),
-      );
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: colors.surface,
+      ),
+      extensions: [gradient]);
 
   static AppBarTheme _appBarTheme(ColorScheme colors) {
     return AppBarTheme(

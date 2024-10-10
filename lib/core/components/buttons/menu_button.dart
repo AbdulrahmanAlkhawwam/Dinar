@@ -44,8 +44,8 @@ class MenuButton extends StatelessWidget {
       decoration: BoxDecoration(
         /// we use IF condition here to appear if it DISABLED or not
         gradient: menu.isEmpty
-            ? GradientLightColor.disabledColor
-            : GradientLightColor.primaryColor,
+            ? context.gradient.disabledColor
+            : context.gradient.primaryColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(

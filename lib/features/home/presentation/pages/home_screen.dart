@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    gradient: GradientLightColor.secondaryColor,
+                    gradient: context.gradient.secondaryColor,
                     border: Border.all(
                       color: MainColors.forestGreen,
                       width: 2,

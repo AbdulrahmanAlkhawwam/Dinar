@@ -29,7 +29,7 @@ class FloatButton extends StatelessWidget {
       width: 120,
       decoration: BoxDecoration(
         /// we use IF condition here to appear if it DISABLED or not
-        gradient: GradientLightColor.floatColor,
+        gradient: context.gradient.floatColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(

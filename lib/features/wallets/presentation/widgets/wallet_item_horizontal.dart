@@ -14,7 +14,7 @@ class WalletItemHorizontal extends StatelessWidget {
     return Container(
       width: 160,
       decoration: BoxDecoration(
-        gradient: GradientLightColor.cardColor,
+        gradient: context.gradient.cardColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: context.colors.secondaryContainer,

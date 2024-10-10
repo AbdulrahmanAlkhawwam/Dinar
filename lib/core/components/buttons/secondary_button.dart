@@ -41,8 +41,8 @@ class SecondaryButton extends StatelessWidget {
         decoration: BoxDecoration(
           /// we use IF condition here to appear if it DISABLED or not
           gradient: onPressed == null
-              ? GradientLightColor.disabledColor
-              : GradientLightColor.secondaryColor,
+              ? context.gradient.disabledColor
+              : context.gradient.secondaryColor,
           borderRadius: BorderRadius.circular(circle),
         ),
         child: Material(

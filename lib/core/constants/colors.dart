@@ -57,79 +57,7 @@ const lightColorScheme = ColorScheme(
 );
 
 /// LINEAR GRADIENT class : [GradientLightColor]
-class GradientLightColor {
-  /// disabled color used when some thing don't used at all ,like [bottom], [card] , ... etc
-  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onSurfaceVariant], [outlineVariant]
-  static LinearGradient disabledColor = LinearGradient(
-    colors: <Color>[
-      lightColorScheme.onSurfaceVariant,
-      lightColorScheme.outlineVariant,
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topRight,
-  );
-
-  /// primary color used in any thing like [bottom], [card] , ... etc
-  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onTertiaryFixed], [primary]
-  static LinearGradient primaryColor = LinearGradient(
-    colors: [
-      lightColorScheme.onTertiaryFixed,
-      lightColorScheme.primary.withGreen(150),
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topRight,
-  );
-
-  /// secondary color used in any thing like [bottom], [card] , ... etc
-  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [secondaryFixedDim], [surface]
-  static LinearGradient secondaryColor = LinearGradient(
-    colors: [
-      lightColorScheme.secondaryFixedDim,
-      lightColorScheme.surface,
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topRight,
-  );
-
-  /// background color used only onboarding screen
-  /// it's begin [Alignment.centerRight] and end [Alignment.bottomLeft]
-  /// we used colors [inversePrimary], [primary]
-  static LinearGradient backgroundColor = LinearGradient(
-    colors: [
-      lightColorScheme.inversePrimary,
-      lightColorScheme.primary,
-    ],
-    begin: Alignment.centerRight,
-    end: Alignment.bottomLeft,
-  );
-
-  /// card color used in [cards] at home screen
-  /// it's begin [Alignment.bottomLeft] and end [Alignment.topRight]
-  /// we used colors [secondaryContainer], [onSecondary]
-  static LinearGradient cardColor = LinearGradient(
-    colors: [
-      lightColorScheme.secondaryContainer,
-      lightColorScheme.onSecondary,
-    ],
-    begin: Alignment.bottomLeft,
-    end: Alignment.topRight,
-  );
-
-  /// float color used in [FloatingActionButton] at home screen
-  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onTertiaryContainer], [primary]
-  static LinearGradient floatColor = LinearGradient(
-    colors: [
-      lightColorScheme.onTertiaryContainer.withOpacity(0.6),
-      lightColorScheme.primary.withGreen(150).withOpacity(0.6),
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topRight,
-  );
-}
+class GradientLightColor {}
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
@@ -197,3 +125,186 @@ const List<Color> categoriesColors = [
   Colors.orange,
   Colors.deepOrange,
 ];
+
+class GradientColor extends ThemeExtension<GradientColor> {
+  /// disabled color used when some thing don't used at all ,like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onSurfaceVariant], [outlineVariant]
+  final LinearGradient? disabledColor;
+
+  /// primary color used in any thing like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onTertiaryFixed], [primary]
+  final LinearGradient? primaryColor;
+
+  /// secondary color used in any thing like [bottom], [card] , ... etc
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [secondaryFixedDim], [surface]
+  final LinearGradient? secondaryColor;
+
+  /// background color used only onboarding screen
+  /// it's begin [Alignment.centerRight] and end [Alignment.bottomLeft]
+  /// we used colors [inversePrimary], [primary]
+  final LinearGradient? backgroundColor;
+
+  /// card color used in [cards] at home screen
+  /// it's begin [Alignment.bottomLeft] and end [Alignment.topRight]
+  /// we used colors [secondaryContainer], [onSecondary]
+  final LinearGradient? cardColor;
+
+  /// float color used in [FloatingActionButton] at home screen
+  /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
+  /// we used colors [onTertiaryContainer], [primary]
+  final LinearGradient? floatColor;
+
+  GradientColor({
+    required this.disabledColor,
+    required this.primaryColor,
+    required this.secondaryColor,
+    required this.backgroundColor,
+    required this.cardColor,
+    required this.floatColor,
+  });
+
+  @override
+  ThemeExtension<GradientColor> copyWith({
+    LinearGradient? disabledColor,
+    LinearGradient? primaryColor,
+    LinearGradient? secondaryColor,
+    LinearGradient? backgroundColor,
+    LinearGradient? cardColor,
+    LinearGradient? floatColor,
+    Color? backgroundVariant,
+    Color? bms,
+    Gradient? pinkGradient,
+  }) {
+    return GradientColor(
+      disabledColor: disabledColor ?? this.disabledColor,
+      primaryColor: primaryColor ?? this.primaryColor,
+      secondaryColor: secondaryColor ?? this.secondaryColor,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      cardColor: cardColor ?? this.cardColor,
+      floatColor: floatColor ?? this.floatColor,
+    );
+  }
+
+  @override
+  ThemeExtension<GradientColor> lerp(
+      ThemeExtension<GradientColor>? other, double t) {
+    if (other is! GradientColor) {
+      return this;
+    }
+    return GradientColor(
+      disabledColor: LinearGradient.lerp(disabledColor, other.disabledColor, t),
+      primaryColor: LinearGradient.lerp(primaryColor, other.primaryColor, t),
+      secondaryColor:
+          LinearGradient.lerp(secondaryColor, other.secondaryColor, t),
+      backgroundColor:
+          LinearGradient.lerp(backgroundColor, other.backgroundColor, t),
+      cardColor: LinearGradient.lerp(cardColor, other.cardColor, t),
+      floatColor: LinearGradient.lerp(floatColor, other.floatColor, t),
+    );
+  }
+}
+
+final lightGradient = GradientColor(
+  disabledColor: LinearGradient(
+    colors: <Color>[
+      lightColorScheme.onSurfaceVariant,
+      lightColorScheme.outlineVariant,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  primaryColor: LinearGradient(
+    colors: [
+      lightColorScheme.onTertiaryFixed,
+      lightColorScheme.primary.withGreen(150),
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  secondaryColor: LinearGradient(
+    colors: [
+      lightColorScheme.secondaryFixedDim,
+      lightColorScheme.surface,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  backgroundColor: LinearGradient(
+    colors: [
+      lightColorScheme.inversePrimary,
+      lightColorScheme.primary,
+    ],
+    begin: Alignment.centerRight,
+    end: Alignment.bottomLeft,
+  ),
+  cardColor: LinearGradient(
+    colors: [
+      lightColorScheme.secondaryContainer,
+      lightColorScheme.onSecondary,
+    ],
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+  ),
+  floatColor: LinearGradient(
+    colors: [
+      lightColorScheme.onTertiaryContainer.withOpacity(0.6),
+      lightColorScheme.primary.withGreen(150).withOpacity(0.6),
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+);
+
+final darkGradient = GradientColor(
+  disabledColor: LinearGradient(
+    colors: <Color>[
+      darkColorScheme.onSurfaceVariant,
+      darkColorScheme.outlineVariant,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  primaryColor: LinearGradient(
+    colors: [
+      darkColorScheme.onTertiaryFixed,
+      darkColorScheme.primary.withGreen(150),
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  secondaryColor: LinearGradient(
+    colors: [
+      darkColorScheme.secondaryFixedDim,
+      darkColorScheme.surface,
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+  backgroundColor: LinearGradient(
+    colors: [
+      darkColorScheme.inversePrimary,
+      darkColorScheme.primary,
+    ],
+    begin: Alignment.centerRight,
+    end: Alignment.bottomLeft,
+  ),
+  cardColor: LinearGradient(
+    colors: [
+      darkColorScheme.secondaryContainer,
+      darkColorScheme.onSecondary,
+    ],
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+  ),
+  floatColor: LinearGradient(
+    colors: [
+      darkColorScheme.onTertiaryContainer.withOpacity(0.6),
+      darkColorScheme.primary.withGreen(150).withOpacity(0.6),
+    ],
+    begin: Alignment.bottomCenter,
+    end: Alignment.topRight,
+  ),
+);

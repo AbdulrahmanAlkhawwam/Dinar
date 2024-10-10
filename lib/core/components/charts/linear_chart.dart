@@ -75,7 +75,7 @@ class LinearChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LinearGradient color = GradientLightColor.primaryColor;
+    LinearGradient? color = context.gradient.primaryColor;
 
     return InnerShadow(
       shadows: [
@@ -127,7 +127,7 @@ class LinearChart extends StatelessWidget {
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
-                        colors: color.colors
+                        colors: color!.colors
                             .map((color) => color.withOpacity(0.5))
                             .toList(),
                       ),

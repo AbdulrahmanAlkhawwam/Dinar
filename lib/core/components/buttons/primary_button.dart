@@ -36,8 +36,8 @@ class PrimaryButton extends StatelessWidget {
       decoration: BoxDecoration(
         /// we use IF condition here to appear if it DISABLED or not
         gradient: onPressed == null
-            ? GradientLightColor.disabledColor
-            : GradientLightColor.primaryColor,
+            ? context.gradient.disabledColor
+            : context.gradient.primaryColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
