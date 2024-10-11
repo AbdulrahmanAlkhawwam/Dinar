@@ -16,7 +16,7 @@ class WalletList extends StatelessWidget {
 
     return BlocListener<WalletsBloc, WalletsState>(
       listener: (context, state) {
-        if (state is WalletsLoaded) {
+        if (state is WalletsLoaded || state is WalletAdded) {
           wallets = context.read<WalletsBloc>().wallets;
         }
       },

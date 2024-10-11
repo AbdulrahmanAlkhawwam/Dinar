@@ -6,7 +6,6 @@ import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/buttons/menu_button.dart';
 import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
-import '../../../../core/styles/colors/main_colors.dart';
 
 class CategoriesBottomSheet extends StatefulWidget {
   CategoriesBottomSheet({super.key});

@@ -28,11 +28,11 @@ class App extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider<CategoriesBloc>(
-          create: (_) => sl.get<CategoriesBloc>()..add(CategoryInitEvent()),
+          create: (_) => sl.get<CategoriesBloc>()..add(LoadCategoriesEvent()),
           lazy: false,
         ),
         BlocProvider<WalletsBloc>(
-          create: (_) => sl.get<WalletsBloc>()..add(WalletInitEvent()),
+          create: (_) => sl.get<WalletsBloc>()..add(LoadWalletsEvent()),
           lazy: false,
         ),
       ],

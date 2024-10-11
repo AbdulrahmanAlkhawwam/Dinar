@@ -130,17 +130,17 @@ class GradientColor extends ThemeExtension<GradientColor> {
   /// disabled color used when some thing don't used at all ,like [bottom], [card] , ... etc
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
   /// we used colors [onSurfaceVariant], [outlineVariant]
-  final LinearGradient? disabledColor;
+  final LinearGradient? fixedDisabledColor;
 
   /// primary color used in any thing like [bottom], [card] , ... etc
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onTertiaryFixed], [primary]
-  final LinearGradient? primaryColor;
+  /// we used colors [onTertiaryFixed], [onPrimaryFixedVariant]
+  final LinearGradient? fixedPrimaryColor;
 
   /// secondary color used in any thing like [bottom], [card] , ... etc
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
   /// we used colors [secondaryFixedDim], [surface]
-  final LinearGradient? secondaryColor;
+  final LinearGradient? fixedSecondaryColor;
 
   /// background color used only onboarding screen
   /// it's begin [Alignment.centerRight] and end [Alignment.bottomLeft]
@@ -154,13 +154,13 @@ class GradientColor extends ThemeExtension<GradientColor> {
 
   /// float color used in [FloatingActionButton] at home screen
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onTertiaryContainer], [primary]
+  /// we used colors [onTertiaryFixed], [onPrimaryFixedVariant]
   final LinearGradient? floatColor;
 
   GradientColor({
-    required this.disabledColor,
-    required this.primaryColor,
-    required this.secondaryColor,
+    required this.fixedDisabledColor,
+    required this.fixedPrimaryColor,
+    required this.fixedSecondaryColor,
     required this.backgroundColor,
     required this.cardColor,
     required this.floatColor,
@@ -168,8 +168,8 @@ class GradientColor extends ThemeExtension<GradientColor> {
 
   @override
   ThemeExtension<GradientColor> copyWith({
-    LinearGradient? disabledColor,
-    LinearGradient? primaryColor,
+    LinearGradient? fixedDisabledColor,
+    LinearGradient? fixedPrimaryColor,
     LinearGradient? secondaryColor,
     LinearGradient? backgroundColor,
     LinearGradient? cardColor,
@@ -179,9 +179,9 @@ class GradientColor extends ThemeExtension<GradientColor> {
     Gradient? pinkGradient,
   }) {
     return GradientColor(
-      disabledColor: disabledColor ?? this.disabledColor,
-      primaryColor: primaryColor ?? this.primaryColor,
-      secondaryColor: secondaryColor ?? this.secondaryColor,
+      fixedDisabledColor: fixedDisabledColor ?? this.fixedDisabledColor,
+      fixedPrimaryColor: fixedPrimaryColor ?? this.fixedPrimaryColor,
+      fixedSecondaryColor: secondaryColor ?? this.fixedSecondaryColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       cardColor: cardColor ?? this.cardColor,
       floatColor: floatColor ?? this.floatColor,
@@ -195,10 +195,12 @@ class GradientColor extends ThemeExtension<GradientColor> {
       return this;
     }
     return GradientColor(
-      disabledColor: LinearGradient.lerp(disabledColor, other.disabledColor, t),
-      primaryColor: LinearGradient.lerp(primaryColor, other.primaryColor, t),
-      secondaryColor:
-          LinearGradient.lerp(secondaryColor, other.secondaryColor, t),
+      fixedDisabledColor:
+          LinearGradient.lerp(fixedDisabledColor, other.fixedDisabledColor, t),
+      fixedPrimaryColor:
+          LinearGradient.lerp(fixedPrimaryColor, other.fixedPrimaryColor, t),
+      fixedSecondaryColor: LinearGradient.lerp(
+          fixedSecondaryColor, other.fixedSecondaryColor, t),
       backgroundColor:
           LinearGradient.lerp(backgroundColor, other.backgroundColor, t),
       cardColor: LinearGradient.lerp(cardColor, other.cardColor, t),
@@ -208,23 +210,23 @@ class GradientColor extends ThemeExtension<GradientColor> {
 }
 
 final lightGradient = GradientColor(
-  disabledColor: LinearGradient(
-    colors: <Color>[
+  fixedDisabledColor: LinearGradient(
+    colors: [
       lightColorScheme.onSurfaceVariant,
       lightColorScheme.outlineVariant,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   ),
-  primaryColor: LinearGradient(
+  fixedPrimaryColor: LinearGradient(
     colors: [
       lightColorScheme.onTertiaryFixed,
-      lightColorScheme.primary.withGreen(150),
+      lightColorScheme.onPrimaryFixedVariant.withGreen(150),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   ),
-  secondaryColor: LinearGradient(
+  fixedSecondaryColor: LinearGradient(
     colors: [
       lightColorScheme.secondaryFixedDim,
       lightColorScheme.surface,
@@ -250,8 +252,8 @@ final lightGradient = GradientColor(
   ),
   floatColor: LinearGradient(
     colors: [
-      lightColorScheme.onTertiaryContainer.withOpacity(0.6),
-      lightColorScheme.primary.withGreen(150).withOpacity(0.6),
+      lightColorScheme.onTertiaryFixed.withOpacity(0.75),
+      lightColorScheme.onPrimaryFixedVariant.withGreen(150).withOpacity(0.6),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
@@ -259,26 +261,26 @@ final lightGradient = GradientColor(
 );
 
 final darkGradient = GradientColor(
-  disabledColor: LinearGradient(
-    colors: <Color>[
-      darkColorScheme.onSurfaceVariant,
-      darkColorScheme.outlineVariant,
+  fixedDisabledColor: LinearGradient(
+    colors: [
+      lightColorScheme.onSurfaceVariant,
+      lightColorScheme.outlineVariant,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   ),
-  primaryColor: LinearGradient(
+  fixedPrimaryColor: LinearGradient(
     colors: [
       darkColorScheme.onTertiaryFixed,
-      darkColorScheme.primary.withGreen(150),
+      darkColorScheme.onPrimaryFixedVariant.withGreen(150),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   ),
-  secondaryColor: LinearGradient(
+  fixedSecondaryColor: LinearGradient(
     colors: [
       darkColorScheme.secondaryFixedDim,
-      darkColorScheme.surface,
+      lightColorScheme.surface,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
@@ -301,8 +303,8 @@ final darkGradient = GradientColor(
   ),
   floatColor: LinearGradient(
     colors: [
-      darkColorScheme.onTertiaryContainer.withOpacity(0.6),
-      darkColorScheme.primary.withGreen(150).withOpacity(0.6),
+      darkColorScheme.onTertiaryFixed.withOpacity(0.75),
+      darkColorScheme.onPrimaryFixedVariant.withGreen(150).withOpacity(0.6),
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,

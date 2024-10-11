@@ -1,4 +1,4 @@
-import '../../../../core/components/widgets/tag_card.dart';
+import '../../../../core/components/cards/tag_card.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../incomes/domain/entities/income.dart';
 import 'package:easy_localization/easy_localization.dart';

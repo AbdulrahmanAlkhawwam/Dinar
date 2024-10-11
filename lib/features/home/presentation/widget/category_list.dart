@@ -1,12 +1,12 @@
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
 import 'package:Dinar/features/categories/presentation/pages/categories_screen.dart';
+import 'package:Dinar/features/categories/presentation/widgets/category_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
 
 import '../../../categories/domain/entities/category.dart';
-import '../../../categories/presentation/widgets/category_item_horizontal.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList({super.key});
@@ -62,7 +62,8 @@ class CategoryList extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => CategoryItemHorizontal(
+                itemBuilder: (context, index) => CategoryItem(
+                  isHorizontal: true,
                   category: categories[index],
                 ),
                 separatorBuilder: (context, index) => const SizedBox(width: 16),

@@ -75,7 +75,7 @@ class LinearChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LinearGradient? color = context.gradient.primaryColor;
+    LinearGradient? color = context.gradient.fixedPrimaryColor;
 
     return InnerShadow(
       shadows: [

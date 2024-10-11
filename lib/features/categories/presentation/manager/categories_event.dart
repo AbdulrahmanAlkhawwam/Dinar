@@ -3,7 +3,7 @@ part of 'categories_bloc.dart';
 @immutable
 sealed class CategoriesEvent {}
 
-class CategoryInitEvent extends CategoriesEvent {}
+class LoadCategoriesEvent extends CategoriesEvent {}
 
 class AddCategoryEvent extends CategoriesEvent {
   final Category category;

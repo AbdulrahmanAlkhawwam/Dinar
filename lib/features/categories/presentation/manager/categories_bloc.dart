@@ -29,13 +29,13 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     required this.deleteCategoryUc,
     required this.addCategoryUc,
   }) : super(CategoriesInitial()) {
-    on<CategoryInitEvent>(_loadCategories);
+    on<LoadCategoriesEvent>(_loadCategories);
     on<AddCategoryEvent>(_addCategory);
     on<DeleteCategoryEvent>(_deleteCategory);
   }
 
   FutureOr<void> _loadCategories(
-    CategoryInitEvent event,
+    LoadCategoriesEvent event,
     Emitter<CategoriesState> emit,
   ) async {
     emit(CategoriesLoading());
@@ -73,7 +73,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (id) => emit(CategoryAdded(id: id)),
     );
-    add(CategoryInitEvent());
+    add(LoadCategoriesEvent());
   }
 
   FutureOr<void> _deleteCategory(
@@ -91,6 +91,6 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (_l) => emit(CategoryDeleted(category: event.category)),
     );
-    add(CategoryInitEvent());
+    add(LoadCategoriesEvent());
   }
 }

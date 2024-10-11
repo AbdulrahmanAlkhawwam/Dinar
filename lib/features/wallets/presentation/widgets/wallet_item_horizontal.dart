@@ -1,25 +1,21 @@
+import 'package:Dinar/core/components/widgets/list_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/wallet.dart';
 import '../../../../core/utils/app_context.dart';
-import '../../../../core/constants/colors.dart';
 
 class WalletItemHorizontal extends StatelessWidget {
   final Wallet wallet;
 
-  const WalletItemHorizontal({super.key, required this.wallet});
+  const WalletItemHorizontal({
+    super.key,
+    required this.wallet,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      decoration: BoxDecoration(
-        gradient: context.gradient.cardColor,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: context.colors.secondaryContainer,
-        ),
-      ),
+    return ListCard(
+      isHorizontal: true,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: Center(

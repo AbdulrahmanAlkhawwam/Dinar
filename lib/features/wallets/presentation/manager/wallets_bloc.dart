@@ -25,12 +25,12 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
     required this.loadWallets,
     required this.addWalletUc,
   }) : super(WalletsInitial()) {
-    on<WalletInitEvent>(_initializeWallets);
+    on<LoadWalletsEvent>(_loadWallets);
     on<AddWalletEvent>(_addWallet);
     on<DeleteWalletEvent>(_deleteWallet);
   }
 
-  FutureOr<void> _initializeWallets(
+  FutureOr<void> _loadWallets(
     WalletsEvent event,
     Emitter<WalletsState> emit,
   ) async {
@@ -57,7 +57,7 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
       (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
       (id) => emit(WalletAdded(id: id)),
     );
-    add(WalletInitEvent());
+    add(LoadWalletsEvent());
   }
 
   FutureOr<void> _deleteWallet(
@@ -75,6 +75,6 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
       (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
       (_) => emit(WalletDeleted(wallet: event.wallet)),
     );
-    add(WalletInitEvent());
+    add(LoadWalletsEvent());
   }
 }

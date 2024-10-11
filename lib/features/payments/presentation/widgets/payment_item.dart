@@ -3,7 +3,7 @@ import '../../../payments/domain/entities/payment.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/components/widgets/tag_card.dart';
+import '../../../../core/components/cards/tag_card.dart';
 
 class PaymentItem extends StatelessWidget {
   final Payment payment;

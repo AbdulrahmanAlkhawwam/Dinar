@@ -3,10 +3,11 @@ import 'package:Dinar/core/components/widgets/sheet.dart';
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/categories/presentation/widgets/categories_bottom_sheet.dart';
+import 'package:Dinar/features/categories/presentation/widgets/category_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import '../../../categories/presentation/widgets/category_item_vertical.dart';
+// import '../../../categories/presentation/widgets/category_item_vertical.dart';
 import 'package:flutter/material.dart';
 
 import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
@@ -117,16 +118,28 @@ class _CategoriesScreenState extends State<CategoriesScreen>
                   itemBuilder: (context, index) {
                     switch (controller.index) {
                       case 0:
-                        return CategoryItemVertical(
-                          category: allCategories[index],
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CategoryItem(
+                            isHorizontal: false,
+                            category: allCategories[index],
+                          ),
                         );
                       case 1:
-                        return CategoryItemVertical(
-                          category: incomeCategories[index],
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CategoryItem(
+                            isHorizontal: false,
+                            category: incomeCategories[index],
+                          ),
                         );
                       case 2:
-                        return CategoryItemVertical(
-                          category: paymentCategories[index],
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CategoryItem(
+                            isHorizontal: false,
+                            category: paymentCategories[index],
+                          ),
                         );
                     }
                     return const SizedBox();

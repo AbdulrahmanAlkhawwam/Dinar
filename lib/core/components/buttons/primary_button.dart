@@ -36,8 +36,8 @@ class PrimaryButton extends StatelessWidget {
       decoration: BoxDecoration(
         /// we use IF condition here to appear if it DISABLED or not
         gradient: onPressed == null
-            ? context.gradient.disabledColor
-            : context.gradient.primaryColor,
+            ? context.gradient.fixedDisabledColor
+            : context.gradient.fixedPrimaryColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
@@ -46,7 +46,9 @@ class PrimaryButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.onPrimaryFixedVariant,
+          splashColor: onPressed == null
+              ? context.colors.outline
+              : context.colors.onPrimaryFixedVariant,
           onTap: onPressed ?? () => context.showErrorSnackBar(massage: massage),
           child: Container(
             alignment: Alignment.center,
