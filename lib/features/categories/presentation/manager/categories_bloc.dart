@@ -89,7 +89,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         await deleteCategoryUc.call(param: event.category.id.toString());
     response.fold(
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
-      (_l) => emit(CategoryDeleted(category: event.category)),
+      (_) => emit(CategoryDeleted(category: event.category)),
     );
     add(LoadCategoriesEvent());
   }

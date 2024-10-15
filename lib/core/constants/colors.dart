@@ -8,52 +8,58 @@ import 'package:flutter/material.dart';
 /// [https://amaterial-foundation.github.io/material-theme-builder/]
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color(0xff2c6a45),
-  surfaceTint: Color(0xff2c6a45),
+
+  primary: Color(0xff68E571),
   onPrimary: Color(0xffffffff),
-  primaryContainer: Color(0xffb0f1c3),
-  onPrimaryContainer: Color(0xff00210f),
-  secondary: Color(0xff3a693a),
+  primaryContainer: Color(0xffBFFFC4),
+  onPrimaryContainer: Color(0xff19361B),
+
+  secondary: Color(0xff00B380),
   onSecondary: Color(0xffffffff),
-  secondaryContainer: Color(0xffbbf0b5),
-  onSecondaryContainer: Color(0xff002105),
-  tertiary: Color(0xff3b6470),
+  secondaryContainer: Color(0xff99F0D7),
+  onSecondaryContainer: Color(0xff004531),
+
+  tertiary: Color(0xff008091),
   onTertiary: Color(0xffffffff),
-  tertiaryContainer: Color(0xffbeeaf7),
-  onTertiaryContainer: Color(0xff001f26),
-  error: Color(0xff904a49),
+  tertiaryContainer: Color(0xffB2F6FF),
+  onTertiaryContainer: Color(0xff1A3D41),
+
+  error: Color(0xffBA1A1A),
   onError: Color(0xffffffff),
-  errorContainer: Color(0xffffdad8),
-  onErrorContainer: Color(0xff3b080b),
-  surface: Color(0xfff7fbf2),
-  onSurface: Color(0xff181d18),
-  onSurfaceVariant: Color(0xff3f484a),
-  outline: Color(0xff6f797a),
-  outlineVariant: Color(0xffbec8ca),
+  errorContainer: Color(0xffFFDAD6),
+  onErrorContainer: Color(0xff410002),
+
+  onSurface: Color(0xff0B3A3C),
+  surface: Color(0xffEFFFEF),
+  outline: Color(0xff73796E),
+  outlineVariant: Color(0xff43483F),
+
   shadow: Color(0xff000000),
   scrim: Color(0xff000000),
-  inverseSurface: Color(0xff2d322c),
-  inversePrimary: Color(0xff94d5a8),
-  primaryFixed: Color(0xffb0f1c3),
-  onPrimaryFixed: Color(0xff00210f),
-  primaryFixedDim: Color(0xff94d5a8),
-  onPrimaryFixedVariant: Color(0xff0e512f),
-  secondaryFixed: Color(0xffbbf0b5),
-  onSecondaryFixed: Color(0xff002105),
-  secondaryFixedDim: Color(0xffa0d49b),
-  onSecondaryFixedVariant: Color(0xff225025),
-  tertiaryFixed: Color(0xffbeeaf7),
-  // don't use this var , use onTertiaryContainer
-  onTertiaryFixed: Color(0xff001f26),
-  tertiaryFixedDim: Color(0xffa3cddb),
-  onTertiaryFixedVariant: Color(0xff214c57),
-  surfaceDim: Color(0xffd7dbd3),
-  surfaceBright: Color(0xfff7fbf2),
-  surfaceContainerLowest: Color(0xffffffff),
-  surfaceContainerLow: Color(0xfff1f5ed),
-  surfaceContainer: Color(0xffebefe7),
-  surfaceContainerHigh: Color(0xffe5e9e1),
-  surfaceContainerHighest: Color(0xffe0e4dc),
+
+  // onSurfaceVariant: Color(0xff3f484a),
+  // surfaceTint: Color(0xff2c6a45),
+  // inverseSurface: Color(0xff2d322c),
+  // inversePrimary: Color(0xff94d5a8),
+  // primaryFixed: Color(0xffb0f1c3),
+  // onPrimaryFixed: Color(0xff00210f),
+  // primaryFixedDim: Color(0xff94d5a8),
+  // onPrimaryFixedVariant: Color(0xff0e512f),
+  // secondaryFixed: Color(0xffbbf0b5),
+  // onSecondaryFixed: Color(0xff002105),
+  // secondaryFixedDim: Color(0xffa0d49b),
+  // onSecondaryFixedVariant: Color(0xff225025),
+  // tertiaryFixed: Color(0xffbeeaf7),
+  // onTertiaryFixed: Color(0xff001f26),
+  // tertiaryFixedDim: Color(0xffa3cddb),
+  // onTertiaryFixedVariant: Color(0xff214c57),
+  // surfaceDim: Color(0xffd7dbd3),
+  // surfaceBright: Color(0xfff7fbf2),
+  // surfaceContainerLowest: Color(0xffffffff),
+  // surfaceContainerLow: Color(0xfff1f5ed),
+  // surfaceContainer: Color(0xffebefe7),
+  // surfaceContainerHigh: Color(0xffe5e9e1),
+  // surfaceContainerHighest: Color(0xffe0e4dc),
 );
 
 /// LINEAR GRADIENT class : [GradientLightColor]
@@ -61,11 +67,11 @@ class GradientLightColor {}
 
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: Color(0xff94d5a8),
-  surfaceTint: Color(0xff94d5a8),
+  primary: Color(0xff68E571),
   onPrimary: Color(0xff00391e),
   primaryContainer: Color(0xff0e512f),
   onPrimaryContainer: Color(0xffb0f1c3),
+  surfaceTint: Color(0xff94d5a8),
   secondary: Color(0xffa0d49b),
   onSecondary: Color(0xff083910),
   secondaryContainer: Color(0xff225025),
@@ -134,7 +140,7 @@ class GradientColor extends ThemeExtension<GradientColor> {
 
   /// primary color used in any thing like [bottom], [card] , ... etc
   /// it's begin [Alignment.bottomCenter] and end [Alignment.topRight]
-  /// we used colors [onTertiaryFixed], [onPrimaryFixedVariant]
+  /// we used colors [primary], [onPrimaryFixedVariant]
   final LinearGradient? fixedPrimaryColor;
 
   /// secondary color used in any thing like [bottom], [card] , ... etc
@@ -170,7 +176,7 @@ class GradientColor extends ThemeExtension<GradientColor> {
   ThemeExtension<GradientColor> copyWith({
     LinearGradient? fixedDisabledColor,
     LinearGradient? fixedPrimaryColor,
-    LinearGradient? secondaryColor,
+    LinearGradient? fixedSecondaryColor,
     LinearGradient? backgroundColor,
     LinearGradient? cardColor,
     LinearGradient? floatColor,
@@ -181,7 +187,7 @@ class GradientColor extends ThemeExtension<GradientColor> {
     return GradientColor(
       fixedDisabledColor: fixedDisabledColor ?? this.fixedDisabledColor,
       fixedPrimaryColor: fixedPrimaryColor ?? this.fixedPrimaryColor,
-      fixedSecondaryColor: secondaryColor ?? this.fixedSecondaryColor,
+      fixedSecondaryColor: fixedSecondaryColor ?? this.fixedSecondaryColor,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       cardColor: cardColor ?? this.cardColor,
       floatColor: floatColor ?? this.floatColor,
@@ -212,26 +218,26 @@ class GradientColor extends ThemeExtension<GradientColor> {
 final lightGradient = GradientColor(
   fixedDisabledColor: LinearGradient(
     colors: [
-      lightColorScheme.onSurfaceVariant,
       lightColorScheme.outlineVariant,
+      lightColorScheme.outline,
     ],
-    begin: Alignment.bottomCenter,
+    begin: Alignment.bottomLeft,
     end: Alignment.topRight,
   ),
   fixedPrimaryColor: LinearGradient(
     colors: [
-      lightColorScheme.onTertiaryFixed,
-      lightColorScheme.onPrimaryFixedVariant.withGreen(150),
+      lightColorScheme.primary,
+      lightColorScheme.tertiary,
     ],
-    begin: Alignment.bottomCenter,
+    begin: Alignment.bottomLeft,
     end: Alignment.topRight,
   ),
   fixedSecondaryColor: LinearGradient(
     colors: [
-      lightColorScheme.secondaryFixedDim,
-      lightColorScheme.surface,
+      lightColorScheme.primary,
+      lightColorScheme.secondary,
     ],
-    begin: Alignment.bottomCenter,
+    begin: Alignment.bottomLeft,
     end: Alignment.topRight,
   ),
   backgroundColor: LinearGradient(
@@ -252,10 +258,10 @@ final lightGradient = GradientColor(
   ),
   floatColor: LinearGradient(
     colors: [
-      lightColorScheme.onTertiaryFixed.withOpacity(0.75),
-      lightColorScheme.onPrimaryFixedVariant.withGreen(150).withOpacity(0.6),
+      lightColorScheme.primary,
+      lightColorScheme.tertiaryContainer,
     ],
-    begin: Alignment.bottomCenter,
+    begin: Alignment.bottomLeft,
     end: Alignment.topRight,
   ),
 );

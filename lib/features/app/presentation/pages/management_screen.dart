@@ -1,10 +1,10 @@
 import 'package:Dinar/core/components/widgets/screen.dart';
+import 'package:Dinar/core/constants/strings.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import '../../../../core/constants/colors.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../onboarding/presentation/pages/onboarding_screen.dart';
@@ -64,20 +64,15 @@ class _ManagementScreenState extends State<ManagementScreen> {
       ],
       child: Builder(
         builder: (context) {
-          // print("--- category loaded : $_categoriesLoaded");
-          // print("--- wallet loaded : $_categoriesLoaded");
-          // print("+++ pay == ${payCategories.toList().toString()}");
-          // print("+++ inc == ${incCategories.toList().toString()}");
-          // print("+++ user == ${userWallets.toList().toString()}");
           if (_categoriesLoaded && _walletsLoaded) {
             if (payCategories.isEmpty &&
                 incCategories.isEmpty &&
                 userWallets.isEmpty) {
               return OnboardingScreen();
             } else if (payCategories.isEmpty && incCategories.isEmpty) {
-              return CreationScreen(title: "Category");
+              return CreationScreen(title: texts["app"]["cat_type"]);
             } else if (userWallets.isEmpty) {
-              return CreationScreen(title: "Wallet");
+              return CreationScreen(title: texts["app"]['wal_type']);
             } else {
               return HomeScreen();
             }

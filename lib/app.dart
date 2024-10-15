@@ -50,7 +50,7 @@ class App extends StatelessWidget {
         child: MaterialApp(
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.system,
+          themeMode: ThemeMode.light,
           home: Builder(
             builder: (context) {
               return ManagementScreen();

@@ -1,3 +1,4 @@
+import 'package:Dinar/core/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/category.dart';
@@ -20,6 +21,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
   final TextEditingController nameController = TextEditingController();
 
   OperationType? _selectedType;
+  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,40 +38,44 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Create your category",
+              texts[texts["app"]["cat_type"]]["title"] ?? texts["error_msg"],
               style: context.textTheme.bodyLarge,
             ),
             const SizedBox(height: 32),
             InputField(
               isEnabled: true,
               controller: nameController,
-              hint: "Name",
-              validate: "this should not empty !",
+              hint: texts[texts["app"]["cat_type"]]["sheet"]["hint"],
+              validate: texts[texts["app"]["cat_type"]]["sheet"]["validate"],
             ),
             const SizedBox(height: 16),
             MenuButton(
               selected: _selectedType?.name,
-              text: "Type",
+              text: texts[texts["app"]["cat_type"]]["sheet"]["menu"],
               menu: OperationType.values
                   .map(
                     (operation) => operation.name,
                   )
                   .toList(),
-              onTap: (value) => setState(() => _selectedType = value == "income"
-                  ? OperationType.income
-                  : OperationType.payment),
+              onTap: (value) => setState(
+                () => _selectedType = value == OperationType.income.name
+                    ? OperationType.income
+                    : OperationType.payment,
+              ),
             ),
             const SizedBox(height: 8),
-            _selectedType == null
+            _selectedType == null && checked
                 ? Text(
                     textAlign: TextAlign.start,
-                    "please select type for this category !",
-                    style: context.textTheme.labelSmall
-                        ?.copyWith(color: context.colors.error),
+                    texts[texts["app"]["cat_type"]]["sheet"]["empty_menu"],
+                    style: context.textTheme.labelLarge?.copyWith(
+                      color: context.colors.error,
+                    ),
                   )
                 : const SizedBox(),
             const SizedBox(height: 32),
             PrimaryButton(
+              text: texts[texts["app"]["cat_type"]]["sheet"]["button"],
               onPressed: () {
                 if (globalKey.currentState!.validate() &&
                     _selectedType != null) {
@@ -81,6 +87,9 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
                       type: _selectedType ?? OperationType.income,
                     ),
                   );
+                }
+                {
+                  setState(() => checked = true);
                 }
               },
             ),

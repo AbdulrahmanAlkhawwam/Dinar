@@ -1,72 +1,58 @@
-import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:flutter/material.dart';
 
-import './creation_screen.dart';
+import '../../../../core/constants/res.dart';
+import '../../../../core/constants/strings.dart';
 import '../../../../core/utils/app_context.dart';
-import '../../../../core/components/widgets/screen.dart';
 import '../../../../core/components/buttons/primary_button.dart';
+import './creation_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Screen(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Let’s\n Your",
-                          style: TextStyle(
-                            color: context.colors.onTertiaryFixed,
-                            fontSize: 35,
-                          ),
-                        ),
-                        GradientText(
-                          const Text(
-                            "Manage\n Money",
-                            style: TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          colors: [
-                            context.colors.onTertiaryFixed,
-                            context.colors.onPrimaryFixedVariant
-                                .withOpacity(0.75),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+    return Scaffold(
+      backgroundColor: Color(0xFFEBFDE3),
+      body: Stack(
+        children: [
+          Image.asset(Res.onboarding),
+          Padding(
+            padding:
+                EdgeInsets.fromLTRB(32, 32, 32, 48 + context.bottomPadding),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Spacer(),
+                Text(
+                  texts["onboarding"]["title"] ?? texts["error_msg"],
+                  style: context.textTheme.titleMedium?.copyWith(
+                    color: context.colors.onSurface,
+                  ),
                 ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: PrimaryButton(
-                  onPressed: () => context.pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => CreationScreen(title: "Category"),
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    texts["onboarding"]["description"] ??
+                        texts["error_msg"],
+                    style: context.textTheme.bodySmall?.copyWith(
+                      color: context.colors.secondary,
                     ),
                   ),
                 ),
-              ),
+                PrimaryButton(
+                  text: texts["onboarding"]["button"] ?? texts["e_msg"],
+                  onPressed: () => context.pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          CreationScreen(title: texts["app"]["cat_type"]),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

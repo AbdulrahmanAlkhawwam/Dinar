@@ -37,10 +37,10 @@ packages:
     dependency: transitive
     description:
       name: args
-      sha256: "7cf60b9f0cc88203c5a190b4cd62a99feea42759a7fa695010eb5de1c0b2252a"
+      sha256: bf9f5caeea8d8fe6721a9c358dd8a5c1947b27f1cfaa18b39c301273594919e6
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.0"
   async:
     dependency: transitive
     description:
@@ -138,7 +138,7 @@ packages:
     source: hosted
     version: "0.0.2"
   equatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: equatable
       sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
@@ -337,10 +337,10 @@ packages:
     dependency: "direct main"
     description:
       name: loader_overlay
-      sha256: b87bd0c5f4a0c8249613b1c1666344469177535a6b7782b620a4ff1b8f52efa1
+      sha256: bde643b0d3b5c9d9ea9010948d11cb3d17cdcb3f29576b9c47e0047a5b52ae75
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.2+1"
+    version: "4.0.3"
   matcher:
     dependency: transitive
     description:

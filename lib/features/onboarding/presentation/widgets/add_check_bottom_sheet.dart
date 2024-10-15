@@ -1,6 +1,7 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/strings.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../categories/domain/entities/category.dart';
 import '../../../wallets/domain/entities/wallet.dart';
@@ -112,6 +113,7 @@ class AddCheckBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           SecondaryButton(
+            text: "Add",
             onPressed: () {
               Navigator.pop(context, true);
             },

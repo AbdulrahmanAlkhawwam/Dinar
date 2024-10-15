@@ -38,6 +38,7 @@ class WalletsBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             PrimaryButton(
+              text: "Next",
               onPressed: () {
                 if (globalKey.currentState!.validate()) {
                   globalKey.currentState?.save();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
 import '../../constants/styles.dart';
 import '../../utils/app_context.dart';
 
@@ -13,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
   /// we added [child] if you want to add Row not a Text
   /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
-  final String? text;
+  final String text;
 
   /// this massage was added for appear when the button is DISABLED for tell
   /// user what he/she do
@@ -21,8 +20,8 @@ class PrimaryButton extends StatelessWidget {
 
   const PrimaryButton({
     super.key,
+    required this.text,
     this.onPressed,
-    this.text,
     this.child,
     this.massage,
   });
@@ -30,11 +29,9 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /// fixed size
       height: 48,
       width: 200,
       decoration: BoxDecoration(
-        /// we use IF condition here to appear if it DISABLED or not
         gradient: onPressed == null
             ? context.gradient.fixedDisabledColor
             : context.gradient.fixedPrimaryColor,
@@ -48,20 +45,18 @@ class PrimaryButton extends StatelessWidget {
         child: InkWell(
           splashColor: onPressed == null
               ? context.colors.outline
-              : context.colors.onPrimaryFixedVariant,
+              : context.colors.secondary,
           onTap: onPressed ?? () => context.showErrorSnackBar(massage: massage),
           child: Container(
             alignment: Alignment.center,
             child: child ??
                 Text(
-                  text ?? "NEXT",
+                  text,
                   textAlign: TextAlign.center,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    /// we use IF condition here to appear if it DISABLED or not
+                  style: context.textTheme.labelLarge?.copyWith(
                     color: onPressed == null
-                        ? context.colors.outlineVariant
-                        : context.colors.primaryFixed,
-                    fontSize: 18,
+                        ? context.colors.outline
+                        : context.colors.onPrimary,
                   ),
                 ),
           ),

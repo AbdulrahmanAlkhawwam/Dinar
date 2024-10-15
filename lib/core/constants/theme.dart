@@ -59,7 +59,7 @@ class AppTheme {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(circle),
         borderSide: BorderSide(
-          color: colors.secondaryContainer,
+          color: colors.primaryContainer,
           width: 3,
         ),
       ),
@@ -78,10 +78,10 @@ class AppTheme {
         ),
       ),
       labelStyle: _textTheme(colors).labelLarge?.copyWith(
-            color: colors.onTertiaryContainer,
+            color: colors.onSurface,
           ),
       hintStyle: _textTheme(colors).labelLarge?.copyWith(
-            color: colors.onTertiaryContainer.withOpacity(0.5),
+            color: colors.onPrimaryContainer,
           ),
       errorStyle: _textTheme(colors).labelLarge?.copyWith(
             color: colors.error,

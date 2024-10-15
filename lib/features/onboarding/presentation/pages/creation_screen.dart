@@ -1,8 +1,8 @@
-import 'package:flutter_gradient_text/flutter_gradient_text.dart';
+import 'package:Dinar/core/constants/res.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/add_check_bottom_sheet.dart';
+import '../../../../core/constants/strings.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
@@ -13,10 +13,9 @@ import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/widgets/sheet.dart';
-import '../../../../core/components/widgets/screen.dart';
-import '../../../../core/styles/colors/main_colors.dart';
 import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/components/buttons/secondary_button.dart';
+import '../widgets/add_check_bottom_sheet.dart';
 
 class CreationScreen extends StatefulWidget {
   final String title;
@@ -32,10 +31,10 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   bool _isEnabled = false;
-  bool _isdefault = false;
+  bool _isDefault = false;
+  bool checked = false;
   Category? category;
   Wallet? wallet;
-  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,7 @@ class _CreationScreenState extends State<CreationScreen> {
               setState(() => _isEnabled = true);
               context.showSuccessSnackBar(
                   massage: "Add new ${widget.title} Successfully");
-              if (_isdefault) {
+              if (_isDefault) {
                 ScaffoldMessenger.of(context).clearSnackBars();
                 context.pushReplacement(
                   MaterialPageRoute(
@@ -74,138 +73,140 @@ class _CreationScreenState extends State<CreationScreen> {
           },
         ),
       ],
-      child: Builder(builder: (context) {
-        return Screen(
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            backgroundColor: Color(0xFFEBFDE3),
+            body: Stack(
               children: [
-                Expanded(
-                  flex: 3,
-                  child: Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: Column(
-                      children: [
-                        Spacer(),
-                        Text(
-                          "create your",
-                          style: TextStyle(
-                            color: MainColors.darkTeal,
-                            fontSize: 35,
+                Image.asset(Res.onboarding),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                      32, 32, 32, 48 + context.bottomPadding),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        texts[widget.title]["title"] ?? texts["error_msg"],
+                        style: context.textTheme.titleMedium?.copyWith(
+                          color: context.colors.onSurface,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 32,
+                        ),
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          texts[widget.title]["creation"]["description"] ??
+                              texts["error_msg"],
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: context.colors.secondary,
                           ),
                         ),
-                        GradientText(
-                          Text(
-                            widget.title,
-                            style: const TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SecondaryButton(
+                              text: texts["creation"]["sec_button"] ??
+                                  texts["e_msg"],
+                              onPressed: () async {
+                                widget.title == texts["app"]["cat_type"]
+                                    ? category = await sheet(
+                                        context: context,
+                                        content: CategoriesBottomSheet(),
+                                      ) as Category
+                                    : wallet = await sheet(
+                                            context: context,
+                                            content: WalletsBottomSheet())
+                                        as Wallet;
+
+                                if (wallet != null || category != null) {
+                                  checked = await sheet(
+                                    context: context,
+                                    content: AddCheckBottomSheet(
+                                      type: widget.title,
+                                      category: widget.title ==
+                                              texts["app"]["cat_type"]
+                                          ? category
+                                          : null,
+                                      wallet: widget.title ==
+                                              texts["app"]["wal_type"]
+                                          ? wallet
+                                          : null,
+                                    ),
+                                  ) as bool;
+                                }
+                                if (checked) {
+                                  if (widget.title ==
+                                          texts["app"]["cat_type"] &&
+                                      category != null) {
+                                    context.read<CategoriesBloc>().add(
+                                          AddCategoryEvent(
+                                            category: category as Category,
+                                          ),
+                                        );
+                                  } else if (wallet != null) {
+                                    context.read<WalletsBloc>().add(
+                                          AddWalletEvent(
+                                            wallet: wallet as Wallet,
+                                          ),
+                                        );
+                                  } else {
+                                    context.showErrorSnackBar(
+                                        massage: "Value not valid !");
+                                  }
+                                }
+                              },
                             ),
                           ),
-                          colors: [
-                            MainColors.darkTeal,
-                            MainColors.forestGreen,
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        PrimaryButton(
-                          massage: "You should add new ${widget.title}",
-                          onPressed: !_isEnabled
-                              ? widget.title == "Wallets"
-                                  ? () {
-                                      context.read<WalletsBloc>().add(
-                                            AddWalletEvent(
-                                              wallet: Wallet(name: "user"),
+                          const SizedBox(width: 24),
+                          Expanded(
+                            child: PrimaryButton(
+                              text: texts["creation"]["pri_button"] ??
+                                  texts["e_msg"],
+                              massage: "You should add new ${widget.title}",
+                              onPressed: !_isEnabled
+                                  ? widget.title == texts["app"]["wal_type"]
+                                      ? () {
+                                          context.read<WalletsBloc>().add(
+                                                AddWalletEvent(
+                                                  wallet: Wallet(name: "user"),
+                                                ),
+                                              );
+                                          setState(() => _isDefault = true);
+                                        }
+                                      : null
+                                  : () => widget.title ==
+                                          texts["app"]["cat_type"]
+                                      ? context.pushReplacement(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                CreationScreen(
+                                              title: texts["app"]["wal_type"],
                                             ),
-                                          );
-                                      setState(() => _isdefault = true);
-                                    }
-                                  : null
-                              : () => widget.title == "Category"
-                                  ? context.pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            CreationScreen(title: "Wallets"),
-                                      ),
-                                    )
-                                  : context.pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) => HomeScreen(),
-                                      ),
-                                    ),
-                        ),
-                        const SizedBox(height: 16),
-                        SecondaryButton(
-                          onPressed: () async {
-                            widget.title == "Category"
-                                ? category = await sheet(
-                                    context: context,
-                                    content: CategoriesBottomSheet(),
-                                  ) as Category
-                                : wallet = await sheet(
-                                    context: context,
-                                    content: WalletsBottomSheet()) as Wallet;
-                            if (wallet != null || category != null) {
-                              checked = await sheet(
-                                context: context,
-                                content: AddCheckBottomSheet(
-                                  type: widget.title,
-                                  category: widget.title == "Category"
-                                      ? category
-                                      : null,
-                                  wallet: widget.title != "Category"
-                                      ? wallet
-                                      : null,
-                                ),
-                              ) as bool;
-                            }
-                            if (checked) {
-                              if (widget.title == "Category" &&
-                                  category != null) {
-                                context.read<CategoriesBloc>().add(
-                                      AddCategoryEvent(
-                                        category: category ??
-                                            Category(
-                                              name: "",
-                                              type: OperationType.income,
-                                            ),
-                                      ),
-                                    );
-                              } else if (wallet != null) {
-                                context.read<WalletsBloc>().add(
-                                      AddWalletEvent(
-                                        wallet: wallet ??
-                                            Wallet(
-                                              id: "",
-                                              name: "",
-                                            ),
-                                      ),
-                                    );
-                              } else {
-                                context.showErrorSnackBar(
-                                    massage: "Value not valid !");
-                              }
-                            }
-                          },
-                        )
-                      ],
-                    ),
+                                          ),
+                                        )
+                                      : context.pushReplacement(
+                                          MaterialPageRoute(
+                                            builder: (context) => HomeScreen(),
+                                          ),
+                                        ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 }

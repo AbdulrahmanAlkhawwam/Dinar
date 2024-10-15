@@ -38,14 +38,12 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /// fixed size
       height: 48,
       width: double.infinity,
       decoration: BoxDecoration(
-        /// we use IF condition here to appear if it DISABLED or not
         gradient: menu.isEmpty
             ? context.gradient.fixedDisabledColor
-            : context.gradient.fixedPrimaryColor,
+            : context.gradient.floatColor,
         borderRadius: BorderRadius.circular(circle),
       ),
       child: Material(
@@ -54,7 +52,7 @@ class MenuButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.onPrimaryFixedVariant,
+          splashColor: context.colors.secondaryContainer,
           onTap: () => showDialog(
             context: context,
             builder: (context) => MenuDialog(
@@ -76,10 +74,9 @@ class MenuButton extends StatelessWidget {
                           selected ?? text,
                           textAlign: TextAlign.start,
                           style: context.textTheme.bodyMedium?.copyWith(
-                            /// we use IF condition here to appear if it DISABLED or not
                             color: menu.isEmpty
-                                ? context.colors.outlineVariant
-                                : context.colors.primaryFixed,
+                                ? context.colors.outline
+                                : context.colors.onPrimaryContainer,
                             fontSize: 18,
                           ),
                         ),

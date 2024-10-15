@@ -1,10 +1,10 @@
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
+import 'package:Dinar/features/wallets/presentation/widgets/wallet_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../wallets/presentation/pages/wallets_screen.dart';
 import '../../../wallets/presentation/manager/wallets_bloc.dart';
-import '../../../wallets/presentation/widgets/wallet_item_horizontal.dart';
 import '../../../../core/utils/app_context.dart';
 
 class WalletList extends StatelessWidget {
@@ -58,8 +58,9 @@ class WalletList extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => WalletItemHorizontal(
+                itemBuilder: (context, index) => WalletItem(
                   wallet: wallets[index],
+                  isHorizontal: true,
                 ),
                 separatorBuilder: (context, index) => const SizedBox(width: 16),
                 itemCount: wallets.length,
