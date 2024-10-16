@@ -96,7 +96,7 @@ class AppTheme {
         fixedSize: const WidgetStatePropertyAll(Size(200, 48)),
         shape: const WidgetStatePropertyAll(StadiumBorder()),
         textStyle: WidgetStatePropertyAll(
-          _textTheme(colors).bodyMedium,
+          _textTheme(colors).labelLarge,
         ),
       ),
     );

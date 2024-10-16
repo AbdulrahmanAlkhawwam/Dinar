@@ -3,7 +3,11 @@ Map<String, dynamic> texts = {
     "cat_type": "Category",
     "wal_type": "Wallet",
     "error_msg": "There are some error",
-    "e_msg": "Error"
+    "e_msg": "Error",
+    "checker": {
+      "pri_button": "Add",
+      "sec_button": "back",
+    }
   },
   "onboarding": {
     "title": "Let’s Manage Your Money",
@@ -35,7 +39,11 @@ Map<String, dynamic> texts = {
       "description":
           "create your own wallet which you wont to use like ( my wallet, company wallet family wallet, ..., etc )",
     },
-    "sheet": {}
+    "sheet": {
+      "hint": "Name",
+      "validate": "This should not empty !",
+      "button": "Next"
+    }
   },
 };
 

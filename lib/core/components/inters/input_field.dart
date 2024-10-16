@@ -91,7 +91,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorHeight: 22,
+      cursorHeight: 18,
       keyboardType: keyboardType ?? TextInputType.text,
       validator: isEnabled
           ? validator ??
@@ -107,7 +107,7 @@ class InputField extends StatelessWidget {
       onTap: onTap,
       onChanged: onChanged,
       enabled: isEnabled,
-      cursorColor: context.colors.onTertiaryContainer,
+      cursorColor: context.colors.onSurface,
       controller: controller,
       decoration: InputDecoration(
         hintText: hint,
@@ -116,15 +116,13 @@ class InputField extends StatelessWidget {
                 color: context.colors.outline,
                 fontSize: 18,
               )
-            : hintStyle?.copyWith(
-                color: context.colors.onTertiaryContainer.withOpacity(0.75),
-              ),
+            : null,
         suffix: suffixIconButton ?? suffixIcon,
         prefix: prefixIconButton ?? prefixIcon,
         border: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(
           vertical: 12,
-          horizontal: 16,
+          horizontal: 18,
         ),
       ),
     );

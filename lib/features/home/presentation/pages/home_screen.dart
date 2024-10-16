@@ -1,7 +1,9 @@
 import 'package:Dinar/core/components/buttons/float_button.dart';
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
+import 'package:Dinar/features/home/presentation/widget/more_sheet.dart';
 import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
@@ -167,7 +169,20 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 32.0),
           child: FloatButton(
             onPressed: () {
-              print("*** click more ***");
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => MoreSheet(),
+                sheetAnimationStyle: AnimationStyle(
+                  duration: Duration(milliseconds: 1),
+                  reverseDuration: Duration(milliseconds: 1),
+                ),
+                backgroundColor: Colors.transparent,
+                constraints: BoxConstraints(
+                  minHeight: context.height,
+                  minWidth: context.width,
+                ),
+                isScrollControlled: true,
+              );
             },
             text: "more".toUpperCase(),
           ),

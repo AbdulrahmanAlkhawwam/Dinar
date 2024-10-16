@@ -21,11 +21,11 @@ class MenuDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: context.colors.secondaryContainer,
+      backgroundColor: context.colors.primaryContainer,
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(semicircle),
         borderSide: BorderSide(
-          color: context.colors.secondary,
+          color: context.colors.primary,
           width: border,
         ),
       ),
@@ -41,7 +41,14 @@ class MenuDialog extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: context.textTheme.headlineMedium,
                 ),
-                const SizedBox(height: 16),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+                  child: Divider(
+                    color: context.colors.primary,
+                    thickness: border,
+                  ),
+                ),
                 for (var item in menu)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -52,7 +59,7 @@ class MenuDialog extends StatelessWidget {
                         context.pop();
                       },
                       shape: StadiumBorder(),
-                      splashColor: context.colors.secondary,
+                      splashColor: context.colors.primary,
                     ),
                   ),
               ],

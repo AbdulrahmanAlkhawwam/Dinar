@@ -1,9 +1,10 @@
 import 'package:Dinar/core/components/dialog/time_dialog.dart';
 import 'package:Dinar/core/constants/strings.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
+
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/incomes/domain/entities/income.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
+import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/components/buttons/primary_button.dart';
@@ -27,6 +28,7 @@ class AddIncomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryMenu = context.read<CategoriesBloc>().incomeCategories;
+    final wallets = context.read<WalletsBloc>().wallets;
     Category? selectedCategory;
     Wallet? selectedWallet;
     DateTime? date;
@@ -111,7 +113,11 @@ class AddIncomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               MenuButton(
-                menu: categoryMenu,
+                menu: categoryMenu
+                    .map(
+                      (category) => category.name,
+                    )
+                    .toList(),
                 text: categoriesTable,
                 onTap: (index) {
                   selectedCategory = categoryMenu[index];
@@ -120,7 +126,11 @@ class AddIncomeScreen extends StatelessWidget {
               const SizedBox(height: 24),
               MenuButton(
                 text: "wallet",
-                menu: [],
+                menu: wallets
+                    .map(
+                      (wallet) => wallet.name,
+                    )
+                    .toList(),
                 onTap: (index) {
                   selectedWallet = Wallet(
                     id: index,

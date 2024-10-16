@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import '../../../../core/components/widgets/sheet.dart';
+import '../../../../core/constants/strings.dart';
 import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class WalletsScreen extends StatelessWidget {
                       massage: "you should add new category"),
               icon: const Icon(Icons.arrow_back_ios_new),
             ),
-            title: const Text("Wallets"),
+            title: Text("${texts["app"]["wal_type"]}s"),
             actions: [
               IconButton(
                 onPressed: () async {
@@ -57,7 +58,7 @@ class WalletsScreen extends StatelessWidget {
                     final result = await sheet(
                       context: context,
                       content: AddCheckBottomSheet(
-                        type: "Wallets",
+                        type: texts["app"]["wal_type"],
                         category: null,
                         wallet: wallet,
                       ),

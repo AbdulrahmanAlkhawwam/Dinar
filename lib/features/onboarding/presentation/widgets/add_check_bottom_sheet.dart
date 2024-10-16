@@ -47,13 +47,10 @@ class AddCheckBottomSheet extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            "Create your $type",
-            style: TextStyle(
-              color: context.colors.onTertiaryContainer,
-              fontSize: 24,
-            ),
+            texts[type]["title"],
+            style: context.textTheme.titleMedium,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text.rich(
@@ -62,68 +59,60 @@ class AddCheckBottomSheet extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: "Are you sure you want to add new $type with ",
-                    style: TextStyle(
-                      color: context.colors.onTertiaryContainer,
-                      fontSize: 16,
-                    ),
+                    style: context.textTheme.bodySmall,
                   ),
                   TextSpan(
-                    text: type == "Category" ? category?.name : wallet?.name,
-                    style: TextStyle(
-                      color: type == "Category" &&
-                                  category?.type == OperationType.income ||
-                              type != "Category"
-                          ? context.colors.primary
-                          : context.colors.error,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                      text: type == texts["app"]["cat_type"]
+                          ? category?.name
+                          : wallet?.name,
+                      style: context.textTheme.titleSmall?.copyWith(
+                        color: type == texts["app"]["cat_type"] &&
+                                    category?.type == OperationType.income ||
+                                type == texts["app"]["wal_type"]
+                            ? context.colors.primary
+                            : context.colors.error,
+                      )),
                   TextSpan(
-                    text: type == "Category" ? " as name and " : " as name ",
-                    style: TextStyle(
-                      color: context.colors.onTertiaryContainer,
-                      fontSize: 16,
-                    ),
+                    text: type == texts["app"]["cat_type"]
+                        ? " as name and "
+                        : " as name ",
+                    style: context.textTheme.bodySmall,
                   ),
-                  type == "Category"
+                  type == texts["app"]["cat_type"]
                       ? TextSpan(
                           text: category?.type.name,
-                          style: TextStyle(
+                          style: context.textTheme.titleSmall?.copyWith(
                             color: category?.type == OperationType.income
                                 ? context.colors.primary
                                 : context.colors.error,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
+                          ))
                       : const TextSpan(),
-                  type == "Category"
+                  type == texts["app"]["cat_type"]
                       ? TextSpan(
                           text: " as type",
-                          style: TextStyle(
-                            color: context.colors.onTertiaryContainer,
-                            fontSize: 16,
-                          ),
+                          style: context.textTheme.bodySmall,
                         )
                       : const TextSpan(),
                 ],
               ),
             ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
           SecondaryButton(
-            text: "Add",
+            text:
+                texts["app"]["checker"]["pri_button"] ?? texts["app"]["e_msg"],
             onPressed: () {
               Navigator.pop(context, true);
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           TextButton(
             onPressed: () {
               Navigator.pop(context, false);
             },
-            child: const Text("back"),
+            child: Text(
+              texts["app"]["checker"]["sec_button"] ?? texts["app"]["e_msg"],
+            ),
           ),
         ],
       ),

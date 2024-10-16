@@ -89,9 +89,7 @@ class _CreationScreenState extends State<CreationScreen> {
                       const Spacer(),
                       Text(
                         texts[widget.title]["title"] ?? texts["error_msg"],
-                        style: context.textTheme.titleMedium?.copyWith(
-                          color: context.colors.onSurface,
-                        ),
+                        style: context.textTheme.titleMedium,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(

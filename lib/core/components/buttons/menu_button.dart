@@ -83,7 +83,7 @@ class MenuButton extends StatelessWidget {
                   ),
                   Icon(
                     Icons.arrow_drop_down,
-                    color: context.colors.primaryFixed,
+                    color: context.colors.onPrimaryContainer,
                   )
                 ],
               ),

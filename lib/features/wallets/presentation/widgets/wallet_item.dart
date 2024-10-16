@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/components/widgets/sheet.dart';
+import '../../../../core/constants/strings.dart';
 import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
 import '../../domain/entities/wallet.dart';
 import '../manager/wallets_bloc.dart';
@@ -25,19 +26,19 @@ class WalletItem extends StatelessWidget {
       isHorizontal: isHorizontal,
       child: isHorizontal
           ? Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8),
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       wallet.name.toUpperCase(),
-                      style: context.textTheme.titleLarge,
+                      style: context.textTheme.titleMedium,
                     ),
                     Text(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      "Total : ${wallet.balance ?? 0.0}",
+                      "Total : ${wallet.balance ?? 0.toInt()}",
                       style: context.textTheme.labelSmall,
                     ),
                   ],
@@ -45,7 +46,7 @@ class WalletItem extends StatelessWidget {
               ),
             )
           : Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
@@ -60,8 +61,10 @@ class WalletItem extends StatelessWidget {
                             style: context.textTheme.titleMedium,
                           ),
                           Text(
-                            "${wallet.balance ?? 0.0}",
-                            style: context.textTheme.labelSmall,
+                            "Total : ${wallet.balance ?? 0.toInt()}",
+                            style: context.textTheme.labelMedium?.copyWith(
+                              color: context.colors.secondary,
+                            ),
                           ),
                         ],
                       ),
@@ -71,7 +74,7 @@ class WalletItem extends StatelessWidget {
                         final result = await sheet(
                             context: context,
                             content: DeleteCheckBottomSheet(
-                                type: "Wallets",
+                                type: texts["app"]["wal_type"],
                                 category: null,
                                 wallet: wallet));
                         if (result) {

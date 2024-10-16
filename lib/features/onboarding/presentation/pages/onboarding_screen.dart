@@ -25,9 +25,7 @@ class OnboardingScreen extends StatelessWidget {
                 const Spacer(),
                 Text(
                   texts["onboarding"]["title"] ?? texts["error_msg"],
-                  style: context.textTheme.titleMedium?.copyWith(
-                    color: context.colors.onSurface,
-                  ),
+                  style: context.textTheme.titleMedium
                 ),
                 Padding(
                   padding: const EdgeInsets.all(24),

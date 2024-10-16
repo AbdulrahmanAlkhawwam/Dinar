@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/strings.dart';
 import '../../domain/entities/wallet.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/inters/input_field.dart';
@@ -26,19 +27,19 @@ class WalletsBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Create your wallet",
-              style: context.textTheme.bodyLarge,
+              texts[texts["app"]["wal_type"]]["title"],
+              style: context.textTheme.titleMedium,
             ),
             const SizedBox(height: 32),
             InputField(
               isEnabled: true,
               controller: nameController,
-              hint: "Name",
-              validate: "this must not empty !",
+              hint: texts[texts["app"]["wal_type"]]["sheet"]["hint"],
+              validate: texts[texts["app"]["wal_type"]]["sheet"]["validate"],
             ),
             const SizedBox(height: 32),
             PrimaryButton(
-              text: "Next",
+              text: texts[texts["app"]["wal_type"]]["sheet"]["button"],
               onPressed: () {
                 if (globalKey.currentState!.validate()) {
                   globalKey.currentState?.save();

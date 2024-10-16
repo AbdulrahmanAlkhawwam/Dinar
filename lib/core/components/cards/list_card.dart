@@ -17,12 +17,8 @@ class ListCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: isHorizontal ? 24 : 0),
       decoration: BoxDecoration(
-        gradient: context.gradient.cardColor,
+        color: context.colors.primaryContainer,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: context.colors.secondaryContainer,
-          width: border,
-        ),
       ),
       child: child,
     );
