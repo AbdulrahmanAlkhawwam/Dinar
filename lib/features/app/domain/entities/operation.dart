@@ -3,7 +3,7 @@ import '../../../incomes/domain/entities/income.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 
 abstract class Operation {
-  final String? id;
+  String? id;
   final String name;
   final double value;
   final String? description;
@@ -25,7 +25,7 @@ abstract class Operation {
     this.wallet,
   });
 
-  Income copyWith({
+  Operation copyWith({
     String? id,
     String? name,
     double? value,
@@ -35,17 +35,5 @@ abstract class Operation {
     Category? category,
     Wallet? wallet,
     DateTime? date,
-  }) {
-    return Income(
-      id ?? this.id,
-      name: name ?? this.name,
-      value: value ?? this.value,
-      description: description ?? this.description,
-      categoryId: categoryId ?? this.categoryId,
-      walletId: walletId ?? this.walletId,
-      category: category ?? this.category,
-      wallet: wallet ?? this.wallet,
-      date: date ?? this.date,
-    );
-  }
+  });
 }

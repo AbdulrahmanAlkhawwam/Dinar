@@ -18,7 +18,13 @@ class ErrorContent extends StatelessWidget {
         children: [
           errorMessage,
           const SizedBox(height: 8),
-          Text(message),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+            child: Text(
+              textAlign: TextAlign.center,
+              message,
+            ),
+          ),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:Dinar/core/constants/colors.dart';
 import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
 import 'package:Dinar/features/categories/presentation/pages/categories_screen.dart';
 import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
+import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
 import 'package:Dinar/features/payments/presentation/manager/payment_bloc.dart';
 import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
 import 'package:flutter/material.dart';

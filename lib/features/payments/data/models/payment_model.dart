@@ -28,16 +28,16 @@ class PaymentModel extends Payment {
         wallet: payment.wallet,
       );
 
-  factory PaymentModel.fromMap(Map<String, dynamic> object) => PaymentModel(
-        object["id"],
-        name: object["name"],
-        value: object["value"],
-        description: object["description"],
-        categoryId: object["category_id"],
-        walletId: object["wallet_id"],
-        date: object["date"],
-        category: object["category"],
-        wallet: object["wallet"],
+  factory PaymentModel.fromMap(Map<String, dynamic> json) => PaymentModel(
+    json["id"],
+        name: json["name"],
+        value: json["value"],
+        description: json["description"],
+        categoryId: json["category_id"],
+        walletId: json["wallet_id"],
+        date: json["date"],
+        category: json["category"],
+        wallet: json["wallet"],
       );
 
   Map<String, dynamic> toMap() => {

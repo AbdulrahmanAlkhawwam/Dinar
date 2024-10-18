@@ -27,7 +27,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.viewInsetsOf(context).bottom + 32,
+        bottom: context.bottomInsets + 32,
         top: 32,
         left: 24,
         right: 24,

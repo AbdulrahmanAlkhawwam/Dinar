@@ -88,12 +88,12 @@ class IncomeItem extends StatelessWidget {
                   children: [
                     TagCard(
                       operationType: income.type,
-                      text: "category",
+                      text: income.category!.name,
                     ),
                     const SizedBox(width: 16),
                     TagCard(
                       operationType: income.type,
-                      text: "wallet",
+                      text: income.wallet!.name,
                     ),
                   ],
                 ),

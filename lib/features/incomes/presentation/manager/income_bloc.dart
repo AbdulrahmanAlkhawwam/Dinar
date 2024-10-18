@@ -47,6 +47,7 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
     Emitter<IncomeState> emit,
   ) async {
     emit(IncomeAdding());
+    print("income in bloc is ${event.income.toString()}");
     final response = await addIncomeUc.call(param: event.income);
     response.fold(
       (failure) => emit(IncomeError(message: Message.fromFailure(failure))),

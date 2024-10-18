@@ -1,3 +1,5 @@
+import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
+import 'package:Dinar/features/incomes/data/models/income_model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../data_sources/incomes_local_data_source.dart';
@@ -14,6 +16,7 @@ class IncomesInternalRepositoryImp extends IncomesRepository {
   Future<Either<Failure, List<Income>>> loadIncomes() async {
     try {
       final List<Income> incomes = await localDataSource.loadIncomes();
+
       return Right(incomes);
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));
@@ -21,9 +24,10 @@ class IncomesInternalRepositoryImp extends IncomesRepository {
   }
 
   @override
-  Future<Either<Failure, int>> addIncome(income) async {
+  Future<Either<Failure, int>> addIncome(Income income) async {
     try {
-      final id = await localDataSource.addIncome(income);
+      final id =
+          await localDataSource.addIncome(IncomeModel.fromEntity(income));
       return Right(id);
     } catch (e) {
       return Left(DatabaseFailure(e.toString()));

@@ -7,7 +7,7 @@ import '../../../../core/constants/strings.dart';
 abstract class IncomesLocalDataSource {
   Future<List<IncomeModel>> loadIncomes();
 
-  Future<int> addIncome(incomeModel);
+  Future<int> addIncome(IncomeModel incomeModel);
 }
 
 class IncomesLocalDataSourceImpl extends IncomesLocalDataSource {
@@ -44,7 +44,8 @@ class IncomesLocalDataSourceImpl extends IncomesLocalDataSource {
   }
 
   @override
-  Future<int> addIncome(incomeModel) async {
+  Future<int> addIncome(IncomeModel incomeModel) async {
+    print("income in data source is ${incomeModel.toString()}");
     final id = await db.insert(
       operationsTable,
       incomeModel.toMap(),
