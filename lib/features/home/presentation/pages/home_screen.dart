@@ -8,8 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import '../widget/category_list.dart';
-import '../../../incomes/presentation/widgets/income_chart.dart';
-import '../../../payments/presentation/widgets/payment_chart.dart';
 import '../widget/wallet_list.dart';
 import '../../../../core/styles/colors/main_colors.dart';
 
@@ -156,9 +154,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const WalletList(),
-                  const IncomeChart(),
                   const SizedBox(height: 16),
-                  const PaymentChart(),
                   CategoryList(),
                 ],
               ),

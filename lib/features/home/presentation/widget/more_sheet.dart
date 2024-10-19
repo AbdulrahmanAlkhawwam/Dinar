@@ -1,7 +1,6 @@
 import 'package:Dinar/core/components/buttons/float_button.dart';
 import 'package:Dinar/core/components/buttons/primary_button.dart';
 import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
 import 'package:flutter/material.dart';
 
 class MoreSheet extends StatelessWidget {
@@ -20,14 +19,7 @@ class MoreSheet extends StatelessWidget {
             const Spacer(),
             PrimaryButton(onPressed: () {}, text: ("Add Wallet")),
             const Spacer(),
-            PrimaryButton(
-              onPressed: () => context.push(
-                MaterialPageRoute(
-                  builder: (context) => AddIncomeScreen(),
-                ),
-              ),
-              text: ("Add income"),
-            ),
+            PrimaryButton(onPressed: () {}, text: ("Add income")),
             const Spacer(),
             PrimaryButton(onPressed: () {}, text: ("Add payment")),
             const Spacer(),
