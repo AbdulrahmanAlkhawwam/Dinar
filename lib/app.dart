@@ -1,17 +1,14 @@
-import 'package:Dinar/core/constants/colors.dart';
-import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
-import 'package:Dinar/features/categories/presentation/pages/categories_screen.dart';
-import 'package:Dinar/features/incomes/presentation/manager/income_bloc.dart';
-import 'package:Dinar/features/incomes/presentation/pages/incomes_screen.dart';
-import 'package:Dinar/features/payments/presentation/manager/payment_bloc.dart';
-import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 
-import './core/constants/theme.dart';
-import './features/app/presentation/pages/management_screen.dart';
+import 'core/constants/colors.dart';
+import 'core/constants/theme.dart';
 import 'core/service_locator/service_locator.dart';
+import 'features/app/presentation/pages/management_screen.dart';
+import 'features/categories/presentation/manager/categories_bloc.dart';
+import 'features/operations/presentation/manager/operation_bloc.dart';
+import 'features/wallets/presentation/manager/wallets_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -20,12 +17,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<IncomeBloc>(
-          create: (_) => sl.get<IncomeBloc>()..add(IncomeInitEvent()),
-          lazy: false,
-        ),
-        BlocProvider<PaymentBloc>(
-          create: (_) => sl.get<PaymentBloc>()..add(PaymentInitEvent()),
+        BlocProvider<OperationBloc>(
+          create: (_) => sl.get<OperationBloc>()..add(LoadOperationsEvent()),
           lazy: false,
         ),
         BlocProvider<CategoriesBloc>(

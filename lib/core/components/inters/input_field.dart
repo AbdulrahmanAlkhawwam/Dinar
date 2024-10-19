@@ -68,6 +68,10 @@ class InputField extends StatelessWidget {
   final TextStyle? hintStyle;
   final String? hint;
 
+  /// we add this variable for help user if this field is not necessary or
+  /// another thing which not go in head
+  final String? helperText;
+
   /// if Text Form Field is Not enabled so , this mean you can't use it
   final bool isEnabled;
 
@@ -86,6 +90,7 @@ class InputField extends StatelessWidget {
     this.validate,
     this.validator,
     this.keyboardType,
+    this.helperText,
   });
 
   @override
@@ -110,12 +115,14 @@ class InputField extends StatelessWidget {
       cursorColor: context.colors.onSurface,
       controller: controller,
       decoration: InputDecoration(
+        helperText: helperText,
+        helperStyle: context.textTheme.bodySmall?.copyWith(
+          color: context.colors.secondary.withOpacity(0.5),
+        ),
         hintText: hint,
         hintStyle: !isEnabled
-            ? TextStyle(
-                color: context.colors.outline,
-                fontSize: 18,
-              )
+            ? context.textTheme.bodyMedium
+                ?.copyWith(color: context.colors.outline)
             : null,
         suffix: suffixIconButton ?? suffixIcon,
         prefix: prefixIconButton ?? prefixIcon,

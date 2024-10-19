@@ -1,8 +1,11 @@
-import 'package:Dinar/core/components/buttons/float_button.dart';
-import 'package:Dinar/core/components/buttons/primary_button.dart';
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/incomes/presentation/pages/add_income_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/components/buttons/float_button.dart';
+import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../history/presentation/pages/history_screen.dart';
+import '../../../operations/presentation/pages/add_operation_screen.dart';
 
 class MoreSheet extends StatelessWidget {
   const MoreSheet({super.key});
@@ -16,22 +19,42 @@ class MoreSheet extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            PrimaryButton(onPressed: () {}, text: ("Add category")),
-            const Spacer(),
-            PrimaryButton(onPressed: () {}, text: ("Add Wallet")),
-            const Spacer(),
             PrimaryButton(
-              onPressed: () => context.push(
-                MaterialPageRoute(
-                  builder: (context) => AddIncomeScreen(),
-                ),
-              ),
               text: ("Add income"),
+              onPressed: () => context
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => AddOperationScreen(
+                        type: OperationType.income,
+                      ),
+                    ),
+                  )
+                  .then((value) => context.pop()),
             ),
             const Spacer(),
-            PrimaryButton(onPressed: () {}, text: ("Add payment")),
+            PrimaryButton(
+              text: ("Add payment"),
+              onPressed: () => context
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => AddOperationScreen(
+                        type: OperationType.payment,
+                      ),
+                    ),
+                  )
+                  .then((value) => context.pop()),
+            ),
             const Spacer(),
-            PrimaryButton(onPressed: () {}, text: ("Show history")),
+            PrimaryButton(
+              text: ("Show history"),
+              onPressed: () => context
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => HistoryScreen(),
+                    ),
+                  )
+                  .then((value) => context.pop()),
+            ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(top: 32),

@@ -2,19 +2,18 @@ import 'package:Dinar/core/constants/res.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/components/buttons/secondary_button.dart';
+import '../../../../core/components/widgets/sheet.dart';
 import '../../../../core/constants/strings.dart';
-import '../../../app/domain/entities/operation_type.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../categories/domain/entities/category.dart';
+import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 import '../../../wallets/presentation/manager/wallets_bloc.dart';
 import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
-import '../../../categories/domain/entities/category.dart';
-import '../../../categories/presentation/manager/categories_bloc.dart';
-import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
-import '../../../../core/utils/app_context.dart';
-import '../../../../core/components/widgets/sheet.dart';
-import '../../../../core/components/buttons/primary_button.dart';
-import '../../../../core/components/buttons/secondary_button.dart';
 import '../widgets/add_check_bottom_sheet.dart';
 
 class CreationScreen extends StatefulWidget {
@@ -31,7 +30,8 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   bool _isEnabled = false;
-  bool _isDefault = false;
+
+  // bool _isDefault = false;
   bool checked = false;
   Category? category;
   Wallet? wallet;
@@ -61,14 +61,14 @@ class _CreationScreenState extends State<CreationScreen> {
               setState(() => _isEnabled = true);
               context.showSuccessSnackBar(
                   massage: "Add new ${widget.title} Successfully");
-              if (_isDefault) {
-                ScaffoldMessenger.of(context).clearSnackBars();
-                context.pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
-                );
-              }
+              // if (_isDefault) {
+              //   ScaffoldMessenger.of(context).clearSnackBars();
+              //   context.pushReplacement(
+              //     MaterialPageRoute(
+              //       builder: (context) => HomeScreen(),
+              //     ),
+              //   );
+              // }
             }
           },
         ),
@@ -168,7 +168,7 @@ class _CreationScreenState extends State<CreationScreen> {
                                   texts["e_msg"],
                               massage: "You should add new ${widget.title}",
                               onPressed: !_isEnabled
-                                  ? widget.title == texts["app"]["wal_type"]
+                                  ? /*widget.title == texts["app"]["wal_type"]
                                       ? () {
                                           context.read<WalletsBloc>().add(
                                                 AddWalletEvent(
@@ -177,7 +177,8 @@ class _CreationScreenState extends State<CreationScreen> {
                                               );
                                           setState(() => _isDefault = true);
                                         }
-                                      : null
+                                      :*/
+                                  null
                                   : () => widget.title ==
                                           texts["app"]["cat_type"]
                                       ? context.pushReplacement(
@@ -208,5 +209,3 @@ class _CreationScreenState extends State<CreationScreen> {
     );
   }
 }
-
-Wallet? wallet;

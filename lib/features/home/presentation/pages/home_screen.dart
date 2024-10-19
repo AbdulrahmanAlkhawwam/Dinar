@@ -1,50 +1,58 @@
-import 'package:Dinar/core/components/buttons/float_button.dart';
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
-import 'package:Dinar/features/home/presentation/widget/more_sheet.dart';
-import 'package:Dinar/features/wallets/presentation/manager/wallets_bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-
-import '../widget/category_list.dart';
-import '../../../incomes/presentation/widgets/income_chart.dart';
-import '../../../payments/presentation/widgets/payment_chart.dart';
-import '../widget/wallet_list.dart';
-import '../../../../core/styles/colors/main_colors.dart';
-
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../../../core/components/buttons/float_button.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../../../operations/presentation/widgets/operation_chart.dart';
+import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../widget/category_list.dart';
+import '../widget/more_sheet.dart';
+import '../widget/wallet_list.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final int balance = 152758000;
+
   final int monthlyAverage = 15000000;
+
   final int usage = 10215000;
+
+  @override
+  void initState() {
+    context.read<CategoriesBloc>().add(LoadCategoriesEvent());
+    context.read<WalletsBloc>().add(LoadWalletsEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     String myNumber = ((usage / monthlyAverage) * 100.00).toString();
-    print(usage / monthlyAverage);
     return MultiBlocListener(
       listeners: [
         BlocListener<CategoriesBloc, CategoriesState>(
           listener: (context, state) {
-            if (state is CategoriesLoading) {
-              context.loaderOverlay.show();
-            } else {
-              context.loaderOverlay.hide();
-            }
+            // if (state is CategoriesLoading) {
+            //   context.loaderOverlay.show();
+            // } else {
+            //   context.loaderOverlay.hide();
+            // }
           },
         ),
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
-            if (state is WalletsLoading) {
-              context.loaderOverlay.show();
-            } else {
-              context.loaderOverlay.hide();
-            }
+            // if (state is WalletsLoading) {
+            //   context.loaderOverlay.show();
+            // } else {
+            //   context.loaderOverlay.hide();
+            // }
           },
         )
       ],
@@ -71,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       gradient: context.gradient.fixedSecondaryColor,
                       border: Border.all(
-                        color: MainColors.forestGreen,
+                        color: context.colors.secondary,
                         width: 2,
                       ),
                     ),
@@ -85,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                               "${DateFormat.MMMM().format(DateTime.now())} ${DateFormat.y().format(DateTime.now())}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: MainColors.darkTeal,
+                                  color: context.colors.onTertiaryContainer,
                                   fontSize: 24),
                             ),
                           ),
@@ -140,8 +148,8 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: LinearProgressIndicator(
-                                  color: MainColors.darkTeal,
-                                  backgroundColor: MainColors.teaGreen,
+                                  color: context.colors.onTertiaryContainer,
+                                  backgroundColor: context.colors.primary,
                                   minHeight: 16,
                                   borderRadius: BorderRadius.circular(20),
                                   value: usage / monthlyAverage,
@@ -156,9 +164,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const WalletList(),
-                  const IncomeChart(),
+                  const OperationChart(),
                   const SizedBox(height: 16),
-                  const PaymentChart(),
+                  const OperationChart(),
                   CategoryList(),
                 ],
               ),
@@ -184,7 +192,7 @@ class HomeScreen extends StatelessWidget {
                 isScrollControlled: true,
               );
             },
-            text: "more".toUpperCase(),
+            text: "More",
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

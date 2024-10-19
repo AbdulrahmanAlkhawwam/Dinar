@@ -1,0 +1,106 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../core/components/cards/tag_card.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../domain/entities/operation.dart';
+
+class OperationItem extends StatelessWidget {
+  final Operation operation;
+
+  const OperationItem({
+    super.key,
+    required this.operation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.colors.onSecondary,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: context.colors.primary.withOpacity(0.5),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        operation.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      operation.description!.trim().isNotEmpty
+                          ? Text(
+                              "description : ${operation.description}",
+                              style: const TextStyle(
+                                fontSize: 16,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                            )
+                          : const SizedBox(),
+                      const SizedBox(height: 4),
+                      Text(
+                        "date : ${DateFormat.yMMMMd().format(operation.date)}",
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "price : ${operation.value}",
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 10),
+                IconButton(
+                  // TODO : fix this
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.delete_outline,
+                    color: context.colors.error,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            SingleChildScrollView(
+              child: Row(
+                children: [
+                  TagCard(
+                    operationType: operation.type,
+                    text: operation.category!.name,
+                  ),
+                  const SizedBox(width: 16),
+                  TagCard(
+                    operationType: operation.type,
+                    text: operation.wallet!.name,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
