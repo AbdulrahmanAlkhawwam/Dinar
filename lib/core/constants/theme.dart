@@ -77,13 +77,10 @@ class AppTheme {
           width: 3,
         ),
       ),
-      labelStyle: _textTheme(colors).labelLarge?.copyWith(
+      hintStyle: _textTheme(colors).bodyMedium?.copyWith(
             color: colors.onSurface,
           ),
-      hintStyle: _textTheme(colors).labelLarge?.copyWith(
-            color: colors.onPrimaryContainer,
-          ),
-      errorStyle: _textTheme(colors).labelLarge?.copyWith(
+      errorStyle: _textTheme(colors).bodySmall?.copyWith(
             color: colors.error,
           ),
     );
@@ -104,35 +101,29 @@ class AppTheme {
 
   static _timePickerTheme(ColorScheme colors) {
     return TimePickerThemeData(
-      backgroundColor: colors.secondaryContainer,
-      dialBackgroundColor: colors.surface,
-      dayPeriodColor: colors.secondary.withOpacity(0.75),
-      dayPeriodTextColor: colors.surface,
+      backgroundColor: colors.surface,
+      dialBackgroundColor: colors.primaryContainer,
+      dayPeriodColor: colors.primary.withOpacity(0.25),
+      dayPeriodTextColor: colors.onPrimaryContainer,
+      dayPeriodTextStyle: _textTheme(colors).titleSmall,
       hourMinuteColor: colors.primary.withOpacity(0.25),
       dialHandColor: colors.primary,
       dayPeriodBorderSide: BorderSide(
-        color: colors.primary,
-        width: 2,
+        color: colors.onPrimaryContainer,
       ),
-      dialTextStyle: _textTheme(colors).bodyMedium,
-      timeSelectorSeparatorColor: WidgetStatePropertyAll(colors.primary),
-      shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(semicircle),
-        borderSide: BorderSide(
-          color: colors.secondary,
-          width: 5,
-        ),
-      ),
+      dialTextStyle: _textTheme(colors).bodySmall,
+      timeSelectorSeparatorColor:
+          WidgetStatePropertyAll(colors.onPrimaryContainer),
       confirmButtonStyle: ButtonStyle(
         fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
         textStyle: WidgetStatePropertyAll(
-          _textTheme(colors).titleSmall,
+          _textTheme(colors).labelMedium,
         ),
       ),
       cancelButtonStyle: ButtonStyle(
         fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
         textStyle: WidgetStatePropertyAll(
-          _textTheme(colors).titleSmall,
+          _textTheme(colors).labelMedium,
         ),
       ),
     );

@@ -4,6 +4,7 @@ import './app_services.dart';
 import './categories_services.dart';
 import './histories_services.dart';
 import './home_services.dart';
+import './operations_services.dart';
 import './onboardings_services.dart';
 import './wallets_services.dart';
 
@@ -14,6 +15,7 @@ Future<void> initializeApp({bool firstInit = true}) async {
   await initializeCategoryServices(sl);
   await initializeHistoryServices(sl);
   await initializeHomeServices(sl);
+  await initializeOperationServices(sl);
   await initializeOnboardingServices(sl);
   await initializeWalletServices(sl);
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/strings.dart';
-import '../../domain/entities/wallet.dart';
-import '../../../../core/utils/app_context.dart';
-import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/components/inters/input_field.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../domain/entities/wallet.dart';
 
 class WalletsBottomSheet extends StatelessWidget {
   WalletsBottomSheet({super.key});
@@ -45,10 +45,7 @@ class WalletsBottomSheet extends StatelessWidget {
                   globalKey.currentState?.save();
                   Navigator.pop(
                     context,
-                    Wallet(
-                      id: "",
-                      name: nameController.text,
-                    ),
+                    Wallet(name: nameController.text),
                   );
                 }
               },

@@ -1,8 +1,6 @@
-import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/styles.dart';
-import '../../constants/colors.dart';
 import '../../utils/app_context.dart';
 
 class SecondaryButton extends StatelessWidget {

@@ -1,8 +1,6 @@
-import 'package:Dinar/app.dart';
 import 'package:flutter/material.dart';
 
 import '../dialog/menu_dialog.dart';
-import '../../constants/colors.dart';
 import '../../utils/app_context.dart';
 import '../../constants/styles.dart';
 
@@ -52,15 +50,19 @@ class MenuButton extends StatelessWidget {
         shape: const StadiumBorder(),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: context.colors.secondaryContainer,
-          onTap: () => showDialog(
-            context: context,
-            builder: (context) => MenuDialog(
-              menu: menu,
-              onTap: onTap,
-              text: text,
-            ),
-          ),
+          splashColor: menu.isEmpty
+              ? context.colors.outlineVariant
+              : context.colors.secondaryContainer,
+          onTap: () => menu.isEmpty
+              ? null
+              : showDialog(
+                  context: context,
+                  builder: (context) => MenuDialog(
+                    menu: menu,
+                    onTap: onTap,
+                    text: text,
+                  ),
+                ),
           child: Container(
             padding: const EdgeInsets.all(12),
             alignment: Alignment.center,

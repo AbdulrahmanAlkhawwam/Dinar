@@ -6,7 +6,7 @@ import '../../utils/app_context.dart';
 
 class TagCard extends StatelessWidget {
   /// this variable is made for know what is the color of [card]
-  /// if [operationType] is equal [income] this mean it will be green color
+  /// if [operationType] is equal [operation] this mean it will be green color
   /// if [operationType] is equal [payment] this mean it will be red color
   final OperationType operationType;
 
@@ -22,11 +22,10 @@ class TagCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = operationType == OperationType.income
-        ? context.colors.inversePrimary
+        ? context.colors.primaryContainer
         : context.colors.errorContainer;
 
     return Container(
-      /// fixed size
       height: 25,
       decoration: BoxDecoration(
         color: color,
