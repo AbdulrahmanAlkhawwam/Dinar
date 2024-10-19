@@ -21,29 +21,24 @@ class MoreSheet extends StatelessWidget {
             const Spacer(),
             PrimaryButton(
               text: ("Add income"),
-              onPressed: () => context
-                  .push(
-                    MaterialPageRoute(
-                      builder: (context) => AddOperationScreen(
-                        type: OperationType.income,
-                      ),
-                    ),
-                  )
-                  .then((value) => context.pop()),
+              onPressed: () => context.push(
+                MaterialPageRoute(
+                  builder: (context) => AddOperationScreen(
+                    type: OperationType.income,
+                  ),
+                ),
+              ),
             ),
             const Spacer(),
             PrimaryButton(
-              text: ("Add payment"),
-              onPressed: () => context
-                  .push(
-                    MaterialPageRoute(
-                      builder: (context) => AddOperationScreen(
-                        type: OperationType.payment,
+                text: ("Add payment"),
+                onPressed: () => context.push(
+                      MaterialPageRoute(
+                        builder: (context) => AddOperationScreen(
+                          type: OperationType.payment,
+                        ),
                       ),
-                    ),
-                  )
-                  .then((value) => context.pop()),
-            ),
+                    )),
             const Spacer(),
             PrimaryButton(
               text: ("Show history"),

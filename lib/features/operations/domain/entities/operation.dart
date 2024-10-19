@@ -18,8 +18,8 @@ class Operation {
   final DateTime date;
   final OperationType type;
 
-  Operation(
-    this.id, {
+  Operation({
+    this.id,
     required this.name,
     required this.value,
     required this.description,
@@ -46,7 +46,7 @@ class Operation {
     OperationType? type,
   }) =>
       Operation(
-        id ?? this.id,
+        id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
         description: description ?? this.description,

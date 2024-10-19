@@ -171,7 +171,6 @@ class AddOperationScreen extends StatelessWidget {
                         context.read<OperationBloc>().add(
                               AddOperationEvent(
                                 operation: Operation(
-                                  null,
                                   name: nameController.text,
                                   value: double.parse(valueController.text),
                                   description: descriptionController.text,

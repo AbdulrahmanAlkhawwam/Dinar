@@ -4,8 +4,8 @@ import '../../../app/domain/entities/operation_type.dart';
 import '../../domain/entities/operation.dart';
 
 class OperationModel extends Operation {
-  OperationModel(
-    super.id, {
+  OperationModel({
+    super.id,
     required super.name,
     required super.value,
     required super.description,
@@ -18,7 +18,7 @@ class OperationModel extends Operation {
   });
 
   factory OperationModel.fromEntity(Operation operation) => OperationModel(
-        operation.id,
+        id: operation.id,
         name: operation.name,
         value: operation.value,
         description: operation.description,
@@ -31,7 +31,7 @@ class OperationModel extends Operation {
       );
 
   factory OperationModel.fromMap(Map<String, dynamic> json) => OperationModel(
-        json["id"],
+        id: json["id"],
         name: json["name"],
         value: json["value"],
         description: json["description"],
