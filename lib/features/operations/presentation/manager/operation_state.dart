@@ -14,13 +14,23 @@ final class OperationError extends OperationState {
 }
 
 final class OperationLoaded extends OperationState {
-  final List<Operation> incomesOperation;
-  final List<Operation> paymentsOperation;
+  final List<Operation> operations;
 
   OperationLoaded({
-    required this.incomesOperation,
-    required this.paymentsOperation,
+    required this.operations,
   });
+}
+
+final class CategoryOperationLoaded extends OperationState {
+  final List<Operation> operations;
+
+  CategoryOperationLoaded({required this.operations});
+}
+
+final class WalletOperationLoaded extends OperationState {
+  final List<Operation> operations;
+
+  WalletOperationLoaded({required this.operations});
 }
 
 final class OperationAdding extends OperationState {}

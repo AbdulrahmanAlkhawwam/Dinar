@@ -43,16 +43,16 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     response.fold(
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (categories) => incomeCategories
-          ..clear()
-          ..addAll(categories),
+        ..clear()
+        ..addAll(categories),
     );
     response = await loadPaymentCategoriesUc();
     response.fold(
         (failure) =>
             emit(CategoriesError(message: Message.fromFailure(failure))),
         (categories) => paymentCategories
-        ..clear()
-        ..addAll(categories));
+          ..clear()
+          ..addAll(categories));
     emit(CategoriesLoaded(
       incomeCategories: incomeCategories,
       paymentCategories: paymentCategories,

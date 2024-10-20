@@ -75,25 +75,25 @@ class WalletList extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Skeleton(
-                                  height: 110, width: 130, borderRadius: 10),
+                                  height: 104, width: 130, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 200, borderRadius: 10),
+                                  height: 104, width: 200, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 100, borderRadius: 10),
+                                  height: 104, width: 100, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 150, borderRadius: 10),
+                                  height: 104, width: 150, borderRadius: 10),
                             ],
                           ),
                         ),
                       ),
                     ),
                   WalletsLoaded _ => SizedBox(
-                      height: 130,
+                      height: 88,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
+                        padding: const EdgeInsets.only(bottom: 16),
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => WalletItem(

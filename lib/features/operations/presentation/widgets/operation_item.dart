@@ -7,10 +7,15 @@ import '../../domain/entities/operation.dart';
 
 class OperationItem extends StatelessWidget {
   final Operation operation;
+  final bool isCategoryAppear;
+
+  final bool isWalletAppear;
 
   const OperationItem({
     super.key,
     required this.operation,
+    this.isWalletAppear = true,
+    this.isCategoryAppear = true,
   });
 
   @override
@@ -87,11 +92,15 @@ class OperationItem extends StatelessWidget {
               child: Row(
                 children: [
                   TagCard(
+                    isAppear: isCategoryAppear,
                     operationType: operation.type,
                     text: operation.category!.name,
                   ),
-                  const SizedBox(width: 16),
+                  isCategoryAppear
+                      ? const SizedBox(width: 16)
+                      : const SizedBox(),
                   TagCard(
+                    isAppear: isWalletAppear,
                     operationType: operation.type,
                     text: operation.wallet!.name,
                   ),

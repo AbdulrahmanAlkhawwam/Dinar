@@ -1,8 +1,8 @@
+import 'package:Dinar/core/components/cards/empty_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/components/buttons/float_button.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../operations/presentation/widgets/operation_chart.dart';
@@ -66,10 +66,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 32),
-                    child: Text(
-                      textAlign: TextAlign.start,
-                      "Good \nMorning",
-                      style: context.textTheme.bodyLarge,
+                    child: Row(
+                      children: [
+                        Text(
+                          textAlign: TextAlign.start,
+                          "Good \nMorning",
+                          style: context.textTheme.bodyLarge,
+                        ),
+                        const Spacer(),
+                        IconButton.filled(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => MoreSheet(),
+                              sheetAnimationStyle: AnimationStyle(
+                                duration: Duration(milliseconds: 1),
+                                reverseDuration: Duration(milliseconds: 1),
+                              ),
+                              backgroundColor: Colors.transparent,
+                              constraints: BoxConstraints(
+                                minHeight: context.height,
+                                minWidth: context.width,
+                              ),
+                              isScrollControlled: true,
+                            );
+                          },
+                          icon: Icon(Icons.add),
+                        )
+                      ],
                     ),
                   ),
                   Container(
@@ -164,7 +188,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const WalletList(),
-                  const OperationChart(),
+                  const EmptyCard(text: "Incomes is "),
+                  // const OperationChart(),
                   const SizedBox(height: 16),
                   const OperationChart(),
                   const SizedBox(height: 16),
@@ -174,29 +199,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 32.0),
-          child: FloatButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) => MoreSheet(),
-                sheetAnimationStyle: AnimationStyle(
-                  duration: Duration(milliseconds: 1),
-                  reverseDuration: Duration(milliseconds: 1),
-                ),
-                backgroundColor: Colors.transparent,
-                constraints: BoxConstraints(
-                  minHeight: context.height,
-                  minWidth: context.width,
-                ),
-                isScrollControlled: true,
-              );
-            },
-            text: "More",
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+        //   child: FloatButton(
+        //     onPressed: ,
+        //     text: "More",
+        //   ),
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

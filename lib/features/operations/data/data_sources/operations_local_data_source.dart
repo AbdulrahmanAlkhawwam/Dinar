@@ -2,11 +2,17 @@ import '../../../../core/helpers/database_helper.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../categories/data/models/category_model.dart';
+import '../../../categories/domain/entities/category.dart';
 import '../../../wallets/data/models/wallet_model.dart';
+import '../../../wallets/domain/entities/wallet.dart';
 import '../models/operation_model.dart';
 
 abstract class OperationsLocalDataSource {
-  Future<List<OperationModel>> loadOperations(OperationType type);
+  Future<List<OperationModel>> loadOperations({
+    OperationType? type,
+    Category? category,
+    Wallet? wallet,
+  });
 
   Future<int> addOperation(OperationModel operationModel);
 }
@@ -17,11 +23,27 @@ class OperationsLocalDataSourceImpl extends OperationsLocalDataSource {
   OperationsLocalDataSourceImpl({required this.db});
 
   @override
-  Future<List<OperationModel>> loadOperations(OperationType type) async {
+  Future<List<OperationModel>> loadOperations({
+    OperationType? type,
+    Category? category,
+    Wallet? wallet,
+  }) async {
     final operationsMap = await db.getData(
       operationsTable,
-      where: "type = ?",
-      args: [type.name],
+      where: type != null
+          ? "type = ?"
+          : category != null
+              ? "category_id = ?"
+              : wallet != null
+                  ? "wallet_id = ?"
+                  : null,
+      args: type != null
+          ? [type.name]
+          : category != null
+              ? [category.id]
+              : wallet != null
+                  ? [wallet.id]
+                  : null,
     );
     final operations =
         operationsMap.map((income) => OperationModel.fromMap(income)).toList();

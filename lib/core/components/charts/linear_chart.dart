@@ -75,41 +75,29 @@ class LinearChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LinearGradient? color = context.gradient.fixedPrimaryColor;
+    LinearGradient color = LinearGradient(colors: [
+      context.colors.tertiary,
+      context.colors.primary,
+    ]);
 
-    return InnerShadow(
-      shadows: [
-        BoxShadow(
-          color: context.colors.surface,
-          offset: const Offset(2.5, 0),
-          blurRadius: 5,
-        ),
-        BoxShadow(
-          color: context.colors.surface,
-          offset: const Offset(-2.5, 0),
-          blurRadius: 5,
-        ),
-      ],
-      child: Container(
-        color: context.colors.secondaryFixed,
-        width: double.infinity,
-        child: Center(
-          child: AspectRatio(
-            aspectRatio: 19 / 9,
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: context.colors.primaryContainer.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 19 / 9,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
             child: LineChart(
               LineChartData(
                 gridData: FlGridData(
                   horizontalInterval: valueY,
                   verticalInterval: valueX,
                   checkToShowVerticalLine: (value) => false,
-                  checkToShowHorizontalLine: (value) =>
-                      value > 10 ? false : true,
-                  getDrawingHorizontalLine: (value) {
-                    return FlLine(
-                      color: context.colors.primary.withOpacity(0.15),
-                      strokeWidth: 2,
-                    );
-                  },
+                  checkToShowHorizontalLine: (value) => false,
                 ),
                 titlesData: const FlTitlesData(show: false),
                 borderData: FlBorderData(show: false),
@@ -127,7 +115,7 @@ class LinearChart extends StatelessWidget {
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
-                        colors: color!.colors
+                        colors: color.colors
                             .map((color) => color.withOpacity(0.5))
                             .toList(),
                       ),

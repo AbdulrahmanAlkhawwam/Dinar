@@ -79,25 +79,25 @@ class CategoryList extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Skeleton(
-                                  height: 110, width: 200, borderRadius: 10),
+                                  height: 112, width: 200, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 100, borderRadius: 10),
+                                  height: 112, width: 100, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 150, borderRadius: 10),
+                                  height: 112, width: 150, borderRadius: 10),
                               const SizedBox(width: 16),
                               Skeleton(
-                                  height: 110, width: 130, borderRadius: 10),
+                                  height: 112, width: 130, borderRadius: 10),
                             ],
                           ),
                         ),
                       ),
                     ),
                   CategoriesLoaded _ => SizedBox(
-                      height: 130,
+                      height: 96,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 6, 0, 24),
+                        padding: const EdgeInsets.only(bottom: 16),
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => CategoryItem(

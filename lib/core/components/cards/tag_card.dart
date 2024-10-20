@@ -12,12 +12,13 @@ class TagCard extends StatelessWidget {
 
   /// this [text] is the text which written on [card]
   final String text;
+  final bool isAppear;
 
-  const TagCard({
-    super.key,
-    required this.operationType,
-    required this.text,
-  });
+  const TagCard(
+      {super.key,
+      required this.operationType,
+      required this.text,
+      this.isAppear = true});
 
   @override
   Widget build(BuildContext context) {
@@ -25,38 +26,40 @@ class TagCard extends StatelessWidget {
         ? context.colors.primaryContainer
         : context.colors.errorContainer;
 
-    return Container(
-      height: 25,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(circle),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 5,
-              backgroundColor: context.colors.onSecondary,
+    return isAppear
+        ? Container(
+            height: 25,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(circle),
             ),
-            const SizedBox(width: 8),
-            Text(
-              text,
-              style: TextStyle(
-                fontSize: 12,
-                color: operationType == OperationType.income
-                    ? context.colors.primary
-                    : context.colors.error,
-                fontWeight: FontWeight.bold,
-                height: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 5,
+                    backgroundColor: context.colors.onSecondary,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: operationType == OperationType.income
+                          ? context.colors.primary
+                          : context.colors.error,
+                      fontWeight: FontWeight.bold,
+                      height: 0,
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          )
+        : const SizedBox();
   }
 }

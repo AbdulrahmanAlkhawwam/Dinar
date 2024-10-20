@@ -6,13 +6,13 @@ import '../../../app/domain/entities/operation_type.dart';
 import '../entities/operation.dart';
 import '../repositories/operations_repository.dart';
 
-class LoadPaymentOperationsUc extends UseCaseNoParam<List<Operation>> {
+class LoadOperationsUc extends UseCaseNoParam<List<Operation>> {
   final OperationsRepository repository;
 
-  LoadPaymentOperationsUc({required this.repository});
+  LoadOperationsUc({required this.repository});
 
   @override
   Future<Either<Failure, List<Operation>>> call() {
-    return repository.loadOperations(OperationType.payment);
+    return repository.loadOperations();
   }
 }
