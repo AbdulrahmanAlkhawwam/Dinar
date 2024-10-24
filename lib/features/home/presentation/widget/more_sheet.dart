@@ -51,13 +51,13 @@ class MoreSheet extends StatelessWidget {
                   .then((value) => context.pop()),
             ),
             const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: FloatButton(
-                onPressed: () => context.pop(),
-                text: "Less",
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 32),
+            //   child: FloatButton(
+            //     onPressed: () => context.pop(),
+            //     text: "Less",
+            //   ),
+            // ),
           ],
         ),
       ),

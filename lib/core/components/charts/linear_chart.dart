@@ -94,8 +94,8 @@ class LinearChart extends StatelessWidget {
             child: LineChart(
               LineChartData(
                 gridData: FlGridData(
-                  horizontalInterval: valueY,
-                  verticalInterval: valueX,
+                  horizontalInterval: 10,
+                  verticalInterval: 10,
                   checkToShowVerticalLine: (value) => false,
                   checkToShowHorizontalLine: (value) => false,
                 ),

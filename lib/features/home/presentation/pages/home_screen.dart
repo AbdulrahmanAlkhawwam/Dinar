@@ -1,5 +1,6 @@
 import 'package:Dinar/app.dart';
 import 'package:Dinar/core/components/cards/empty_card.dart';
+import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 import 'package:Dinar/features/home/presentation/widget/history_list.dart';
 import 'package:Dinar/features/home/presentation/widget/statistics_card.dart';
 import 'package:Dinar/features/operations/presentation/manager/operation_bloc.dart';
@@ -33,66 +34,44 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<CategoriesBloc, CategoriesState>(
-          listener: (context, state) {
-            // if (state is CategoriesLoading) {
-            //   context.loaderOverlay.show();
-            // } else {
-            //   context.loaderOverlay.hide();
-            // }
-          },
-        ),
-        BlocListener<WalletsBloc, WalletsState>(
-          listener: (context, state) {
-            // if (state is WalletsLoading) {
-            //   context.loaderOverlay.show();
-            // } else {
-            //   context.loaderOverlay.hide();
-            // }
-          },
-        )
-      ],
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 80,
-          title: Text(
-            DateFormat("d MMMM y").format(DateTime.now()),
-            style: context.textTheme.displaySmall
-                ?.copyWith(fontWeight: FontWeight.w900),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 80,
+        title: Text(
+          DateFormat("dd MMMM yyyy").format(DateTime.now()),
+          style: context.textTheme.displaySmall?.copyWith(
+            fontWeight: FontWeight.w900,
           ),
         ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const StatisticsCard(),
-                  const WalletList(),
-                  const HistoryList(),
-                  const EmptyCard(text: "Incomes is "),
-                  // const OperationChart(),
-                  const SizedBox(height: 16),
-                  const OperationChart(),
-                  const SizedBox(height: 16),
-                  const CategoryList(),
-                ],
-              ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const StatisticsCard(),
+                const WalletList(),
+                const HistoryList(),
+                const OperationChart(type: OperationType.income,),
+                const SizedBox(height: 16),
+                const OperationChart(type: OperationType.payment,),
+                const SizedBox(height: 16),
+                const CategoryList(),
+              ],
             ),
           ),
         ),
-        // floatingActionButton: Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 32.0),
-        //   child: FloatButton(
-        //     onPressed: ,
-        //     text: "More",
-        //   ),
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.symmetric(vertical: 32.0),
+      //   child: FloatButton(
+      //     onPressed: ,
+      //     text: "More",
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

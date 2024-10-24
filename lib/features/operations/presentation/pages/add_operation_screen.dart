@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -169,7 +171,7 @@ class AddOperationScreen extends StatelessWidget {
                         output.hour,
                         output.minute,
                       );
-                      print(date);
+                      log(date.toString());
                     },
                   ),
                 ),
@@ -179,8 +181,8 @@ class AddOperationScreen extends StatelessWidget {
                     text: "Add",
                     onPressed: () {
                       if (globalKey.currentState!.validate() &&
-                              selectedCategory != null &&
-                              selectedWallet != null &&
+                          selectedCategory != null &&
+                          selectedWallet != null &&
                           type != null) {
                         context.read<OperationBloc>().add(
                               AddOperationEvent(

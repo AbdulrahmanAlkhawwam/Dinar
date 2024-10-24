@@ -19,8 +19,10 @@ class HistoryList extends StatelessWidget {
             height: state.operations.isEmpty
                 ? 0
                 : state.operations.length < 2
-                    ? 200
-                    : 300,
+                    ? 150
+                    : state.operations.length == 2
+                        ? 250
+                        : 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

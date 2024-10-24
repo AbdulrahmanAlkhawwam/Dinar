@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:Dinar/core/constants/res.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +32,7 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   bool _isEnabled = false;
-
-  // bool _isDefault = false;
-  bool checked = false;
+  bool? checked = false;
   Category? category;
   Wallet? wallet;
 
@@ -40,27 +40,15 @@ class _CreationScreenState extends State<CreationScreen> {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<CategoriesBloc, CategoriesState>(
-          listener: (context, state) {
-            if (state is CategoriesError) {
-              context.showErrorSnackBar(massage: state.message.value);
-            }
-            if (state is CategoryAdded) {
-              setState(() => _isEnabled = true);
-              context.showSuccessSnackBar(
-                  massage: "Add new ${widget.title} Successfully");
-            }
-          },
-        ),
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
-            if (state is WalletsError) {
-              context.showErrorSnackBar(massage: state.message.value);
-            }
+            // if (state is WalletsError) {
+            //   context.showErrorSnackBar(massage: state.message.value);
+            // }
             if (state is WalletAdded) {
               setState(() => _isEnabled = true);
-              context.showSuccessSnackBar(
-                  massage: "Add new ${widget.title} Successfully");
+              // context.showSuccessSnackBar(
+              //       massage: "Add new ${widget.title} Successfully");
               // if (_isDefault) {
               //   ScaffoldMessenger.of(context).clearSnackBars();
               //   context.pushReplacement(
@@ -69,6 +57,18 @@ class _CreationScreenState extends State<CreationScreen> {
               //     ),
               //   );
               // }
+            }
+          },
+        ),
+        BlocListener<CategoriesBloc, CategoriesState>(
+          listener: (context, state) {
+            // if (state is CategoriesError) {
+            //   context.showErrorSnackBar(massage: state.message.value);
+            // }
+            if (state is CategoryAdded) {
+              setState(() => _isEnabled = true);
+              //   context.showSuccessSnackBar(
+              //       massage: "Add new ${widget.title} Successfully");
             }
           },
         ),
@@ -115,12 +115,10 @@ class _CreationScreenState extends State<CreationScreen> {
                                 widget.title == texts["app"]["cat_type"]
                                     ? category = await sheet(
                                         context: context,
-                                        content: CategoriesBottomSheet(),
-                                      ) as Category
+                                        content: CategoriesBottomSheet())
                                     : wallet = await sheet(
-                                            context: context,
-                                            content: WalletsBottomSheet())
-                                        as Wallet;
+                                        context: context,
+                                        content: WalletsBottomSheet());
 
                                 if (wallet != null || category != null) {
                                   checked = await sheet(
@@ -136,9 +134,9 @@ class _CreationScreenState extends State<CreationScreen> {
                                           ? wallet
                                           : null,
                                     ),
-                                  ) as bool;
+                                  );
                                 }
-                                if (checked) {
+                                if (checked!) {
                                   if (widget.title ==
                                           texts["app"]["cat_type"] &&
                                       category != null) {
@@ -154,8 +152,7 @@ class _CreationScreenState extends State<CreationScreen> {
                                           ),
                                         );
                                   } else {
-                                    context.showErrorSnackBar(
-                                        massage: "Value not valid !");
+                                    log("value not valid :: wallet : ${wallet.toString()} | category : ${category.toString()}");
                                   }
                                 }
                               },
@@ -168,17 +165,7 @@ class _CreationScreenState extends State<CreationScreen> {
                                   texts["e_msg"],
                               massage: "You should add new ${widget.title}",
                               onPressed: !_isEnabled
-                                  ? /*widget.title == texts["app"]["wal_type"]
-                                      ? () {
-                                          context.read<WalletsBloc>().add(
-                                                AddWalletEvent(
-                                                  wallet: Wallet(name: "user"),
-                                                ),
-                                              );
-                                          setState(() => _isDefault = true);
-                                        }
-                                      :*/
-                                  null
+                                  ? null
                                   : () => widget.title ==
                                           texts["app"]["cat_type"]
                                       ? context.pushReplacement(
