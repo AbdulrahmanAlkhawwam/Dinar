@@ -78,25 +78,6 @@ class CategoryItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        IconButton(
-                          onPressed: () async {
-                            final result = await sheet(
-                                context: context,
-                                content: DeleteCheckBottomSheet(
-                                    type: "Category",
-                                    category: category,
-                                    wallet: null));
-                            if (result) {
-                              context.read<CategoriesBloc>().add(
-                                    DeleteCategoryEvent(category: category),
-                                  );
-                            }
-                          },
-                          icon: Icon(
-                            Icons.delete_outline,
-                            color: context.colors.error,
-                          ),
-                        )
                       ],
                     ),
                   ),

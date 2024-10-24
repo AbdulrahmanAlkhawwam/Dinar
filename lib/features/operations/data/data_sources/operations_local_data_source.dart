@@ -15,6 +15,8 @@ abstract class OperationsLocalDataSource {
   });
 
   Future<int> addOperation(OperationModel operationModel);
+
+  Future<void> deleteOperation(String id);
 }
 
 class OperationsLocalDataSourceImpl extends OperationsLocalDataSource {
@@ -73,5 +75,14 @@ class OperationsLocalDataSourceImpl extends OperationsLocalDataSource {
       operationModel.toMap(),
     );
     return id;
+  }
+
+  @override
+  Future<void> deleteOperation(String id) async {
+    await db.delete(
+      operationsTable,
+      where: "id = ?",
+      args: [id],
+    );
   }
 }

@@ -22,3 +22,9 @@ class GetWalletOperationEvent extends OperationEvent {
 
   GetWalletOperationEvent({required this.wallet});
 }
+
+class DeleteOperationEvent extends OperationEvent {
+  final Operation operation;
+
+  DeleteOperationEvent({required this.operation});
+}

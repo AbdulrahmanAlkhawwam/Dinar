@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/components/cards/tag_card.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../domain/entities/operation.dart';
+import '../manager/operation_bloc.dart';
 
 class OperationItem extends StatelessWidget {
   final Operation operation;
@@ -78,8 +80,9 @@ class OperationItem extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 IconButton(
-                  // TODO : fix this
-                  onPressed: () {},
+                  onPressed: () => context
+                      .read<OperationBloc>()
+                      .add(DeleteOperationEvent(operation: operation)),
                   icon: Icon(
                     Icons.delete_outline,
                     color: context.colors.error,

@@ -75,25 +75,6 @@ class WalletItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      IconButton(
-                        onPressed: () async {
-                          final result = await sheet(
-                              context: context,
-                              content: DeleteCheckBottomSheet(
-                                  type: texts["app"]["wal_type"],
-                                  category: null,
-                                  wallet: wallet));
-                          if (result) {
-                            context.read<WalletsBloc>().add(
-                                  DeleteWalletEvent(wallet: wallet),
-                                );
-                          }
-                        },
-                        icon: Icon(
-                          Icons.delete_outline,
-                          color: context.colors.error,
-                        ),
-                      )
                     ],
                   ),
                 ),

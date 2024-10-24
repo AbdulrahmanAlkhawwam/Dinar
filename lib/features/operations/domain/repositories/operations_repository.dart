@@ -14,4 +14,6 @@ abstract class OperationsRepository {
   });
 
   Future<Either<Failure, int>> addOperation(Operation operation);
+
+  Future<Either<Failure, void>> deleteOperation(String id);
 }
