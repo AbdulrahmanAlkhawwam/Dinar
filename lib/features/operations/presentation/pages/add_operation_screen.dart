@@ -21,10 +21,10 @@ import '../manager/operation_bloc.dart';
 class AddOperationScreen extends StatelessWidget {
   AddOperationScreen({
     super.key,
-    required this.type,
+    this.type,
   });
 
-  final OperationType type;
+  OperationType? type;
   final nameController = TextEditingController();
   final valueController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -79,7 +79,7 @@ class AddOperationScreen extends StatelessWidget {
                 ),
                 GradientText(
                   Text(
-                    type.name.toUpperCase(),
+                    type?.name.toUpperCase() ?? "Operation",
                     style: context.textTheme.titleLarge,
                   ),
                   colors: [
@@ -141,6 +141,19 @@ class AddOperationScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
+                MenuButton(
+                  selected: type?.name,
+                  text: texts[texts["app"]["cat_type"]]["sheet"]["menu"],
+                  menu: OperationType.values
+                      .map(
+                        (operation) => operation.name,
+                      )
+                      .toList(),
+                  onTap: (value) => type = value == OperationType.income.name
+                      ? OperationType.income
+                      : OperationType.payment,
+                ),
+                const SizedBox(height: 24),
                 Center(
                   child: SecondaryButton(
                     text: "Get Time",
@@ -166,8 +179,9 @@ class AddOperationScreen extends StatelessWidget {
                     text: "Add",
                     onPressed: () {
                       if (globalKey.currentState!.validate() &&
-                          selectedCategory != null &&
-                          selectedWallet != null) {
+                              selectedCategory != null &&
+                              selectedWallet != null &&
+                          type != null) {
                         context.read<OperationBloc>().add(
                               AddOperationEvent(
                                 operation: Operation(
@@ -179,7 +193,7 @@ class AddOperationScreen extends StatelessWidget {
                                   date: date ?? DateTime.now(),
                                   category: selectedCategory,
                                   wallet: selectedWallet,
-                                  type: type,
+                                  type: type!,
                                 ),
                               ),
                             );

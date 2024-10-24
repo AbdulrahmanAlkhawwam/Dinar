@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../categories/domain/entities/category.dart';
+import '../../../operations/domain/entities/operation.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 import '../../../../core/constants/res.dart';
 import '../../../../core/utils/app_context.dart';
@@ -12,13 +13,15 @@ class DeleteCheckBottomSheet extends StatelessWidget {
   const DeleteCheckBottomSheet({
     super.key,
     required this.type,
-    required this.category,
-    required this.wallet,
+    this.category,
+    this.wallet,
+    this.operation,
   });
 
   final String type;
   final Category? category;
   final Wallet? wallet;
+  final Operation? operation;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +72,17 @@ class DeleteCheckBottomSheet extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: type == "Category" ? category?.name : wallet?.name,
+                    text: type == "Category"
+                        ? category?.name
+                        : type == "wallet"
+                            ? wallet?.name
+                            : operation?.name,
                     style: TextStyle(
                       color: type == "Category" &&
                                   category?.type == OperationType.income ||
-                              type != "Category"
+                              type == "Operation" &&
+                                  operation?.type == OperationType.income ||
+                              type == "wallet"
                           ? context.colors.primary
                           : context.colors.error,
                       fontSize: 18,
@@ -81,17 +90,20 @@ class DeleteCheckBottomSheet extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: type == "Category" ? " and it's type is " : "",
+                    text: type != "wallet" ? " and it's type is " : "",
                     style: TextStyle(
                       color: context.colors.onTertiaryContainer,
                       fontSize: 16,
                     ),
                   ),
-                  type == "Category"
+                  type != "wallet"
                       ? TextSpan(
-                          text: category?.type.name,
+                          text: type == "Category"
+                              ? category?.type.name
+                              : operation?.type.name,
                           style: TextStyle(
-                            color: category?.type == OperationType.income
+                            color: category?.type == OperationType.income ||
+                                    operation?.type == OperationType.income
                                 ? context.colors.primary
                                 : context.colors.error,
                             fontSize: 18,

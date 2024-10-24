@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../operations/presentation/manager/operation_bloc.dart';
-import '../../../wallets/presentation/pages/wallets_screen.dart';
 
 class HistoryList extends StatelessWidget {
   const HistoryList({super.key});
@@ -25,40 +24,46 @@ class HistoryList extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text("History"),
-                    const Spacer(),
-                    TextButton(
-                      style: ButtonStyle(
-                        fixedSize: WidgetStatePropertyAll(
-                          Size(
-                            double.infinity,
-                            double.minPositive,
-                          ),
-                        ),
-                      ),
-                      onPressed: () => context.push(
-                        MaterialPageRoute(
-                          builder: (context) => HistoryScreen(),
-                        ),
-                      ),
-                      child: Text(
-                        "show more",
-                        style: context.textTheme.labelSmall,
-                      ),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    "History",
+                    style: context.textTheme.titleSmall,
+                  ),
                 ),
                 Expanded(
                   child: ListView.separated(
-                    itemBuilder: (context, index) =>
-                        OperationItem(operation: state.operations[index]),
+                    physics: RangeMaintainingScrollPhysics(),
+                    itemBuilder: (context, index) => index == 2
+                        ? InkWell(
+                            onTap: () => context.push(
+                              MaterialPageRoute(
+                                builder: (context) => HistoryScreen(),
+                              ),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: context.colors.onPrimaryContainer,
+                                  borderRadius: BorderRadius.circular(10)),
+                              height: 30,
+                              width: double.infinity,
+                              child: Center(
+                                  child: Text(
+                                "show more",
+                                style: context.textTheme.labelLarge?.copyWith(
+                                    color: context.colors.primaryContainer),
+                              )),
+                            ),
+                          )
+                        : OperationItem(operation: state.operations[index]),
                     separatorBuilder: (context, index) =>
                         const SizedBox(height: 8),
-                    itemCount: state.operations.length,
+                    itemCount: state.operations.length > 2
+                        ? 3
+                        : state.operations.length,
                   ),
                 ),
+                const SizedBox(height: 16)
               ],
             ),
           );

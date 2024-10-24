@@ -113,28 +113,10 @@ class WalletDetailsScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () => context.push(
                           MaterialPageRoute(
-                            builder: (context) => AddOperationScreen(
-                              type: OperationType.payment,
-                            ),
+                            builder: (context) => AddOperationScreen(),
                           ),
                         ),
-                        icon: Icon(
-                          Icons.add,
-                          color: context.colors.error,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () => context.push(
-                          MaterialPageRoute(
-                            builder: (context) => AddOperationScreen(
-                              type: OperationType.income,
-                            ),
-                          ),
-                        ),
-                        icon: Icon(
-                          Icons.add,
-                          color: context.colors.primary,
-                        ),
+                        icon: Icon(Icons.add),
                       ),
                     ],
                   ),

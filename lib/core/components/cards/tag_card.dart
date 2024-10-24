@@ -23,8 +23,8 @@ class TagCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = operationType == OperationType.income
-        ? context.colors.primaryContainer
-        : context.colors.errorContainer;
+        ? context.colors.secondary
+        : context.colors.error;
 
     return isAppear
         ? Container(
@@ -42,7 +42,7 @@ class TagCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 5,
-                    backgroundColor: context.colors.onSecondary,
+                    backgroundColor: context.colors.surface,
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -50,8 +50,8 @@ class TagCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       color: operationType == OperationType.income
-                          ? context.colors.primary
-                          : context.colors.error,
+                          ? context.colors.primaryContainer
+                          : context.colors.errorContainer,
                       fontWeight: FontWeight.bold,
                       height: 0,
                     ),
