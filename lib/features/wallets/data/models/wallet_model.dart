@@ -4,19 +4,20 @@ class WalletModel extends Wallet {
   WalletModel({
     super.id,
     required super.name,
-    super.balance,
+    super.incomesTotal,
+    super.paymentsTotal,
   });
 
   factory WalletModel.fromEntity(Wallet wallet) => WalletModel(
         id: wallet.id,
         name: wallet.name,
-        balance: wallet.balance,
+        incomesTotal: wallet.incomesTotal,
+        paymentsTotal: wallet.paymentsTotal,
       );
 
   factory WalletModel.fromMap(Map<String, dynamic> json) => WalletModel(
         id: json["id"],
         name: json["name"],
-        // don't forget to add balance in next time
       );
 
   Map<String, dynamic> toMap() => {

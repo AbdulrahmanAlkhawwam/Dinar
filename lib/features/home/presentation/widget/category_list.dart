@@ -1,3 +1,4 @@
+import 'package:Dinar/core/components/widgets/items_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -33,6 +34,16 @@ class CategoryList extends StatelessWidget {
                   (state.incomeCategories + state.paymentCategories).isEmpty) {
             return const SizedBox();
           } else {
+            if (state is CategoriesLoaded) {
+              return ItemsList(
+                list: state.incomeCategories + state.paymentCategories,
+                type: "category",
+                // title: "category",
+                route: MaterialPageRoute(
+                  builder: (context) => CategoriesScreen(),
+                ),
+              );
+            }
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [

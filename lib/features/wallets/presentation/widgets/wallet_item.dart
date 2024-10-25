@@ -38,14 +38,14 @@ class WalletItem extends StatelessWidget {
         isHorizontal: isHorizontal,
         child: isHorizontal
             ? Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(24),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         wallet.name.toUpperCase(),
-                        style: context.textTheme.titleMedium,
+                        style: context.textTheme.titleLarge,
                       ),
                     ],
                   ),
@@ -54,7 +54,7 @@ class WalletItem extends StatelessWidget {
             : Padding(
                 padding: const EdgeInsets.all(8),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     children: [
                       Expanded(
@@ -67,7 +67,7 @@ class WalletItem extends StatelessWidget {
                               style: context.textTheme.titleMedium,
                             ),
                             Text(
-                              "Total : ${wallet.balance ?? 0.toInt()}",
+                              "balance : ${(wallet.incomesTotal! - wallet.paymentsTotal!) ?? 0.toInt()}",
                               style: context.textTheme.labelMedium?.copyWith(
                                 color: context.colors.secondary,
                               ),

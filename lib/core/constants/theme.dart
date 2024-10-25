@@ -19,7 +19,8 @@ class AppTheme {
       scaffoldBackgroundColor: colors.surface,
       textButtonTheme: _textButtonTheme(colors),
       inputDecorationTheme: _inputDecorationTheme(colors),
-      timePickerTheme: _timePickerTheme(colors),
+      datePickerTheme: _datePickerTheme(colors),
+      // timePickerTheme: _timePickerTheme(colors),
       iconButtonTheme: IconButtonThemeData(
         style: ButtonStyle(
           fixedSize: WidgetStatePropertyAll(Size(24, 24)),
@@ -99,35 +100,61 @@ class AppTheme {
     );
   }
 
-  static _timePickerTheme(ColorScheme colors) {
-    return TimePickerThemeData(
-      backgroundColor: colors.surface,
-      dialBackgroundColor: colors.primaryContainer,
-      dayPeriodColor: colors.primary.withOpacity(0.25),
-      dayPeriodTextColor: colors.onPrimaryContainer,
-      dayPeriodTextStyle: _textTheme(colors).titleSmall,
-      hourMinuteColor: colors.primary.withOpacity(0.25),
-      dialHandColor: colors.primary,
-      dayPeriodBorderSide: BorderSide(
-        color: colors.onPrimaryContainer,
-      ),
-      dialTextStyle: _textTheme(colors).bodySmall,
-      timeSelectorSeparatorColor:
-          WidgetStatePropertyAll(colors.onPrimaryContainer),
+  static _datePickerTheme(ColorScheme colors) {
+    return DatePickerThemeData(
+      backgroundColor: colors.primaryContainer,
+      dividerColor: colors.primary,
+      dayStyle: _textTheme(colors).bodySmall,
+      headerBackgroundColor: colors.primary,
+      headerForegroundColor: colors.onPrimaryContainer,
+      todayForegroundColor: WidgetStatePropertyAll(colors.secondary),
+      yearForegroundColor: WidgetStatePropertyAll(colors.secondary),
       confirmButtonStyle: ButtonStyle(
+        padding: WidgetStatePropertyAll(EdgeInsets.all(8)),
         fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
         textStyle: WidgetStatePropertyAll(
           _textTheme(colors).labelMedium,
         ),
       ),
       cancelButtonStyle: ButtonStyle(
+        padding: WidgetStatePropertyAll(EdgeInsets.all(8)),
         fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
         textStyle: WidgetStatePropertyAll(
-          _textTheme(colors).labelMedium,
+          _textTheme(colors).labelLarge,
         ),
       ),
     );
   }
+
+  // static _timePickerTheme(ColorScheme colors) {
+  //   return TimePickerThemeData(
+  //     backgroundColor: colors.surface,
+  //     dialBackgroundColor: colors.primaryContainer,
+  //     dayPeriodColor: colors.primary.withOpacity(0.25),
+  //     dayPeriodTextColor: colors.onPrimaryContainer,
+  //     dayPeriodTextStyle: _textTheme(colors).titleSmall,
+  //     hourMinuteColor: colors.primary.withOpacity(0.25),
+  //     dialHandColor: colors.primary,
+  //     dayPeriodBorderSide: BorderSide(
+  //       color: colors.onPrimaryContainer,
+  //     ),
+  //     dialTextStyle: _textTheme(colors).bodySmall,
+  //     timeSelectorSeparatorColor:
+  //         WidgetStatePropertyAll(colors.onPrimaryContainer),
+  //     confirmButtonStyle: ButtonStyle(
+  //       fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
+  //       textStyle: WidgetStatePropertyAll(
+  //         _textTheme(colors).labelMedium,
+  //       ),
+  //     ),
+  //     cancelButtonStyle: ButtonStyle(
+  //       fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
+  //       textStyle: WidgetStatePropertyAll(
+  //         _textTheme(colors).labelMedium,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   static TextTheme _textTheme(ColorScheme colors) {
     return TextTheme(

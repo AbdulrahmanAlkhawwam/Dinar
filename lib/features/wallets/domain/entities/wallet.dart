@@ -5,12 +5,14 @@ final uuid = Uuid();
 class Wallet {
   String? id;
   final String name;
-  final double? balance;
+  double? incomesTotal;
+  double? paymentsTotal;
 
   Wallet({
     this.id,
     required this.name,
-    this.balance,
+    this.incomesTotal,
+    this.paymentsTotal,
   }) {
     id ??= "wal--${uuid.v4()}";
   }
@@ -25,10 +27,11 @@ class Wallet {
 
   @override
   String toString() {
-    return "wallet {"
+    return "wallet { "
         "id : $id ,"
         "name : $name ,"
-        "balance : $balance"
+        "incomes : $incomesTotal ,"
+        "payments : $incomesTotal "
         "}";
   }
 }

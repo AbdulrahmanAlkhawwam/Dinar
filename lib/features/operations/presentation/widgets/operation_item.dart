@@ -70,7 +70,7 @@ class OperationItem extends StatelessWidget {
                         : const SizedBox(),
                     const SizedBox(height: 4),
                     Text(
-                      DateFormat("yyyy-mm-dd").format(operation.date),
+                      DateFormat("yyyy-MM-dd").format(operation.date),
                       style: const TextStyle(
                         fontSize: 16,
                       ),

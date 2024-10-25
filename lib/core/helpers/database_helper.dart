@@ -20,6 +20,8 @@ abstract class DatabaseHelper {
 
   Future<int> delete(String table, {String? where, List? args});
 
+  Future<dynamic> sum(String column, String table, {String? where, List? args});
+
   Future<void> close();
 }
 
@@ -108,5 +110,11 @@ class DatabaseHelperImpl implements DatabaseHelper {
       FOREIGN KEY (category_id) REFERENCES categories (id) 
     )""",
     );
+  }
+
+  @override
+  Future sum(String column, String table,
+      {String? where, List<dynamic>? args}) {
+    return _db.rawQuery("SELECT SUM($column) FROM $table WHERE $where", args);
   }
 }

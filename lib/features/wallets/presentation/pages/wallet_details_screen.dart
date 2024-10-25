@@ -109,15 +109,15 @@ class WalletDetailsScreen extends StatelessWidget {
                         "Operations",
                         style: context.textTheme.titleMedium,
                       ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () => context.push(
-                          MaterialPageRoute(
-                            builder: (context) => AddOperationScreen(),
-                          ),
-                        ),
-                        icon: Icon(Icons.add),
-                      ),
+                      // const Spacer(),
+                      // IconButton(
+                      //   onPressed: () => context.push(
+                      //     MaterialPageRoute(
+                      //       builder: (context) => AddOperationScreen(),
+                      //     ),
+                      //   ),
+                      //   icon: Icon(Icons.add),
+                      // ),
                     ],
                   ),
                 ),

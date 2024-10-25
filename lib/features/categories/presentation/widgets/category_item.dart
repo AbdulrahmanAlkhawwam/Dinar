@@ -64,7 +64,7 @@ class CategoryItem extends StatelessWidget {
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(12),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Row(
