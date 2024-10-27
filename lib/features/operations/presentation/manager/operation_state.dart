@@ -21,18 +21,6 @@ final class OperationLoaded extends OperationState {
   });
 }
 
-final class CategoryOperationLoaded extends OperationState {
-  final List<Operation> operations;
-
-  CategoryOperationLoaded({required this.operations});
-}
-
-final class WalletOperationLoaded extends OperationState {
-  final List<Operation> operations;
-
-  WalletOperationLoaded({required this.operations});
-}
-
 final class OperationAdding extends OperationState {}
 
 final class OperationAdded extends OperationState {}

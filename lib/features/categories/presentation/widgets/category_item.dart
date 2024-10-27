@@ -39,9 +39,6 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context
-            .read<OperationBloc>()
-            .add(GetCategoryOperationEvent(category: category));
         context.push(MaterialPageRoute(
           builder: (context) => CategoryDetailsScreen(
             category: category,

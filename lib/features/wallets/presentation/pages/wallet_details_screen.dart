@@ -1,21 +1,17 @@
-import 'package:Dinar/core/components/widgets/error_content.dart';
-import 'package:Dinar/core/constants/styles.dart';
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
-import 'package:Dinar/features/operations/presentation/pages/operations_screen.dart';
-import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:flutter/material.dart';
 
+import '../../../../core/components/cards/empty_card.dart';
+import '../../../../core/components/widgets/error_content.dart';
 import '../../../../core/components/widgets/sheet.dart';
-import '../../../../core/components/widgets/skeleton.dart';
 import '../../../../core/constants/strings.dart';
+import '../../../../core/constants/styles.dart';
+import '../../../../core/utils/app_context.dart';
+import '../../../app/domain/entities/operation_type.dart';
 import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
 import '../../../operations/presentation/manager/operation_bloc.dart';
-import '../../../operations/presentation/pages/add_operation_screen.dart';
-import '../../../operations/presentation/widgets/operation_item.dart';
+import '../../../operations/presentation/pages/operations_screen.dart';
+import '../../domain/entities/wallet.dart';
 import '../manager/wallets_bloc.dart';
 
 class WalletDetailsScreen extends StatelessWidget {
@@ -27,7 +23,7 @@ class WalletDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<WalletsBloc, WalletsState>(
       listener: (context, state) {
-        if (state is WalletDeleted) {
+        if (state is WalletDeleted && state.wallet.id == wallet.id) {
           context.pop();
         }
       },
@@ -35,7 +31,7 @@ class WalletDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           getBalance() {
             double sum = 0;
-            if (state is WalletOperationLoaded) {
+            if (state is OperationLoaded) {
               for (var operation in state.operations) {
                 if (operation.type == OperationType.income) {
                   sum += operation.value;
@@ -80,13 +76,14 @@ class WalletDetailsScreen extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        border: Border.all(
-                          color: context.colors.secondary,
-                          width: border,
-                          strokeAlign: BorderSide.strokeAlignCenter,
-                        ),
-                        borderRadius: BorderRadius.circular(16),
-                        color: context.colors.primaryContainer),
+                      border: Border.all(
+                        color: context.colors.secondary,
+                        width: border,
+                        strokeAlign: BorderSide.strokeAlignCenter,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      color: context.colors.primaryContainer,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -101,28 +98,42 @@ class WalletDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Operations",
-                        style: context.textTheme.titleMedium,
+                state is OperationLoaded &&
+                        state.operations
+                            .where((element) => element.walletId == wallet.id)
+                            .isEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: EmptyCard(text: "Operations is "),
+                      )
+                    : Expanded(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Operations",
+                                    style: context.textTheme.titleMedium,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            switch (state) {
+                              OperationError _ => ErrorContent(
+                                  message: 'Error',
+                                  errorMessage: Text(state.message.value),
+                                ),
+                              OperationLoaded _ => Expanded(
+                                  child: OperationsScreen(wallet: wallet),
+                                ),
+                              _ => const SizedBox(),
+                            },
+                          ],
+                        ),
                       ),
-                      // const Spacer(),
-                      // IconButton(
-                      //   onPressed: () => context.push(
-                      //     MaterialPageRoute(
-                      //       builder: (context) => AddOperationScreen(),
-                      //     ),
-                      //   ),
-                      //   icon: Icon(Icons.add),
-                      // ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Expanded(child: OperationsScreen(wallet: wallet))
               ],
             ),
           );

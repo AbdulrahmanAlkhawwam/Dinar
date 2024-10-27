@@ -1,8 +1,6 @@
-import 'package:Dinar/core/components/buttons/float_button.dart';
-import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
+import '../../../../core/utils/app_context.dart';
 
 class Screen extends StatelessWidget {
   final bool withoutBackground;
