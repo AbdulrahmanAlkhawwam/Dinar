@@ -102,7 +102,7 @@ class CategoryDetailsScreen extends StatelessWidget {
                             .isEmpty
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: EmptyCard(text: "Operations is "),
+                        child: EmptyCard(mainText: "Operations is ",text: "Empty",),
                       )
                     : Expanded(
                         child: Column(

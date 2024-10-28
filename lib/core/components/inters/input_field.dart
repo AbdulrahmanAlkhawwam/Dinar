@@ -23,7 +23,7 @@ class InputField extends StatelessWidget {
 
   /// this variable take you a wide control by Text Form Field input value
   ///
-  /// you can get value by controller [controller.text] or by [onChanged]
+  /// you can get value by controller [controller.mainText] or by [onChanged]
   /// function
   final TextEditingController? controller;
 
@@ -58,10 +58,10 @@ class InputField extends StatelessWidget {
   /// this variable made for the time which you want to input only [Integer] ,
   /// [Characters] , [password] ... etc
   ///
-  /// it's Nullable . so, the initial value is [text]
+  /// it's Nullable . so, the initial value is [mainText]
   final TextInputType? keyboardType;
 
-  /// hint style is the style of [text] which appear before Tap on text inter
+  /// hint style is the style of [mainText] which appear before Tap on text inter
   ///
   /// If null, defaults to a value derived from the base [TextStyle] for the
   /// input field and the current [Theme].

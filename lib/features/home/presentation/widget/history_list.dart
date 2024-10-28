@@ -19,7 +19,10 @@ class HistoryList extends StatelessWidget {
         if (state is OperationLoaded && state.operations.isEmpty) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: EmptyCard(text: "Operations is "),
+            child: EmptyCard(
+              mainText: "Operations is ",
+              text: "Empty",
+            ),
           );
         }
         return Column(

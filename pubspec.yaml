@@ -1,6 +1,6 @@
 name: Dinar
-description: "Money Management app"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: Money Management app.
+publish_to: none
 
 version: 1.0.0+1
 
