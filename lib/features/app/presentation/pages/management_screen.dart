@@ -69,24 +69,19 @@ class _ManagementScreenState extends State<ManagementScreen> {
             }
           } else {
             return Scaffold(
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Spacer(
-                    flex: 3,
-                  ),
-                  Center(child: SvgPicture.asset(Res.logo)),
-                  const Spacer(
-                    flex: 2,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(32),
-                    child: Text(
-                      "Dinar",
-                      style: context.textTheme.titleLarge,
+              body: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 30,
                     ),
-                  )
-                ],
+                    SvgPicture.asset(
+                      Res.logo,
+                      width: 133,
+                    ),
+                  ],
+                ),
               ),
             );
           }
