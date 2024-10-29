@@ -1,5 +1,4 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="84"
@@ -17,14 +16,11 @@
     <path
         android:pathData="M28.958,53.6H19.658V62.9C19.658,57.764 23.822,53.6 28.958,53.6Z"
         android:fillColor="#00B380"
-        android:fillType="evenOdd"
-        tools:targetApi="n" />
+        android:fillType="evenOdd"/>
     <group>
       <clip-path
           android:pathData="M28.958,53.6H19.658V62.9C19.658,57.764 23.822,53.6 28.958,53.6Z"
-          android:fillType="evenOdd"
-          tools:ignore="VectorRaster"
-          tools:targetApi="n" />
+          android:fillType="evenOdd"/>
       <path
           android:pathData="M19.658,53.6V52.6H18.658V53.6H19.658ZM19.658,54.6H28.958V52.6H19.658V54.6ZM20.658,62.9V53.6H18.658V62.9H20.658ZM20.658,62.9C20.658,58.316 24.374,54.6 28.958,54.6V52.6C23.269,52.6 18.658,57.212 18.658,62.9H20.658Z"
           android:fillColor="#00B380"/>
@@ -40,8 +36,7 @@
     <path
         android:pathData="M19.158,35.7H9.858V45C9.858,39.864 14.022,35.7 19.158,35.7Z"
         android:fillColor="#68E571"
-        android:fillType="evenOdd"
-        tools:targetApi="n" />
+        android:fillType="evenOdd"/>
     <path
         android:strokeWidth="1"
         android:pathData="M9.358,33.599V43.15L5.096,34.374L9.358,33.599Z"
