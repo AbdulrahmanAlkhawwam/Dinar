@@ -26,13 +26,7 @@ class _OperationsScreenState extends State<OperationsScreen>
 
   @override
   void initState() {
-    if (widget.wallet != null) {
-      context
-          .read<OperationBloc>()
-          .add(GetWalletOperationEvent(wallet: widget.wallet!));
-    } else {
-      context.read<OperationBloc>().add(LoadOperationsEvent());
-    }
+    context.read<OperationBloc>().add(LoadOperationsEvent());
     super.initState();
   }
 
@@ -104,13 +98,13 @@ class _OperationsScreenState extends State<OperationsScreen>
               ],
             ),
           );
-        } else if (state is WalletOperationLoaded) {
-          final incomes = state.operations
-              .where((element) => element.type == OperationType.income)
-              .toList();
-          final payments = state.operations
-              .where((element) => element.type == OperationType.payment)
-              .toList();
+        } else if (state is OperationLoaded) {
+          // final incomes = state.operations
+          //     .where((element) => element.type == OperationType.income)
+          //     .toList();
+          // final payments = state.operations
+          //     .where((element) => element.type == OperationType.payment)
+          //     .toList();
           return DefaultTabController(
             length: 2,
             child: Column(
@@ -122,8 +116,15 @@ class _OperationsScreenState extends State<OperationsScreen>
                     fontWeight: FontWeight.w900,
                   ),
                   tabs: [
-                    Tab(text: "(${incomes.length}) incomes"),
-                    Tab(text: "(${payments.length}) payments"),
+                    Tab(
+                        text: "(${state.operations.where(
+                              (element) => element.type == OperationType.income,
+                            ).length}) incomes"),
+                    Tab(
+                        text: "(${state.operations.where(
+                              (element) =>
+                                  element.type == OperationType.payment,
+                            ).length}) payments"),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -134,8 +135,14 @@ class _OperationsScreenState extends State<OperationsScreen>
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: OperationItem(
                           operation: switch (this.index) {
-                            0 => incomes[index],
-                            _ => payments[index],
+                            0 => state.operations
+                                .where((element) =>
+                                    element.type == OperationType.income)
+                                .toList()[index],
+                            _ => state.operations
+                                .where((element) =>
+                                    element.type == OperationType.payment)
+                                .toList()[index],
                           },
                         ),
                       );
@@ -143,8 +150,16 @@ class _OperationsScreenState extends State<OperationsScreen>
                     separatorBuilder: (context, index) =>
                         const SizedBox(height: 15),
                     itemCount: switch (index) {
-                      0 => incomes.length,
-                      _ => payments.length,
+                      0 => state.operations
+                          .where(
+                              (element) => element.type == OperationType.income)
+                          .toList()
+                          .length,
+                      _ => state.operations
+                          .where(
+                              (element) => element.type == OperationType.income)
+                          .toList()
+                          .length,
                     },
                   ),
                 ),

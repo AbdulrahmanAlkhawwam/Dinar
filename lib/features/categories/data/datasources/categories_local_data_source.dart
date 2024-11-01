@@ -1,6 +1,4 @@
-import 'package:Dinar/core/errors/failures.dart';
-import 'package:sqflite/sqflite.dart';
-
+import '../../../../core/errors/exceptions.dart';
 import '../models/category_model.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../../core/constants/strings.dart';
@@ -26,7 +24,6 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
       where: "type = ?",
       args: [type.name],
     );
-    print("categories map is ::: ${categoriesMap.toList().toString()}");
     final categories = categoriesMap
         .map((category) => CategoryModel.fromMap(category))
         .toList();
@@ -44,10 +41,16 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
 
   @override
   Future<void> deleteCategory(String id) async {
-    await db.delete(
-      categoriesTable,
-      where: "id = ?",
-      args: [id],
-    );
+    final categoryOperation =
+        await db.getData(categoriesTable, where: "category_id = ?", args: [id]);
+    if (categoryOperation.isNotEmpty) {
+      await db.delete(
+        categoriesTable,
+        where: "id = ?",
+        args: [id],
+      );
+    } else {
+      throw DeleteException("you can't delete this category !");
+    }
   }
 }

@@ -1,10 +1,11 @@
-import 'package:Dinar/core/components/widgets/screen.dart';
 import 'package:Dinar/core/constants/strings.dart';
+import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
-import 'package:loader_overlay/loader_overlay.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../../core/constants/res.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../onboarding/presentation/pages/onboarding_screen.dart';
@@ -36,11 +37,6 @@ class _ManagementScreenState extends State<ManagementScreen> {
       listeners: [
         BlocListener<CategoriesBloc, CategoriesState>(
           listener: (context, state) {
-            if (state is CategoriesLoading) {
-              context.loaderOverlay.show();
-            } else {
-              context.loaderOverlay.hide();
-            }
             if (state is CategoriesLoaded) {
               payCategories = context.read<CategoriesBloc>().paymentCategories;
               incCategories = context.read<CategoriesBloc>().incomeCategories;
@@ -50,11 +46,6 @@ class _ManagementScreenState extends State<ManagementScreen> {
         ),
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
-            if (state is WalletsLoading) {
-              context.loaderOverlay.show();
-            } else {
-              context.loaderOverlay.hide();
-            }
             if (state is WalletsLoaded) {
               userWallets = context.read<WalletsBloc>().wallets;
               setState(() => _walletsLoaded = true);
@@ -77,7 +68,22 @@ class _ManagementScreenState extends State<ManagementScreen> {
               return HomeScreen();
             }
           } else {
-            return Screen(child: Container());
+            return Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    SvgPicture.asset(
+                      Res.logo,
+                      width: 133,
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
         },
       ),

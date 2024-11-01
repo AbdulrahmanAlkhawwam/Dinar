@@ -1,7 +1,8 @@
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:Dinar/features/operations/presentation/pages/add_operation_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/utils/app_context.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../../operations/presentation/pages/add_operation_screen.dart';
 
 class AddCard extends StatelessWidget {
   const AddCard({super.key});

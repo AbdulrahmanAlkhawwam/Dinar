@@ -12,6 +12,8 @@ class TagCard extends StatelessWidget {
 
   /// this [text] is the text which written on [card]
   final String text;
+
+  /// in some time you should don't appear the tag card so this handle it
   final bool isAppear;
 
   const TagCard(

@@ -7,6 +7,10 @@ abstract class AppException implements Exception {
   String toString() => "$runtimeType($message)";
 }
 
+class DeleteException extends AppException {
+  DeleteException(super.message);
+}
+
 class CacheException extends AppException {
   CacheException(super.message);
 }

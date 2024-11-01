@@ -26,19 +26,14 @@ class WalletItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context
-            .read<OperationBloc>()
-            .add(GetWalletOperationEvent(wallet: wallet));
-        context.push(MaterialPageRoute(
-          builder: (context) => WalletDetailsScreen(wallet: wallet),
-        ));
-      },
+      onTap: () => context.push(MaterialPageRoute(
+        builder: (context) => WalletDetailsScreen(wallet: wallet),
+      )),
       child: ListCard(
         isHorizontal: isHorizontal,
         child: isHorizontal
             ? Padding(
-                padding: EdgeInsets.all(24),
+                padding: EdgeInsets.all(8),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

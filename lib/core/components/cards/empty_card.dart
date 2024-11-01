@@ -1,15 +1,19 @@
-import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants/res.dart';
+import '../../utils/app_context.dart';
 
 class EmptyCard extends StatelessWidget {
-  /// you should make text like this [income is] or any thing like this
+  /// you should make text which write in blue color
+  final String mainText;
+
+  /// you should make text which write in green color
   final String text;
 
   const EmptyCard({
     super.key,
+    required this.mainText,
     required this.text,
   });
 
@@ -52,10 +56,10 @@ class EmptyCard extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(text,
+              Text(mainText,
                   style: context.textTheme.titleSmall
                       ?.copyWith(color: context.colors.tertiary)),
-              Text("Empty",
+              Text(text,
                   style: context.textTheme.titleSmall
                       ?.copyWith(color: context.colors.secondary)),
             ],

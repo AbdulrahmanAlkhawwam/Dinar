@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:Dinar/features/home/presentation/pages/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -53,23 +52,15 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
 
     return BlocListener<OperationBloc, OperationState>(
       listener: (context, state) {
-        // if (state is OperationLoading) {
-        // context.loaderOverlay.show();
-        // } else {
-        // context.loaderOverlay.hide();
+        // if (state is OperationAdded) {
+        //   context.pop();
         // }
-        if (state is OperationAdded) {
-          context.pushReplacement(MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ));
-        }
         if (state is OperationError) {
           context.showErrorSnackBar(massage: state.message.value);
         }
       },
       child: Scaffold(
         body: Padding(
-          // TODO : you should fix padding , when you open keyboard
           padding: EdgeInsets.fromLTRB(24, 32, 24, 32),
           child: Form(
             key: globalKey,
@@ -131,13 +122,6 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
                   controller: valueController,
                 ),
                 const SizedBox(height: 24),
-                // InputField(
-                //   isEnabled: true,
-                //   hint: "Description",
-                //   helperText: "not necessary !",
-                //   controller: descriptionController,
-                // ),
-                // const SizedBox(height: 16),
                 MenuButton(
                   selected: selectedCategory?.name,
                   text: categoriesTable,
@@ -157,20 +141,16 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
                 const SizedBox(height: 24),
                 Center(
                   child: SecondaryButton(
-                    text: "",
+                    text: selectedDate != null
+                        ? DateFormat("yyyy-MM-dd").format(selectedDate!)
+                        : "Get Time",
                     onPressed: () async {
-                      setState(() {});
                       selectedDate = await showDialog(
                         context: context,
                         builder: (ctx) => DateDialog(),
                       );
+                      setState(() {});
                     },
-                    child: Text(
-                      selectedDate != null
-                          ? DateFormat("yyyy-MM-dd").format(selectedDate!)
-                          : "Get Time",
-                      style: context.textTheme.bodyMedium,
-                    ),
                   ),
                 ),
                 const Spacer(),
@@ -196,6 +176,8 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
                                 ),
                               ),
                             );
+                      } else {
+                        context.showErrorSnackBar(massage: "Enter all Field !");
                       }
                     },
                   ),

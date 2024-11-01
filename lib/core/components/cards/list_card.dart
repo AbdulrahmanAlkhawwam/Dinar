@@ -1,8 +1,14 @@
-import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/app_context.dart';
+
 class ListCard extends StatelessWidget {
+
+  /// [child] which is in the card like widget
   final Widget child;
+
+  /// [isHorizontal] is true when [Axis] is [Axis.horizontal] and is false when
+  /// it's [Axis.vertical]
   final bool isHorizontal;
 
   const ListCard({

@@ -33,8 +33,6 @@ class OperationBloc extends Bloc<OperationEvent, OperationState> {
   }) : super(OperationInitial()) {
     on<LoadOperationsEvent>(_loadOperations);
     on<AddOperationEvent>(_addOperation);
-    on<GetCategoryOperationEvent>(_getCategoryOperation);
-    on<GetWalletOperationEvent>(_getWalletOperation);
     on<DeleteOperationEvent>(_deleteOperation);
   }
 
@@ -61,26 +59,6 @@ class OperationBloc extends Bloc<OperationEvent, OperationState> {
       (id) => emit(OperationAdded()),
     );
     add(LoadOperationsEvent());
-  }
-
-  FutureOr<void> _getCategoryOperation(
-      GetCategoryOperationEvent event, Emitter<OperationState> emit) async {
-    emit(OperationLoading());
-    final response = await loadCategoryOperationUc.call(param: event.category);
-    response.fold(
-      (failure) => emit(OperationError(message: Message.fromFailure(failure))),
-      (operation) => emit(CategoryOperationLoaded(operations: operation)),
-    );
-  }
-
-  FutureOr<void> _getWalletOperation(
-      GetWalletOperationEvent event, Emitter<OperationState> emit) async {
-    emit(OperationLoading());
-    final response = await loadWalletOperationUc.call(param: event.wallet);
-    response.fold(
-      (failure) => emit(OperationError(message: Message.fromFailure(failure))),
-      (operation) => emit(WalletOperationLoaded(operations: operation)),
-    );
   }
 
   FutureOr<void> _deleteOperation(

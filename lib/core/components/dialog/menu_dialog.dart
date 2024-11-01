@@ -22,49 +22,39 @@ class MenuDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: context.colors.primaryContainer,
-      shape: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(semicircle),
-        borderSide: BorderSide(
-          color: context.colors.primary,
-          width: border,
-        ),
-      ),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(semicircle)),
       alignment: Alignment.center,
       child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.headlineMedium,
-                ),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              for (var item in menu)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-                  child: Divider(
-                    color: context.colors.primary,
-                    thickness: border,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: ListTile(
+                    title: Text(item),
+                    onTap: () {
+                      onTap(item);
+                      context.pop();
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    splashColor: context.colors.primary,
                   ),
                 ),
-                for (var item in menu)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ListTile(
-                      title: Text(item),
-                      onTap: () {
-                        onTap(item);
-                        context.pop();
-                      },
-                      shape: StadiumBorder(),
-                      splashColor: context.colors.primary,
-                    ),
-                  ),
-              ],
-            ),
-          )),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
