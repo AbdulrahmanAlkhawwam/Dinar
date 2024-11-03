@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:Dinar/features/home/presentation/pages/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_gradient_text/flutter_gradient_text.dart';
@@ -52,9 +50,10 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
 
     return BlocListener<OperationBloc, OperationState>(
       listener: (context, state) {
-        // if (state is OperationAdded) {
-        //   context.pop();
-        // }
+        if (state is OperationAdded) {
+          context.pushReplacement(
+              MaterialPageRoute(builder: (context) => HomeScreen()));
+        }
         if (state is OperationError) {
           context.showErrorSnackBar(massage: state.message.value);
         }

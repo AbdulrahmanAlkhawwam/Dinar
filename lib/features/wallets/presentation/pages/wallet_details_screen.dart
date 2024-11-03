@@ -26,6 +26,9 @@ class WalletDetailsScreen extends StatelessWidget {
         if (state is WalletDeleted && state.wallet.id == wallet.id) {
           context.pop();
         }
+        if (state is WalletsError) {
+          context.showErrorSnackBar(massage: state.message.value.toString());
+        }
       },
       child: BlocBuilder<OperationBloc, OperationState>(
         builder: (context, state) {
@@ -33,9 +36,10 @@ class WalletDetailsScreen extends StatelessWidget {
             double sum = 0;
             if (state is OperationLoaded) {
               for (var operation in state.operations) {
-                if (operation.type == OperationType.income) {
+                if (operation.type == OperationType.income &&
+                    operation.walletId == wallet.id) {
                   sum += operation.value;
-                } else {
+                } else if (operation.walletId == wallet.id) {
                   sum -= operation.value;
                 }
               }
@@ -56,9 +60,9 @@ class WalletDetailsScreen extends StatelessWidget {
                             category: null,
                             wallet: wallet));
                     if (result) {
-                      context.read<WalletsBloc>().add(
-                            DeleteWalletEvent(wallet: wallet),
-                          );
+                      context
+                          .read<WalletsBloc>()
+                          .add(DeleteWalletEvent(wallet: wallet));
                     }
                   },
                   icon: Icon(
@@ -126,7 +130,7 @@ class WalletDetailsScreen extends StatelessWidget {
                             const SizedBox(height: 8),
                             switch (state) {
                               OperationError _ => ErrorContent(
-                                  message: 'Error',
+                                  message: "Error",
                                   errorMessage: Text(state.message.value),
                                 ),
                               OperationLoaded _ => Expanded(

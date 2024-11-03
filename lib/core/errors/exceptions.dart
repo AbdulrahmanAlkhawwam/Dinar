@@ -9,6 +9,11 @@ abstract class AppException implements Exception {
 
 class DeleteException extends AppException {
   DeleteException(super.message);
+
+  @override
+  String toString() {
+    return message;
+  }
 }
 
 class CacheException extends AppException {

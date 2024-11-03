@@ -35,9 +35,9 @@ class WalletsScreen extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is WalletsLoading) {
-          context.loaderOverlay.show();
+          // context.loaderOverlay.show();
         } else {
-          context.loaderOverlay.hide();
+          // context.loaderOverlay.hide();
         }
         return Scaffold(
           appBar: AppBar(

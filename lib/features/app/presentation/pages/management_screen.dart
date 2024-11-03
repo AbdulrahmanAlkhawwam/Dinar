@@ -68,22 +68,7 @@ class _ManagementScreenState extends State<ManagementScreen> {
               return HomeScreen();
             }
           } else {
-            return Scaffold(
-              body: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SvgPicture.asset(
-                      Res.logo,
-                      width: 133,
-                    ),
-                  ],
-                ),
-              ),
-            );
+            return Scaffold();
           }
         },
       ),

@@ -28,10 +28,6 @@ class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
     );
     final wallets =
         walletsMap.map((wallet) => WalletModel.fromMap(wallet)).toList();
-    for (var w in wallets) {
-      w.incomesTotal = await walletIncomes(w.id!);
-      w.paymentsTotal = await walletPayments(w.id!);
-    }
     return wallets;
   }
 
@@ -57,34 +53,5 @@ class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
     } else {
       throw DeleteException("you can't delete this wallet !");
     }
-  }
-
-  Future<double> walletIncomes(String id) async {
-    final incomesResult = await db.sum(
-      "value",
-      operationsTable,
-      where: "wallet_id = ? AND type = ?",
-      args: [id, OperationType.income.name],
-    );
-    final incomes = (incomesResult.isNotEmpty
-            ? incomesResult.first["SUM(value)"] as double?
-            : 0.0) ??
-        0.0;
-    return incomes;
-  }
-
-  Future<double> walletPayments(String id) async {
-    final paymentsResult = await db.sum(
-      "value",
-      operationsTable,
-      where: "wallet_id = ? AND type = ?",
-      args: [id, OperationType.payment.name],
-    );
-    final payments = (paymentsResult.isNotEmpty
-            ? paymentsResult.first["SUM(value)"] as double?
-            : 0.0) ??
-        0.0;
-
-    return payments;
   }
 }

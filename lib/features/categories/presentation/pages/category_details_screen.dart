@@ -25,6 +25,9 @@ class CategoryDetailsScreen extends StatelessWidget {
         if (state is CategoryDeleted && category.id == state.category.id) {
           context.pop();
         }
+        if (state is CategoriesError) {
+          context.showErrorSnackBar(massage: state.message.value.toString());
+        }
       },
       child: BlocBuilder<OperationBloc, OperationState>(
         builder: (context, state) {
@@ -32,7 +35,9 @@ class CategoryDetailsScreen extends StatelessWidget {
             double sum = 0;
             if (state is OperationLoaded) {
               for (var operation in state.operations) {
-                sum += operation.value;
+                if (operation.categoryId == category.id) {
+                  sum += operation.value;
+                }
               }
             }
             return sum;
@@ -102,7 +107,10 @@ class CategoryDetailsScreen extends StatelessWidget {
                             .isEmpty
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: EmptyCard(mainText: "Operations is ",text: "Empty",),
+                        child: EmptyCard(
+                          mainText: "Operations is ",
+                          text: "Empty",
+                        ),
                       )
                     : Expanded(
                         child: Column(

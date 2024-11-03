@@ -1,6 +1,5 @@
 import 'package:Dinar/features/app/domain/entities/operation_type.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_context.dart';
@@ -35,9 +34,9 @@ class _OperationsScreenState extends State<OperationsScreen>
     return BlocConsumer<OperationBloc, OperationState>(
       listener: (context, state) {
         if (state is OperationLoading) {
-          context.loaderOverlay.show();
+          // context.loaderOverlay.show();
         } else {
-          context.loaderOverlay.hide();
+          // context.loaderOverlay.hide();
         }
         if (state is OperationError) {
           context.showErrorSnackBar(massage: state.message.value);
@@ -53,10 +52,20 @@ class _OperationsScreenState extends State<OperationsScreen>
           return Center(child: CircularProgressIndicator());
         } else if (state is OperationLoaded) {
           final incomes = state.operations
-              .where((element) => element.type == OperationType.income)
+              .where(
+                (element) => widget.wallet == null
+                    ? element.type == OperationType.income
+                    : (element.type == OperationType.income &&
+                        element.walletId == widget.wallet!.id),
+              )
               .toList();
           final payments = state.operations
-              .where((element) => element.type == OperationType.payment)
+              .where(
+                (element) => widget.wallet == null
+                    ? element.type == OperationType.payment
+                    : (element.type == OperationType.payment &&
+                        element.walletId == widget.wallet!.id),
+              )
               .toList();
           return DefaultTabController(
             length: 2,

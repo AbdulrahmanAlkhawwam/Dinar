@@ -47,31 +47,10 @@ class WalletItem extends StatelessWidget {
                 ),
               )
             : Padding(
-                padding: const EdgeInsets.all(8),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              wallet.name,
-                              style: context.textTheme.titleMedium,
-                            ),
-                            Text(
-                              "balance : ${(wallet.incomesTotal! - wallet.paymentsTotal!) ?? 0.toInt()}",
-                              style: context.textTheme.labelMedium?.copyWith(
-                                color: context.colors.secondary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  wallet.name,
+                  style: context.textTheme.titleLarge?.copyWith(height: 0),
                 ),
               ),
       ),
