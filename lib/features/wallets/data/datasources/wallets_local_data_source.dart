@@ -1,12 +1,7 @@
-import 'dart:convert';
-
-import 'package:Dinar/core/errors/exceptions.dart';
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
-import 'package:sqflite/sqflite.dart';
-
-import '../models/wallet_model.dart';
 import '../../../../core/constants/strings.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/helpers/database_helper.dart';
+import '../models/wallet_model.dart';
 
 abstract class WalletsLocalDataSource {
   Future<List<WalletModel>> loadWallets();
@@ -42,8 +37,11 @@ class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
 
   @override
   Future<void> deleteWallet(String id) async {
-    final walletOperation =
-        await db.getData(operationsTable, where: "wallet_id = ?", args: [id]);
+    final walletOperation = await db.getData(
+      operationsTable,
+      where: "wallet_id = ?",
+      args: [id],
+    );
     if (walletOperation.isEmpty) {
       await db.delete(
         walletsTable,

@@ -1,8 +1,10 @@
-import 'package:Dinar/features/app/domain/entities/operation_type.dart';
+import 'package:Dinar/core/components/cards/sort_card.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_context.dart';
+import '../../../app/domain/entities/operation_type.dart';
 import '../../../wallets/domain/entities/wallet.dart';
 import '../manager/operation_bloc.dart';
 import '../widgets/operation_item.dart';
@@ -21,6 +23,9 @@ class OperationsScreen extends StatefulWidget {
 
 class _OperationsScreenState extends State<OperationsScreen>
     with TickerProviderStateMixin {
+  final List<String> sorts = ["By Nothing", "By Date", "By Price", "By Name"];
+  int selectedSort = 0;
+
   int index = 0;
 
   @override
@@ -33,19 +38,12 @@ class _OperationsScreenState extends State<OperationsScreen>
   Widget build(BuildContext context) {
     return BlocConsumer<OperationBloc, OperationState>(
       listener: (context, state) {
-        if (state is OperationLoading) {
-          // context.loaderOverlay.show();
-        } else {
-          // context.loaderOverlay.hide();
+        if (state is OperationAdded || state is OperationDeleted) {
+          context.read<OperationBloc>().add(LoadOperationsEvent());
         }
         if (state is OperationError) {
           context.showErrorSnackBar(massage: state.message.value);
         }
-        // TODO : fix this
-        // if (state is OperationDeleted) {
-        //   context.showSuccessSnackBar(
-        //       massage: "${state.category.name} : was deleted");
-        // }
       },
       builder: (context, state) {
         if (state is OperationLoading) {
@@ -82,7 +80,24 @@ class _OperationsScreenState extends State<OperationsScreen>
                     Tab(text: "(${payments.length}) payments"),
                   ],
                 ),
-                const SizedBox(height: 16),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  child: SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => SortCard(
+                        onTap: () => setState(() => selectedSort = index),
+                        text: sorts[index],
+                        isSelected: index == selectedSort,
+                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 4),
+                      itemCount: sorts.length,
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {
@@ -108,12 +123,6 @@ class _OperationsScreenState extends State<OperationsScreen>
             ),
           );
         } else if (state is OperationLoaded) {
-          // final incomes = state.operations
-          //     .where((element) => element.type == OperationType.income)
-          //     .toList();
-          // final payments = state.operations
-          //     .where((element) => element.type == OperationType.payment)
-          //     .toList();
           return DefaultTabController(
             length: 2,
             child: Column(

@@ -4,7 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/components/widgets/skeleton.dart';
 import '../../../../core/utils/app_context.dart';
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import '../../../wallets/presentation/pages/wallets_screen.dart';
 import '../../../wallets/presentation/widgets/wallet_item.dart';
 

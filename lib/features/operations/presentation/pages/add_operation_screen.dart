@@ -9,13 +9,15 @@ import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/components/buttons/secondary_button.dart';
 import '../../../../core/components/dialog/date_dialog.dart';
 import '../../../../core/components/inters/input_field.dart';
+import '../../../../core/components/widgets/bounded_list_view.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../app/domain/entities/operation_type.dart';
 import '../../../categories/domain/entities/category.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import '../../domain/entities/operation.dart';
 import '../manager/operation_bloc.dart';
 
@@ -60,7 +62,7 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
       },
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.fromLTRB(24, 32, 24, 32),
+          padding: EdgeInsets.fromLTRB(24, 32, 24, 32 + context.bottomPadding),
           child: Form(
             key: globalKey,
             child: Column(
@@ -92,67 +94,77 @@ class _AddOperationScreenState extends State<AddOperationScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
-                InputField(
-                  isEnabled: true,
-                  hint: "Name",
-                  controller: nameController,
-                  validator: (value) {
-                    if (value == "" || value.trim() == "") {
-                      return "Name must not be empty";
-                    } else if (double.tryParse(value) != null) {
-                      return "Name must consist of letters";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24),
-                InputField(
-                  keyboardType: TextInputType.number,
-                  isEnabled: true,
-                  hint: "Price",
-                  validator: (value) {
-                    if (value == "" || value.trim() == "") {
-                      return "price must not be empty";
-                    } else if (double.tryParse(value) == null) {
-                      return "price must consist of numbers";
-                    }
-                    return null;
-                  },
-                  controller: valueController,
-                ),
-                const SizedBox(height: 24),
-                MenuButton(
-                  selected: selectedCategory?.name,
-                  text: categoriesTable,
-                  menu: categoryMenu.map((category) => category.name).toList(),
-                  onTap: (index) => setState(() => selectedCategory =
-                      categoryMenu
-                          .firstWhere((category) => category.name == index)),
-                ),
-                const SizedBox(height: 24),
-                MenuButton(
-                  selected: selectedWallet?.name,
-                  text: walletsTable,
-                  menu: walletMenu.map((wallet) => wallet.name).toList(),
-                  onTap: (index) => setState(() => selectedWallet =
-                      walletMenu.firstWhere((wallet) => wallet.name == index)),
-                ),
-                const SizedBox(height: 24),
-                Center(
-                  child: SecondaryButton(
-                    text: selectedDate != null
-                        ? DateFormat("yyyy-MM-dd").format(selectedDate!)
-                        : "Get Time",
-                    onPressed: () async {
-                      selectedDate = await showDialog(
-                        context: context,
-                        builder: (ctx) => DateDialog(),
-                      );
-                      setState(() {});
-                    },
+                Expanded(
+                  child: BoundedListView(
+                    children: [
+                      InputField(
+                        isEnabled: true,
+                        hint: "Name",
+                        controller: nameController,
+                        validator: (value) {
+                          if (value == "" || value.trim() == "") {
+                            return "Name must not be empty";
+                          } else if (double.tryParse(value) != null) {
+                            return "Name must consist of letters";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      InputField(
+                        keyboardType: TextInputType.number,
+                        isEnabled: true,
+                        hint: "Price",
+                        validator: (value) {
+                          if (value == "" || value.trim() == "") {
+                            return "price must not be empty";
+                          } else if (double.tryParse(value) == null) {
+                            return "price must consist of numbers";
+                          }
+                          return null;
+                        },
+                        controller: valueController,
+                      ),
+                      const SizedBox(height: 24),
+                      MenuButton(
+                        selected: selectedCategory?.name,
+                        text: categoriesTable,
+                        menu: categoryMenu
+                            .map((category) => category.name)
+                            .toList(),
+                        onTap: (index) => setState(() => selectedCategory =
+                            categoryMenu.firstWhere(
+                                (category) => category.name == index)),
+                      ),
+                      const SizedBox(height: 24),
+                      MenuButton(
+                        selected: selectedWallet?.name,
+                        text: walletsTable,
+                        menu: walletMenu.map((wallet) => wallet.name).toList(),
+                        onTap: (index) => setState(() => selectedWallet =
+                            walletMenu
+                                .firstWhere((wallet) => wallet.name == index)),
+                      ),
+                      const SizedBox(height: 24),
+                      Center(
+                        child: SecondaryButton(
+                          text: selectedDate != null
+                              ? DateFormat("yyyy-MM-dd").format(selectedDate!)
+                              : "Get Time",
+                          onPressed: () async {
+                            selectedDate = await showDialog(
+                              context: context,
+                              builder: (ctx) => DateDialog(),
+                            );
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(height: 24),
                 Center(
                   child: PrimaryButton(
                     text: "Add",

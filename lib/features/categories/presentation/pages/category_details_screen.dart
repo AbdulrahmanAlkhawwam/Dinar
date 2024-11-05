@@ -1,10 +1,10 @@
-import 'package:Dinar/core/components/cards/empty_card.dart';
-import 'package:Dinar/core/constants/strings.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/components/cards/empty_card.dart';
 import '../../../../core/components/widgets/error_content.dart';
 import '../../../../core/components/widgets/sheet.dart';
+import '../../../../core/constants/strings.dart';
 import '../../../../core/constants/styles.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
@@ -124,9 +124,15 @@ class CategoryDetailsScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             switch (state) {
-                              OperationError _ => ErrorContent(
-                                  message: 'Error',
-                                  errorMessage: Text(state.message.value),
+                              OperationError _ => Expanded(
+                                  child: ErrorContent(
+                                    message: state.message.value,
+                                    errorMessage: Text(
+                                      "ERROR",
+                                      style: context.textTheme.titleLarge
+                                          ?.copyWith(fontSize: 60, height: 0),
+                                    ),
+                                  ),
                                 ),
                               OperationLoaded _ => Expanded(
                                   child: ListView.separated(

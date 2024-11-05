@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../operations/presentation/manager/operation_bloc.dart';
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import '../widget/add_card.dart';
 import '../widget/category_list.dart';
 import '../widget/history_list.dart';

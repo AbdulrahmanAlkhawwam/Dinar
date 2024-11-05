@@ -12,7 +12,6 @@ import '../manager/operation_bloc.dart';
 class OperationItem extends StatelessWidget {
   final Operation operation;
   final bool isCategoryAppear;
-
   final bool isWalletAppear;
 
   const OperationItem({
@@ -46,6 +45,7 @@ class OperationItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
@@ -86,7 +86,7 @@ class OperationItem extends StatelessWidget {
                 ),
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   TagCard(
                     isAppear: isCategoryAppear,
@@ -101,15 +101,6 @@ class OperationItem extends StatelessWidget {
                     operationType: operation.type,
                     text: operation.wallet!.name,
                   ),
-                  // IconButton(
-                  //   onPressed: () => context
-                  //       .read<OperationBloc>()
-                  //       .add(DeleteOperationEvent(operation: operation)),
-                  //   icon: Icon(
-                  //     Icons.delete_outline,
-                  //     color: context.colors.error,
-                  //   ),
-                  // ),
                 ],
               ),
             ],

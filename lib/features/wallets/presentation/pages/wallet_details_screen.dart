@@ -12,7 +12,7 @@ import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart'
 import '../../../operations/presentation/manager/operation_bloc.dart';
 import '../../../operations/presentation/pages/operations_screen.dart';
 import '../../domain/entities/wallet.dart';
-import '../manager/wallets_bloc.dart';
+import '../manager/bloc/wallets_bloc.dart';
 
 class WalletDetailsScreen extends StatelessWidget {
   final Wallet wallet;
@@ -27,7 +27,7 @@ class WalletDetailsScreen extends StatelessWidget {
           context.pop();
         }
         if (state is WalletsError) {
-          context.showErrorSnackBar(massage: state.message.value.toString());
+          context.showSuccessSnackBar(massage: state.message.value.toString());
         }
       },
       child: BlocBuilder<OperationBloc, OperationState>(
@@ -129,9 +129,15 @@ class WalletDetailsScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             switch (state) {
-                              OperationError _ => ErrorContent(
-                                  message: "Error",
-                                  errorMessage: Text(state.message.value),
+                              OperationError _ => Expanded(
+                                  child: ErrorContent(
+                                    message: state.message.value,
+                                    errorMessage: Text(
+                                      "ERROR",
+                                      style: context.textTheme.titleLarge
+                                          ?.copyWith(fontSize: 60, height: 0),
+                                    ),
+                                  ),
                                 ),
                               OperationLoaded _ => Expanded(
                                   child: OperationsScreen(wallet: wallet),

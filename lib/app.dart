@@ -6,7 +6,7 @@ import 'core/service_locator/service_locator.dart';
 import 'features/app/presentation/pages/management_screen.dart';
 import 'features/categories/presentation/manager/categories_bloc.dart';
 import 'features/operations/presentation/manager/operation_bloc.dart';
-import 'features/wallets/presentation/manager/wallets_bloc.dart';
+import 'features/wallets/presentation/manager/bloc/wallets_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

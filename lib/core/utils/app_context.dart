@@ -1,25 +1,17 @@
-import 'package:Dinar/core/constants/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
+
+import '../constants/styles.dart';
+import '../constants/colors.dart';
 import '../constants/res.dart';
 
-import '../styles/colors/main_colors.dart';
-
 extension AppNavigation on BuildContext {
-  Future push(Route route) => Navigator.push(
-        this,
-        route,
-      );
+  Future push(Route route) => Navigator.push(this, route);
 
-  Future pushReplacement(Route route) => Navigator.pushReplacement(
-        this,
-        route,
-      );
+  Future pushReplacement(Route route) =>
+      Navigator.pushAndRemoveUntil(this, route, (route) => false);
 
-  void pop([value]) => Navigator.pop(
-        this,
-        value,
-      );
+  void pop([value]) => Navigator.pop(this, value);
 }
 
 extension AppTheme on BuildContext {
@@ -57,35 +49,34 @@ extension AppSnackbar on BuildContext {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
+        backgroundColor: colors.primaryContainer.withOpacity(0.7),
         shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: colors.primary,
-            width: 3,
-          ),
+          borderRadius: BorderRadius.circular(circle),
+          borderSide: BorderSide(color: colors.primary, width: 1),
         ),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(milliseconds: 1500),
         content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
               Res.success,
-              width: 36,
+              width: 32,
               color: colors.primary,
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 8),
             Expanded(
               child: Text(
+                textAlign: TextAlign.center,
                 massage ?? "Success",
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: textTheme.titleSmall?.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   color: colors.primary,
                 ),
               ),
             )
           ],
         ),
-        backgroundColor: colors.primaryContainer,
       ),
     );
   }
@@ -95,35 +86,34 @@ extension AppSnackbar on BuildContext {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
+        backgroundColor: colors.errorContainer.withOpacity(0.7),
         shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            color: colors.error,
-            width: 3,
-          ),
+          borderRadius: BorderRadius.circular(circle),
+          borderSide: BorderSide(color: colors.error, width: 1),
         ),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(milliseconds: 1500),
         content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
               Res.error,
-              width: 36,
+              width: 32,
               color: colors.error,
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 8),
             Expanded(
               child: Text(
+                textAlign: TextAlign.center,
                 massage ?? "Error",
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: textTheme.titleSmall?.copyWith(
+                style: textTheme.bodyMedium?.copyWith(
                   color: colors.error,
                 ),
               ),
             )
           ],
         ),
-        backgroundColor: colors.errorContainer,
       ),
     );
   }

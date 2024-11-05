@@ -1,16 +1,9 @@
 import 'package:Dinar/core/components/cards/list_card.dart';
 import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/operations/domain/entities/operation.dart';
 import 'package:Dinar/features/wallets/presentation/pages/wallet_details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/components/widgets/sheet.dart';
-import '../../../../core/constants/strings.dart';
-import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
-import '../../../operations/presentation/manager/operation_bloc.dart';
 import '../../domain/entities/wallet.dart';
-import '../manager/wallets_bloc.dart';
 
 class WalletItem extends StatelessWidget {
   final Wallet wallet;

@@ -5,7 +5,6 @@ import 'package:Dinar/features/categories/presentation/widgets/categories_bottom
 import 'package:Dinar/features/categories/presentation/widgets/category_item.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 
 import 'package:flutter/material.dart';
 
@@ -32,11 +31,6 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
     return BlocConsumer<CategoriesBloc, CategoriesState>(
       listener: (context, state) {
-        if (state is CategoriesLoading) {
-          context.loaderOverlay.show();
-        } else {
-          context.loaderOverlay.hide();
-        }
         if (state is CategoriesError) {
           context.showErrorSnackBar(massage: state.message.value);
         }

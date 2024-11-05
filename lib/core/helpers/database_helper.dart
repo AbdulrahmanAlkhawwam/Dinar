@@ -102,7 +102,7 @@ class DatabaseHelperImpl implements DatabaseHelper {
       description       TEXT                                  ,
       category_id       TEXT                                  NOT NULL,
       wallet_id         TEXT                                  NOT NULL,
-      date              TEXT                                  NOT NULL,
+      date              Date                                  NOT NULL,
       -- date like ( 2024-05-10 PM 10:45 000Z ) 
       type              TEXT                                  NOT NULL,
       -- type like ( income / payment )
@@ -117,4 +117,12 @@ class DatabaseHelperImpl implements DatabaseHelper {
       {String? where, List<dynamic>? args}) {
     return _db.rawQuery("SELECT SUM($column) FROM $table WHERE $where", args);
   }
+
+// @override
+// Future sum(String column, String table,
+//     {String? where, List<dynamic>? args}) async {
+//   return (await _db.rawQuery(
+//       "SELECT SUM($column) AS result FROM $table WHERE $where", args))
+//       .firstOrNull?["result"] ;
+// }
 }

@@ -1,16 +1,13 @@
 import 'package:Dinar/core/constants/strings.dart';
-import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/domain/entities/category.dart';
 import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
 import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/constants/res.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../onboarding/presentation/pages/onboarding_screen.dart';
 
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,8 +1,8 @@
-import '../../../../core/errors/exceptions.dart';
-import '../models/category_model.dart';
-import '../../../app/domain/entities/operation_type.dart';
 import '../../../../core/constants/strings.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/helpers/database_helper.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../models/category_model.dart';
 
 abstract class CategoriesLocalDataSource {
   Future<List<CategoryModel>> loadCategories(OperationType type);
@@ -41,9 +41,12 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
 
   @override
   Future<void> deleteCategory(String id) async {
-    final categoryOperation =
-        await db.getData(categoriesTable, where: "category_id = ?", args: [id]);
-    if (categoryOperation.isNotEmpty) {
+    final categoryOperation = await db.getData(
+      operationsTable,
+      where: "category_id = ?",
+      args: [id],
+    );
+    if (categoryOperation.isEmpty) {
       await db.delete(
         categoriesTable,
         where: "id = ?",

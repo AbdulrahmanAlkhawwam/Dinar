@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:Dinar/features/wallets/domain/use_cases/delete_wallet_uc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../domain/use_cases/load_wallets_uc.dart';
-import '../../domain/use_cases/add_wallet_uc.dart';
-import '../../domain/entities/wallet.dart';
-import '../../../../core/utils/message.dart';
+import '../../../../../core/utils/message.dart';
+import '../../../domain/entities/wallet.dart';
+import '../../../domain/use_cases/add_wallet_uc.dart';
+import '../../../domain/use_cases/delete_wallet_uc.dart';
+import '../../../domain/use_cases/load_wallets_uc.dart';
 
 part 'wallets_event.dart';
 
@@ -64,7 +64,6 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
   ) async {
     emit(WalletsLoading());
     if (event.wallet.id == null || event.wallet.id.toString() == "") {
-      print("wallet : ${event.wallet.name} don't have an id ;(");
       emit(WalletsError(message: Message("There are some error")));
     }
     final response =

@@ -1,12 +1,12 @@
 import 'dart:developer';
 
-import 'package:Dinar/core/constants/res.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/components/buttons/primary_button.dart';
 import '../../../../core/components/buttons/secondary_button.dart';
 import '../../../../core/components/widgets/sheet.dart';
+import '../../../../core/constants/res.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../categories/domain/entities/category.dart';
@@ -14,7 +14,7 @@ import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../categories/presentation/widgets/categories_bottom_sheet.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../wallets/domain/entities/wallet.dart';
-import '../../../wallets/presentation/manager/wallets_bloc.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import '../../../wallets/presentation/widgets/wallets_bottom_sheet.dart';
 import '../widgets/add_check_bottom_sheet.dart';
 
@@ -79,7 +79,11 @@ class _CreationScreenState extends State<CreationScreen> {
             backgroundColor: Color(0xFFEBFDE3),
             body: Stack(
               children: [
-                Image.asset(Res.onboarding),
+                Column(
+                  children: [
+                    Image.asset(Res.onboarding, fit: BoxFit.fitWidth),
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(
                       32, 32, 32, 48 + context.bottomPadding),

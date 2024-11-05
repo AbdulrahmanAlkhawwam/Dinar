@@ -1,17 +1,14 @@
-import 'package:Dinar/app.dart';
-import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
-import 'package:Dinar/features/wallets/presentation/widgets/wallet_item.dart';
-import 'package:Dinar/features/wallets/presentation/widgets/wallets_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loader_overlay/loader_overlay.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/components/widgets/sheet.dart';
 import '../../../../core/constants/strings.dart';
+import '../../../../core/utils/app_context.dart';
 import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
-import 'package:flutter/material.dart';
-
-import '../manager/wallets_bloc.dart';
+import '../../domain/entities/wallet.dart';
+import '../manager/bloc/wallets_bloc.dart';
+import '../widgets/wallet_item.dart';
+import '../widgets/wallets_bottom_sheet.dart';
 
 class WalletsScreen extends StatelessWidget {
   const WalletsScreen({super.key});
@@ -28,17 +25,8 @@ class WalletsScreen extends StatelessWidget {
         if (state is WalletsLoaded) {
           wallets = context.read<WalletsBloc>().wallets;
         }
-        if (state is WalletDeleted) {
-          context.showErrorSnackBar(
-              massage: "${state.wallet.name} :  was deleted");
-        }
       },
       builder: (context, state) {
-        if (state is WalletsLoading) {
-          // context.loaderOverlay.show();
-        } else {
-          // context.loaderOverlay.hide();
-        }
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
