@@ -11,15 +11,5 @@ class DeleteException extends AppException {
   DeleteException(super.message);
 
   @override
-  String toString() {
-    return message;
-  }
-}
-
-class CacheException extends AppException {
-  CacheException(super.message);
-}
-
-class ParsingException extends AppException {
-  ParsingException(super.message);
+  String toString() => message;
 }

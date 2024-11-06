@@ -1,3 +1,4 @@
+import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,6 @@ import '../../../../core/components/widgets/error_content.dart';
 import '../../../../core/components/widgets/sheet.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../../core/constants/styles.dart';
-import '../../../../core/utils/app_context.dart';
 import '../../../onboarding/presentation/widgets/delete_check_bottom_sheet.dart';
 import '../../../operations/presentation/manager/operation_bloc.dart';
 import '../../../operations/presentation/widgets/operation_item.dart';
@@ -108,9 +108,7 @@ class CategoryDetailsScreen extends StatelessWidget {
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: EmptyCard(
-                          mainText: "Operations is ",
-                          text: "Empty",
-                        ),
+                            mainText: "Operations is ", text: "Empty"),
                       )
                     : Expanded(
                         child: Column(

@@ -1,15 +1,13 @@
-import 'package:Dinar/core/components/widgets/sheet.dart';
 import 'package:Dinar/core/utils/app_context.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
-import 'package:Dinar/features/categories/presentation/widgets/categories_bottom_sheet.dart';
-import 'package:Dinar/features/categories/presentation/widgets/category_item.dart';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter/material.dart';
-
+import '../../../../core/components/widgets/sheet.dart';
 import '../../../onboarding/presentation/widgets/add_check_bottom_sheet.dart';
+import '../../domain/entities/category.dart';
 import '../manager/categories_bloc.dart';
+import '../widgets/categories_bottom_sheet.dart';
+import '../widgets/category_item.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});

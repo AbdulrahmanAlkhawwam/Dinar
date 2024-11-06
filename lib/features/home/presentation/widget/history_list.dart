@@ -1,10 +1,8 @@
-import 'package:Dinar/core/components/cards/empty_card.dart';
-import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
-import 'package:Dinar/features/wallets/presentation/manager/bloc/wallets_bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/components/cards/empty_card.dart';
 import '../../../../core/components/widgets/skeleton.dart';
 import '../../../../core/utils/app_context.dart';
 import '../../../history/presentation/pages/history_screen.dart';
@@ -61,8 +59,8 @@ class HistoryList extends StatelessWidget {
                       Expanded(
                         child: ListView.separated(
                           physics: RangeMaintainingScrollPhysics(),
-                          itemBuilder: (context, index) => OperationItem(
-                              operation: state.operations[index]),
+                          itemBuilder: (context, index) =>
+                              OperationItem(operation: state.operations[index]),
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 8),
                           itemCount: state.operations.length,

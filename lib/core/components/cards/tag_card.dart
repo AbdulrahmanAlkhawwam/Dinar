@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/app/domain/entities/operation_type.dart';
 import '../../constants/styles.dart';
 import '../../utils/app_context.dart';
+import '../../../features/app/domain/entities/operation_type.dart';
 
 class TagCard extends StatelessWidget {
-  /// this variable is made for know what is the color of [card]
-  /// if [operationType] is equal [operation] this mean it will be green color
-  /// if [operationType] is equal [payment] this mean it will be red color
   final OperationType operationType;
-
-  /// this [text] is the text which written on [card]
   final String text;
-
-  /// in some time you should don't appear the tag card so this handle it
   final bool isAppear;
 
-  const TagCard(
-      {super.key,
-      required this.operationType,
-      required this.text,
-      this.isAppear = true});
+  const TagCard({
+    super.key,
+    required this.operationType,
+    required this.text,
+    this.isAppear = true,
+  });
 
   @override
   Widget build(BuildContext context) {

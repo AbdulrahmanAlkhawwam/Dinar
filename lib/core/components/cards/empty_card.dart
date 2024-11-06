@@ -1,14 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 import '../../constants/res.dart';
 import '../../utils/app_context.dart';
 
 class EmptyCard extends StatelessWidget {
-  /// you should make text which write in blue color
   final String mainText;
-
-  /// you should make text which write in green color
   final String text;
 
   const EmptyCard({
@@ -33,20 +30,23 @@ class EmptyCard extends StatelessWidget {
               children: [
                 const Spacer(),
                 ClipRRect(
-                    borderRadius:
-                        BorderRadius.only(bottomLeft: Radius.circular(10)),
-                    child: SvgPicture.asset(Res.emptyCard)),
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(10)),
+                  child: SvgPicture.asset(Res.emptyCard),
+                ),
               ],
             ),
             const Spacer(),
             Column(
               children: [
                 Transform.rotate(
-                    angle: 45 * 3.1415926535,
-                    child: ClipRRect(
-                        borderRadius:
-                            BorderRadius.only(bottomLeft: Radius.circular(10)),
-                        child: SvgPicture.asset(Res.emptyCard))),
+                  angle: 45 * 3.1415926535,
+                  child: ClipRRect(
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(10)),
+                    child: SvgPicture.asset(Res.emptyCard),
+                  ),
+                ),
                 const Spacer()
               ],
             ),
@@ -56,12 +56,16 @@ class EmptyCard extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(mainText,
-                  style: context.textTheme.titleSmall
-                      ?.copyWith(color: context.colors.tertiary)),
-              Text(text,
-                  style: context.textTheme.titleSmall
-                      ?.copyWith(color: context.colors.secondary)),
+              Text(
+                mainText,
+                style: context.textTheme.titleSmall
+                    ?.copyWith(color: context.colors.tertiary),
+              ),
+              Text(
+                text,
+                style: context.textTheme.titleSmall
+                    ?.copyWith(color: context.colors.secondary),
+              ),
             ],
           ),
         )

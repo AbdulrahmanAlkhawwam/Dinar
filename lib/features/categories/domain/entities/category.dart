@@ -19,23 +19,14 @@ class Category {
     id ??= "cat--${uuid.v4()}";
   }
 
-  Category copyWith({
-    String? name,
-    OperationType? type,
-  }) {
-    return Category(
-      name: name ?? this.name,
-      type: type ?? this.type,
-    );
-  }
+  Category copyWith({String? name, OperationType? type}) =>
+      Category(name: name ?? this.name, type: type ?? this.type);
 
   @override
-  String toString() {
-    return "category {"
-        "id : $id ,"
-        "name : $name ,"
-        "type : $type ,"
-        "balance : $balance"
-        "}";
-  }
+  String toString() => "category {"
+      "id : $id ,"
+      "name : $name ,"
+      "type : $type ,"
+      "balance : $balance"
+      "}";
 }

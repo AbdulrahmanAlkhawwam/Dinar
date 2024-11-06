@@ -2,7 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 import './colors.dart';
-import '../constants/styles.dart';
+import './styles.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => _theme(lightColorScheme, lightGradient);
@@ -20,7 +20,6 @@ class AppTheme {
       textButtonTheme: _textButtonTheme(colors),
       inputDecorationTheme: _inputDecorationTheme(colors),
       datePickerTheme: _datePickerTheme(colors),
-      // timePickerTheme: _timePickerTheme(colors),
       iconButtonTheme: IconButtonThemeData(
         style: ButtonStyle(
           fixedSize: WidgetStatePropertyAll(Size(24, 24)),
@@ -78,12 +77,9 @@ class AppTheme {
           width: 3,
         ),
       ),
-      hintStyle: _textTheme(colors).bodyMedium?.copyWith(
-            color: colors.onSurface,
-          ),
-      errorStyle: _textTheme(colors).bodySmall?.copyWith(
-            color: colors.error,
-          ),
+      hintStyle:
+          _textTheme(colors).bodyMedium?.copyWith(color: colors.onSurface),
+      errorStyle: _textTheme(colors).bodySmall?.copyWith(color: colors.error),
     );
   }
 
@@ -125,36 +121,6 @@ class AppTheme {
       ),
     );
   }
-
-  // static _timePickerTheme(ColorScheme colors) {
-  //   return TimePickerThemeData(
-  //     backgroundColor: colors.surface,
-  //     dialBackgroundColor: colors.primaryContainer,
-  //     dayPeriodColor: colors.primary.withOpacity(0.25),
-  //     dayPeriodTextColor: colors.onPrimaryContainer,
-  //     dayPeriodTextStyle: _textTheme(colors).titleSmall,
-  //     hourMinuteColor: colors.primary.withOpacity(0.25),
-  //     dialHandColor: colors.primary,
-  //     dayPeriodBorderSide: BorderSide(
-  //       color: colors.onPrimaryContainer,
-  //     ),
-  //     dialTextStyle: _textTheme(colors).bodySmall,
-  //     timeSelectorSeparatorColor:
-  //         WidgetStatePropertyAll(colors.onPrimaryContainer),
-  //     confirmButtonStyle: ButtonStyle(
-  //       fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
-  //       textStyle: WidgetStatePropertyAll(
-  //         _textTheme(colors).labelMedium,
-  //       ),
-  //     ),
-  //     cancelButtonStyle: ButtonStyle(
-  //       fixedSize: WidgetStatePropertyAll(Size(double.nan, double.minPositive)),
-  //       textStyle: WidgetStatePropertyAll(
-  //         _textTheme(colors).labelMedium,
-  //       ),
-  //     ),
-  //   );
-  // }
 
   static TextTheme _textTheme(ColorScheme colors) {
     return TextTheme(

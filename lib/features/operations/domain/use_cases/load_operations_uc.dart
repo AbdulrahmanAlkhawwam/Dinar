@@ -12,7 +12,6 @@ class LoadOperationsUc extends UseCaseNoParam<List<Operation>> {
   LoadOperationsUc({required this.repository});
 
   @override
-  Future<Either<Failure, List<Operation>>> call() {
-    return repository.loadOperations();
-  }
+  Future<Either<Failure, List<Operation>>> call() async =>
+      await repository.loadOperations();
 }

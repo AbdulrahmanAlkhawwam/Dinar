@@ -17,21 +17,13 @@ class Wallet {
     id ??= "wal--${uuid.v4()}";
   }
 
-  Wallet copyWith({
-    String? name,
-  }) {
-    return Wallet(
-      name: name ?? this.name,
-    );
-  }
+  Wallet copyWith({String? name}) => Wallet(name: name ?? this.name);
 
   @override
-  String toString() {
-    return "wallet { "
-        "id : $id ,"
-        "name : $name ,"
-        "incomes : $incomesTotal ,"
-        "payments : $incomesTotal "
-        "}";
-  }
+  String toString() => "wallet { "
+      "id : $id ,"
+      "name : $name ,"
+      "incomes : $incomesTotal ,"
+      "payments : $incomesTotal "
+      "}";
 }

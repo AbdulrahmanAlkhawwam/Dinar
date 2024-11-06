@@ -21,8 +21,6 @@ final class OperationLoaded extends OperationState {
   });
 }
 
-final class OperationAdding extends OperationState {}
-
 final class OperationAdded extends OperationState {}
 
 final class OperationDeleted extends OperationState {

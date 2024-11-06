@@ -21,10 +21,7 @@ import '../widgets/add_check_bottom_sheet.dart';
 class CreationScreen extends StatefulWidget {
   final String title;
 
-  const CreationScreen({
-    super.key,
-    required this.title,
-  });
+  const CreationScreen({super.key, required this.title});
 
   @override
   State<CreationScreen> createState() => _CreationScreenState();
@@ -136,7 +133,7 @@ class _CreationScreenState extends State<CreationScreen> {
                                           ),
                                         );
                                   } else {
-                                    log("value not valid :: wallet : ${wallet.toString()} | category : ${category.toString()}");
+                                    // this should not be
                                   }
                                 }
                               },

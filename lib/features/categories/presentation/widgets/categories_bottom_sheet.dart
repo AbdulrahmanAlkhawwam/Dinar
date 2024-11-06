@@ -1,12 +1,12 @@
 import 'package:Dinar/core/constants/strings.dart';
+import 'package:Dinar/core/utils/app_context.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/category.dart';
-import '../../../app/domain/entities/operation_type.dart';
-import '../../../../core/utils/app_context.dart';
 import '../../../../core/components/buttons/menu_button.dart';
-import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
+import '../../../../core/components/inters/input_field.dart';
+import '../../../app/domain/entities/operation_type.dart';
+import '../../domain/entities/category.dart';
 
 class CategoriesBottomSheet extends StatefulWidget {
   const CategoriesBottomSheet({super.key});
@@ -17,9 +17,7 @@ class CategoriesBottomSheet extends StatefulWidget {
 
 class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
   final globalKey = GlobalKey<FormState>();
-
   final TextEditingController nameController = TextEditingController();
-
   OperationType? _selectedType;
   bool checked = false;
 
@@ -53,9 +51,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
               selected: _selectedType?.name,
               text: texts[texts["app"]["cat_type"]]["sheet"]["menu"],
               menu: OperationType.values
-                  .map(
-                    (operation) => operation.name,
-                  )
+                  .map((operation) => operation.name)
                   .toList(),
               onTap: (value) => setState(
                 () => _selectedType = value == OperationType.income.name
@@ -88,9 +84,7 @@ class _CategoriesBottomSheetState extends State<CategoriesBottomSheet> {
                     ),
                   );
                 }
-                {
-                  setState(() => checked = true);
-                }
+                setState(() => checked = true);
               },
             ),
             const SizedBox(height: 24)

@@ -9,7 +9,6 @@ class DeleteOperationUc extends UseCase<void, String> {
   DeleteOperationUc({required this.repository});
 
   @override
-  Future<Either<Failure, void>> call({required String param}) async {
-    return await repository.deleteOperation(param);
-  }
+  Future<Either<Failure, void>> call({required String param}) async =>
+      await repository.deleteOperation(param);
 }

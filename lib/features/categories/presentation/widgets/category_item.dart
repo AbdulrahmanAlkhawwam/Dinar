@@ -1,4 +1,4 @@
-import 'package:Dinar/core/components/cards/list_card.dart';
+import 'package:Dinar/core/components/cards/app_card.dart';
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/categories/presentation/pages/category_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -39,46 +39,41 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(MaterialPageRoute(
-          builder: (context) => CategoryDetailsScreen(
-            category: category,
+        context.push(
+          MaterialPageRoute(
+            builder: (context) => CategoryDetailsScreen(category: category),
           ),
-        ));
+        );
       },
-      child: ListCard(
-          isHorizontal: isHorizontal,
-          child: isHorizontal
-              ? Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _name(context),
-                        _type(context),
-                      ],
-                    ),
+      child: AppCard(
+        isHorizontal: isHorizontal,
+        child: isHorizontal
+            ? Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [_name(context), _type(context)],
                   ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _name(context),
-                              _type(context),
-                            ],
-                          ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(12),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [_name(context), _type(context)],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )),
+                ),
+              ),
+      ),
     );
   }
 }

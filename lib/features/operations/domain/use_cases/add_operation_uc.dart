@@ -12,7 +12,6 @@ class AddOperationUc extends UseCase<int, OperationModel> {
   AddOperationUc({required this.repository});
 
   @override
-  Future<Either<Failure, int>> call({required Operation param}) {
-    return repository.addOperation(param);
-  }
+  Future<Either<Failure, int>> call({required Operation param}) async =>
+      await repository.addOperation(param);
 }

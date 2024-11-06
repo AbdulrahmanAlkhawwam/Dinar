@@ -1,4 +1,4 @@
-name: Dinar
+name: dinar
 description: Money Management app.
 publish_to: none
 
@@ -32,8 +32,7 @@ dependencies:
   shimmer: ^3.0.0
   loader_overlay: ^4.0.2+1
   equatable: ^2.0.5
-
-
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:

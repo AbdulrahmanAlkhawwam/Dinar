@@ -11,7 +11,6 @@ class AddWalletUc extends UseCase<int, Wallet> {
   AddWalletUc({required this.repository});
 
   @override
-  Future<Either<Failure, int>> call({required Wallet param}) {
-    return repository.addWallet(param);
-  }
+  Future<Either<Failure, int>> call({required Wallet param}) async =>
+      await repository.addWallet(param);
 }

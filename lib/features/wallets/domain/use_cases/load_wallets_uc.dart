@@ -11,7 +11,6 @@ class LoadWalletsUc extends UseCaseNoParam<List<Wallet>> {
   LoadWalletsUc({required this.repository});
 
   @override
-  Future<Either<Failure, List<Wallet>>> call() {
-    return repository.loadWallets();
-  }
+  Future<Either<Failure, List<Wallet>>> call() async =>
+      await repository.loadWallets();
 }

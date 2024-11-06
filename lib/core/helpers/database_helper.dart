@@ -6,12 +6,8 @@ import 'package:sqflite/sqflite.dart';
 import '../constants/strings.dart';
 
 abstract class DatabaseHelper {
-  Future<List<Map<String, dynamic>>> getData(
-    String table, {
-    String? where,
-    List? args,
-    String? orderBy,
-  });
+  Future<List<Map<String, dynamic>>> getData(String table,
+      {String? where, List? args, String? orderBy});
 
   Future<int> insert(String table, Map<String, dynamic> data);
 
@@ -20,7 +16,7 @@ abstract class DatabaseHelper {
 
   Future<int> delete(String table, {String? where, List? args});
 
-  Future<dynamic> sum(String column, String table, {String? where, List? args});
+  Future<dynamic> sum(String column, String table);
 
   Future<void> close();
 }
@@ -34,50 +30,32 @@ class DatabaseHelperImpl implements DatabaseHelper {
     final dbPath = await getDatabasesPath();
     final database = await openDatabase(
       path.join(dbPath, databaseFile),
-      version: 1,
       onCreate: onCreate,
+      version: 1,
     );
     return DatabaseHelperImpl._(database);
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getData(
-    String table, {
-    String? where,
-    List? args,
-    String? orderBy,
-  }) async {
-    return _db.query(table, where: where, whereArgs: args, orderBy: orderBy);
-  }
+  Future<List<Map<String, dynamic>>> getData(String table,
+          {String? where, List? args, String? orderBy}) async =>
+      _db.query(table, where: where, whereArgs: args, orderBy: orderBy);
 
   @override
-  Future<int> insert(String table, Map<String, dynamic> data) async {
-    return _db.insert(
-      table,
-      data,
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
+  Future<int> insert(String table, Map<String, dynamic> data) async =>
+      _db.insert(conflictAlgorithm: ConflictAlgorithm.replace, table, data);
 
   @override
   Future<int> update(String table, Map<String, Object?> values,
-      {String? where, List? args}) async {
-    return _db.update(table, values, where: where, whereArgs: args);
-  }
+          {String? where, List? args}) async =>
+      _db.update(table, values, where: where, whereArgs: args);
 
   @override
-  Future<int> delete(String table, {String? where, List? args}) async {
-    return _db.delete(
-      table,
-      where: where,
-      whereArgs: args,
-    );
-  }
+  Future<int> delete(String table, {String? where, List? args}) async =>
+      _db.delete(table, where: where, whereArgs: args);
 
   @override
-  Future<void> close() async {
-    await _db.close();
-  }
+  Future<void> close() async => await _db.close();
 
   static FutureOr<void> onCreate(Database db, int version) async {
     await db.execute(
@@ -113,16 +91,8 @@ class DatabaseHelperImpl implements DatabaseHelper {
   }
 
   @override
-  Future sum(String column, String table,
-      {String? where, List<dynamic>? args}) {
-    return _db.rawQuery("SELECT SUM($column) FROM $table WHERE $where", args);
-  }
-
-// @override
-// Future sum(String column, String table,
-//     {String? where, List<dynamic>? args}) async {
-//   return (await _db.rawQuery(
-//       "SELECT SUM($column) AS result FROM $table WHERE $where", args))
-//       .firstOrNull?["result"] ;
-// }
+  Future sum(String column, String table) async =>
+      (await _db.rawQuery("SELECT SUM($column) AS result FROM $table"))
+          .firstOrNull?["result"] ??
+      0;
 }

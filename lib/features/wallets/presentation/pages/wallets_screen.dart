@@ -65,10 +65,8 @@ class WalletsScreen extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.all(16),
             child: ListView.separated(
-              itemBuilder: (context, index) => WalletItem(
-                wallet: wallets[index],
-                isHorizontal: false,
-              ),
+              itemBuilder: (context, index) =>
+                  WalletItem(wallet: wallets[index], isHorizontal: false),
               separatorBuilder: (context, index) => const SizedBox(height: 15),
               itemCount: wallets.length,
             ),

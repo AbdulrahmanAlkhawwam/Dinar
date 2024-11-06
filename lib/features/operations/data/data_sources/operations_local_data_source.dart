@@ -25,11 +25,8 @@ class OperationsLocalDataSourceImpl extends OperationsLocalDataSource {
   OperationsLocalDataSourceImpl({required this.db});
 
   @override
-  Future<List<OperationModel>> loadOperations({
-    OperationType? type,
-    Category? category,
-    Wallet? wallet,
-  }) async {
+  Future<List<OperationModel>> loadOperations(
+      {OperationType? type, Category? category, Wallet? wallet}) async {
     final operationsMap = await db.getData(
       operationsTable,
       where: type != null
@@ -58,31 +55,19 @@ class OperationsLocalDataSourceImpl extends OperationsLocalDataSource {
     final wallets = walletsMap.map((wallet) => WalletModel.fromMap(wallet));
 
     for (final operation in operations) {
-      operation.category = categories.firstWhere(
-        (category) => category.id == operation.categoryId,
-      );
-      operation.wallet = wallets.firstWhere(
-        (wallet) => wallet.id == operation.walletId,
-      );
+      operation.category = categories
+          .firstWhere((category) => category.id == operation.categoryId);
+      operation.wallet =
+          wallets.firstWhere((wallet) => wallet.id == operation.walletId);
     }
     return operations;
   }
 
   @override
-  Future<int> addOperation(OperationModel operationModel) async {
-    final id = await db.insert(
-      operationsTable,
-      operationModel.toMap(),
-    );
-    return id;
-  }
+  Future<int> addOperation(OperationModel operationModel) async =>
+      await db.insert(operationsTable, operationModel.toMap());
 
   @override
-  Future<void> deleteOperation(String id) async {
-    await db.delete(
-      operationsTable,
-      where: "id = ?",
-      args: [id],
-    );
-  }
+  Future<void> deleteOperation(String id) async =>
+      await db.delete(operationsTable, where: "id = ?", args: [id]);
 }

@@ -18,36 +18,22 @@ class WalletsLocalDataSourceImpl extends WalletsLocalDataSource {
 
   @override
   Future<List<WalletModel>> loadWallets() async {
-    final walletsMap = await db.getData(
-      walletsTable,
-    );
+    final walletsMap = await db.getData(walletsTable);
     final wallets =
         walletsMap.map((wallet) => WalletModel.fromMap(wallet)).toList();
     return wallets;
   }
 
   @override
-  Future<int> addWallet(WalletModel walletModel) async {
-    final id = await db.insert(
-      walletsTable,
-      walletModel.toMap(),
-    );
-    return id;
-  }
+  Future<int> addWallet(WalletModel walletModel) async =>
+      await db.insert(walletsTable, walletModel.toMap());
 
   @override
   Future<void> deleteWallet(String id) async {
-    final walletOperation = await db.getData(
-      operationsTable,
-      where: "wallet_id = ?",
-      args: [id],
-    );
+    final walletOperation =
+        await db.getData(operationsTable, where: "wallet_id = ?", args: [id]);
     if (walletOperation.isEmpty) {
-      await db.delete(
-        walletsTable,
-        where: "id = ?",
-        args: [id],
-      );
+      await db.delete(walletsTable, where: "id = ?", args: [id]);
     } else {
       throw DeleteException("you can't delete this wallet !");
     }

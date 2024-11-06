@@ -12,7 +12,6 @@ class LoadPaymentCategoriesUc extends UseCaseNoParam<List<Category>> {
   LoadPaymentCategoriesUc({required this.repository});
 
   @override
-  Future<Either<Failure, List<Category>>> call() {
-    return repository.loadCategories(OperationType.payment);
-  }
+  Future<Either<Failure, List<Category>>> call() async =>
+      repository.loadCategories(OperationType.payment);
 }

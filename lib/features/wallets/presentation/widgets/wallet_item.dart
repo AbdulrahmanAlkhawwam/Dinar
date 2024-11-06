@@ -1,4 +1,4 @@
-import 'package:Dinar/core/components/cards/list_card.dart';
+import 'package:Dinar/core/components/cards/app_card.dart';
 import 'package:Dinar/core/utils/app_context.dart';
 import 'package:Dinar/features/wallets/presentation/pages/wallet_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class WalletItem extends StatelessWidget {
       onTap: () => context.push(MaterialPageRoute(
         builder: (context) => WalletDetailsScreen(wallet: wallet),
       )),
-      child: ListCard(
+      child: AppCard(
         isHorizontal: isHorizontal,
         child: isHorizontal
             ? Padding(

@@ -15,13 +15,8 @@ class WalletModel extends Wallet {
         paymentsTotal: wallet.paymentsTotal,
       );
 
-  factory WalletModel.fromMap(Map<String, dynamic> json) => WalletModel(
-        id: json["id"],
-        name: json["name"],
-      );
+  factory WalletModel.fromMap(Map<String, dynamic> json) =>
+      WalletModel(id: json["id"], name: json["name"]);
 
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-      };
+  Map<String, dynamic> toMap() => {"id": id, "name": name};
 }

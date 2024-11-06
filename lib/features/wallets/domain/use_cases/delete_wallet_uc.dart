@@ -11,7 +11,6 @@ class DeleteWalletUc extends UseCase<void, String> {
   DeleteWalletUc({required this.repository});
 
   @override
-  Future<Either<Failure, void>> call({required String param}) {
-    return repository.deleteWallet(param);
-  }
+  Future<Either<Failure, void>> call({required String param}) async =>
+      await repository.deleteWallet(param);
 }

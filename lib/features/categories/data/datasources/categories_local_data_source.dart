@@ -19,11 +19,8 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
 
   @override
   Future<List<CategoryModel>> loadCategories(OperationType type) async {
-    final categoriesMap = await db.getData(
-      categoriesTable,
-      where: "type = ?",
-      args: [type.name],
-    );
+    final categoriesMap =
+        await db.getData(categoriesTable, where: "type = ?", args: [type.name]);
     final categories = categoriesMap
         .map((category) => CategoryModel.fromMap(category))
         .toList();
@@ -31,27 +28,15 @@ class CategoriesLocalDataSourceImpl extends CategoriesLocalDataSource {
   }
 
   @override
-  Future<int> addCategory(CategoryModel categoryModel) async {
-    final id = await db.insert(
-      categoriesTable,
-      categoryModel.toMap(),
-    );
-    return id;
-  }
+  Future<int> addCategory(CategoryModel categoryModel) async =>
+      await db.insert(categoriesTable, categoryModel.toMap());
 
   @override
   Future<void> deleteCategory(String id) async {
-    final categoryOperation = await db.getData(
-      operationsTable,
-      where: "category_id = ?",
-      args: [id],
-    );
+    final categoryOperation =
+        await db.getData(operationsTable, where: "category_id = ?", args: [id]);
     if (categoryOperation.isEmpty) {
-      await db.delete(
-        categoriesTable,
-        where: "id = ?",
-        args: [id],
-      );
+      await db.delete(categoriesTable, where: "id = ?", args: [id]);
     } else {
       throw DeleteException("you can't delete this category !");
     }

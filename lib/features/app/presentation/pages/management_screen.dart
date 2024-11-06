@@ -1,15 +1,14 @@
-import 'package:Dinar/core/constants/strings.dart';
-import 'package:Dinar/features/categories/domain/entities/category.dart';
-import 'package:Dinar/features/onboarding/presentation/pages/creation_screen.dart';
-import 'package:Dinar/features/wallets/domain/entities/wallet.dart';
-
-import '../../../categories/presentation/manager/categories_bloc.dart';
-import '../../../home/presentation/pages/home_screen.dart';
-import '../../../onboarding/presentation/pages/onboarding_screen.dart';
-
-import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/constants/strings.dart';
+import '../../../categories/domain/entities/category.dart';
+import '../../../categories/presentation/manager/categories_bloc.dart';
+import '../../../home/presentation/pages/home_screen.dart';
+import '../../../onboarding/presentation/pages/creation_screen.dart';
+import '../../../onboarding/presentation/pages/onboarding_screen.dart';
+import '../../../wallets/domain/entities/wallet.dart';
+import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';
 
 class ManagementScreen extends StatefulWidget {
   const ManagementScreen({super.key});

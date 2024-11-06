@@ -1,9 +1,9 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/styles.dart';
 import '../constants/colors.dart';
 import '../constants/res.dart';
+import '../constants/styles.dart';
 
 extension AppNavigation on BuildContext {
   Future push(Route route) => Navigator.push(this, route);
@@ -32,10 +32,8 @@ extension AppResponsive on BuildContext {
           ? "landscape"
           : "portrait";
 
-  /// bottom padding from the system, includes system nav bar
   double get bottomPadding => MediaQuery.paddingOf(this).bottom;
 
-  /// bottom insets from the system, includes keyboard height
   double get bottomInsets => MediaQuery.viewInsetsOf(this).bottom;
 }
 

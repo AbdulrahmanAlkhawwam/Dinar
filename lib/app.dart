@@ -28,29 +28,12 @@ class App extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: /* GlobalLoaderOverlay(
-        overlayColor: Colors.black45,
-        overlayWidgetBuilder: (_) => Center(
-          child: LinearProgressIndicator(
-            minHeight: double.infinity,
-            valueColor: AlwaysStoppedAnimation(
-              lightColorScheme.primary.withOpacity(0.5),
-            ),
-            backgroundColor: Colors.transparent,
-          ),
-        ),
-        child: */
-          MaterialApp(
+      child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,
-        home: Builder(
-          builder: (context) {
-            return ManagementScreen();
-          },
-        ),
+        home: Builder(builder: (context) => ManagementScreen()),
       ),
-      /*),*/
     );
   }
 }

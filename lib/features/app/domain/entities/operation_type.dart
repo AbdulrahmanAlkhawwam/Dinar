@@ -1,4 +1,1 @@
-enum OperationType {
-  income,
-  payment;
-}
+enum OperationType { income, payment }

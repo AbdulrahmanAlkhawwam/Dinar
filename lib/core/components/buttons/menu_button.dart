@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../dialog/menu_dialog.dart';
-import '../../utils/app_context.dart';
 import '../../constants/styles.dart';
+import '../../utils/app_context.dart';
+import '../dialog/menu_dialog.dart';
 
 class MenuButton extends StatelessWidget {
-  /// this [menu] is the list of dynamic widget or variable which will appear
-  /// when it clicked
-  ///
-  /// if this list is empty . so , this mean button is DISABLED
   final List<dynamic> menu;
-
-  /// [onTap] we added for do some thing in menu dialog
   final Function(dynamic) onTap;
-
-  /// we added [child] if you want to add Row not a Text
-  /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
-
-  /// this is the type of list
   final String text;
-
-  /// this is selected item
   final String? selected;
 
   const MenuButton({

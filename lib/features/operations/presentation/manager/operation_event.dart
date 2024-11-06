@@ -11,18 +11,6 @@ class AddOperationEvent extends OperationEvent {
   AddOperationEvent({required this.operation});
 }
 
-class GetCategoryOperationEvent extends OperationEvent {
-  final Category category;
-
-  GetCategoryOperationEvent({required this.category});
-}
-
-class GetWalletOperationEvent extends OperationEvent {
-  final Wallet wallet;
-
-  GetWalletOperationEvent({required this.wallet});
-}
-
 class DeleteOperationEvent extends OperationEvent {
   final Operation operation;
 

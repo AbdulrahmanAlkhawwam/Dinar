@@ -4,13 +4,7 @@ import '../../constants/styles.dart';
 import '../../utils/app_context.dart';
 
 class SecondaryButton extends StatelessWidget {
-  /// [onPressed] we added for two thing :-
-  ///   1. for do some thing when you click button
-  ///   2. for DISABLED button when you don't want to do some thing
   final Function()? onPressed;
-
-  /// we added [child] if you want to add Row not a Text
-  /// like Icon with Text but we not support it as Item we support it as Row
   final Widget? child;
   final String text;
 

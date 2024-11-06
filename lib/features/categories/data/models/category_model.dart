@@ -1,5 +1,5 @@
-import '../../domain/entities/category.dart';
 import '../../../app/domain/entities/operation_type.dart';
+import '../../domain/entities/category.dart';
 
 class CategoryModel extends Category {
   CategoryModel({
@@ -22,12 +22,7 @@ class CategoryModel extends Category {
         type: json["type"] == "income"
             ? OperationType.income
             : OperationType.payment,
-        // don't forget to add balance in next time
       );
 
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "type": type.name,
-      };
+  Map<String, dynamic> toMap() => {"id": id, "name": name, "type": type.name};
 }

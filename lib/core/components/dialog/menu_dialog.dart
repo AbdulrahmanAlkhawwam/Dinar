@@ -4,10 +4,7 @@ import '../../constants/styles.dart';
 import '../../utils/app_context.dart';
 
 class MenuDialog extends StatelessWidget {
-  /// [onTap] we added this function to return item which selected
   final Function(dynamic) onTap;
-
-  /// this list is the items which you must select one of them
   final List<dynamic> menu;
   final String text;
 
@@ -47,7 +44,8 @@ class MenuDialog extends StatelessWidget {
                       context.pop();
                     },
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     splashColor: context.colors.primary,
                   ),
                 ),

@@ -53,6 +53,6 @@ class OperationModel extends Operation {
         "category_id": categoryId,
         "wallet_id": walletId,
         "date": DateFormat("yyyy-MM-dd a hh:mm '000Z'").format(date),
-        "type": type.name
+        "type": type.name,
       };
 }

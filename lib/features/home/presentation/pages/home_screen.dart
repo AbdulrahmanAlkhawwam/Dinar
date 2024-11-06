@@ -1,8 +1,8 @@
+import 'package:Dinar/core/utils/app_context.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/app_context.dart';
 import '../../../categories/presentation/manager/categories_bloc.dart';
 import '../../../operations/presentation/manager/operation_bloc.dart';
 import '../../../wallets/presentation/manager/bloc/wallets_bloc.dart';

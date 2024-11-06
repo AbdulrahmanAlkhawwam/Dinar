@@ -77,7 +77,6 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   ) async {
     emit(CategoriesLoading());
     if (event.category.id == null || event.category.id.toString() == "") {
-      print("category : ${event.category.name} don't have an id ;(");
       emit(CategoriesError(message: Message("There are some error")));
     }
     final response =

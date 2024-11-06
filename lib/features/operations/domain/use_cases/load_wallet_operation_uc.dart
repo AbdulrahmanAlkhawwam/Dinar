@@ -12,7 +12,7 @@ class LoadWalletOperationUc extends UseCase<List<Operation>, Wallet> {
   LoadWalletOperationUc({required this.repository});
 
   @override
-  Future<Either<Failure, List<Operation>>> call({required Wallet param}) async {
-    return await repository.loadOperations(wallet: param);
-  }
+  Future<Either<Failure, List<Operation>>> call(
+          {required Wallet param}) async =>
+      await repository.loadOperations(wallet: param);
 }

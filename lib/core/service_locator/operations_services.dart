@@ -16,46 +16,30 @@ Future<void> initializeOperationServices(GetIt sl) async {
   );
 
   sl.registerLazySingleton<OperationsRepository>(
-    () => OperationsInternalRepository(localDataSource: sl()),
-  );
+      () => OperationsInternalRepository(localDataSource: sl()));
 
   sl.registerLazySingleton<AddOperationUc>(
-    () => AddOperationUc(repository: sl()),
-  );
+      () => AddOperationUc(repository: sl()));
 
   sl.registerLazySingleton<DeleteOperationUc>(
-    () => DeleteOperationUc(repository: sl()),
-  );
+      () => DeleteOperationUc(repository: sl()));
 
   sl.registerLazySingleton<LoadOperationsUc>(
-    () => LoadOperationsUc(repository: sl()),
-  );
+      () => LoadOperationsUc(repository: sl()));
 
   sl.registerLazySingleton<LoadCategoryOperationUc>(
-    () => LoadCategoryOperationUc(repository: sl()),
-  );
+      () => LoadCategoryOperationUc(repository: sl()));
 
   sl.registerLazySingleton<LoadWalletOperationUc>(
-    () => LoadWalletOperationUc(repository: sl()),
-  );
+      () => LoadWalletOperationUc(repository: sl()));
 
   sl.registerFactory<OperationBloc>(
     () => OperationBloc(
-      loadOperationsUc: LoadOperationsUc(
-        repository: sl(),
-      ),
-      loadCategoryOperationUc: LoadCategoryOperationUc(
-        repository: sl(),
-      ),
-      loadWalletOperationUc: LoadWalletOperationUc(
-        repository: sl(),
-      ),
-      deleteOperationUc: DeleteOperationUc(
-        repository: sl(),
-      ),
-      addOperationUc: AddOperationUc(
-        repository: sl(),
-      ),
+      loadOperationsUc: LoadOperationsUc(repository: sl()),
+      loadCategoryOperationUc: LoadCategoryOperationUc(repository: sl()),
+      loadWalletOperationUc: LoadWalletOperationUc(repository: sl()),
+      deleteOperationUc: DeleteOperationUc(repository: sl()),
+      addOperationUc: AddOperationUc(repository: sl()),
     ),
   );
 }

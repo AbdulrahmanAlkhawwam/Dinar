@@ -12,7 +12,6 @@ class LoadCategoryOperationUc extends UseCase<List<Operation>, Category> {
 
   @override
   Future<Either<Failure, List<Operation>>> call(
-      {required Category param}) async {
-    return await repository.loadOperations(category: param);
-  }
+          {required Category param}) async =>
+      await repository.loadOperations(category: param);
 }
