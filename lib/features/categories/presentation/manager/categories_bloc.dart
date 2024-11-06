@@ -69,7 +69,6 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (id) => emit(CategoryAdded(id: id)),
     );
-    add(LoadCategoriesEvent());
   }
 
   FutureOr<void> _deleteCategory(
@@ -87,6 +86,5 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       (failure) => emit(CategoriesError(message: Message.fromFailure(failure))),
       (_) => emit(CategoryDeleted(category: event.category)),
     );
-    add(LoadCategoriesEvent());
   }
 }

@@ -29,25 +29,45 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 64,
-        title: Text(
-          DateFormat("dd MMMM yyyy").format(DateTime.now()),
-          style: context.textTheme.displaySmall?.copyWith(
-            fontWeight: FontWeight.bold,
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<WalletsBloc, WalletsState>(listener: (context, state) {
+          if (state is WalletAdded || state is WalletDeleted) {
+            context.read<WalletsBloc>().add(LoadWalletsEvent());
+          }
+        }),
+        BlocListener<CategoriesBloc, CategoriesState>(
+            listener: (context, state) {
+          if (state is CategoryAdded || state is CategoryDeleted) {
+            context.read<CategoriesBloc>().add(LoadCategoriesEvent());
+          }
+        }),
+        BlocListener<OperationBloc, OperationState>(listener: (context, state) {
+          if (state is OperationAdded || state is OperationDeleted) {
+            context.read<OperationBloc>().add(LoadOperationsEvent());
+          }
+        }),
+      ],
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 64,
+          title: Text(
+            DateFormat("dd MMMM yyyy").format(DateTime.now()),
+            style: context.textTheme.displaySmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
-        child: Column(
-          children: [
-            const AddCard(),
-            const WalletList(),
-            const CategoryList(),
-            const Expanded(child: HistoryList()),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+          child: Column(
+            children: [
+              const AddCard(),
+              const WalletList(),
+              const CategoryList(),
+              const Expanded(child: HistoryList()),
+            ],
+          ),
         ),
       ),
     );

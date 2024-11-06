@@ -23,16 +23,14 @@ class OnboardingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Spacer(),
-                Text(
-                  texts["onboarding"]["title"] ?? texts["error_msg"],
-                  style: context.textTheme.titleMedium
-                ),
+                Text(texts["onboarding"]["title"] ?? texts["error_msg"],
+                    style: context.textTheme.titleMedium
+                        ?.copyWith(color: context.colors.tertiaryFixed)),
                 Padding(
                   padding: const EdgeInsets.all(24),
                   child: Text(
                     textAlign: TextAlign.center,
-                    texts["onboarding"]["description"] ??
-                        texts["error_msg"],
+                    texts["onboarding"]["description"] ?? texts["error_msg"],
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colors.secondary,
                     ),

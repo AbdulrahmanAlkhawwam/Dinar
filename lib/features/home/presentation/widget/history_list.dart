@@ -1,4 +1,6 @@
 import 'package:Dinar/core/components/cards/empty_card.dart';
+import 'package:Dinar/features/categories/presentation/manager/categories_bloc.dart';
+import 'package:Dinar/features/wallets/presentation/manager/bloc/wallets_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -19,42 +21,19 @@ class HistoryList extends StatelessWidget {
         if (state is OperationLoaded && state.operations.isEmpty) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: EmptyCard(
-              mainText: "Operations is ",
-              text: "Empty",
-            ),
+            child: EmptyCard(mainText: "Operations is ", text: "Empty"),
           );
         }
         return Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  "Operations",
-                  style: context.textTheme.titleSmall,
-                ),
-                const Spacer(),
-                TextButton(
-                  style: ButtonStyle(
-                    fixedSize: WidgetStatePropertyAll(
-                      Size(
-                        double.infinity,
-                        double.minPositive,
-                      ),
-                    ),
-                  ),
-                  onPressed: () => context.push(
-                    MaterialPageRoute(
-                      builder: (context) => HistoryScreen(),
-                    ),
-                  ),
-                  child: Text(
-                    "show more",
-                    style: context.textTheme.labelSmall,
-                  ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+              child: Text(
+                "Operations",
+                style: context.textTheme.titleSmall,
+              ),
             ),
             switch (state) {
               OperationLoading _ => Expanded(
@@ -82,8 +61,8 @@ class HistoryList extends StatelessWidget {
                       Expanded(
                         child: ListView.separated(
                           physics: RangeMaintainingScrollPhysics(),
-                          itemBuilder: (context, index) =>
-                              OperationItem(operation: state.operations[index]),
+                          itemBuilder: (context, index) => OperationItem(
+                              operation: state.operations[index]),
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 8),
                           itemCount: state.operations.length,

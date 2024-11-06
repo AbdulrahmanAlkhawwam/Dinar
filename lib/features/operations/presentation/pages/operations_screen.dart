@@ -23,9 +23,6 @@ class OperationsScreen extends StatefulWidget {
 
 class _OperationsScreenState extends State<OperationsScreen>
     with TickerProviderStateMixin {
-  final List<String> sorts = ["By Nothing", "By Date", "By Price", "By Name"];
-  int selectedSort = 0;
-
   int index = 0;
 
   @override
@@ -80,24 +77,7 @@ class _OperationsScreenState extends State<OperationsScreen>
                     Tab(text: "(${payments.length}) payments"),
                   ],
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: SizedBox(
-                    height: 40,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => SortCard(
-                        onTap: () => setState(() => selectedSort = index),
-                        text: sorts[index],
-                        isSelected: index == selectedSort,
-                      ),
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(width: 4),
-                      itemCount: sorts.length,
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {

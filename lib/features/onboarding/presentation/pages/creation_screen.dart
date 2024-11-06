@@ -42,33 +42,15 @@ class _CreationScreenState extends State<CreationScreen> {
       listeners: [
         BlocListener<WalletsBloc, WalletsState>(
           listener: (context, state) {
-            // if (state is WalletsError) {
-            //   context.showErrorSnackBar(massage: state.message.value);
-            // }
             if (state is WalletAdded) {
               setState(() => _isEnabled = true);
-              // context.showSuccessSnackBar(
-              //       massage: "Add new ${widget.title} Successfully");
-              // if (_isDefault) {
-              //   ScaffoldMessenger.of(context).clearSnackBars();
-              //   context.pushReplacement(
-              //     MaterialPageRoute(
-              //       builder: (context) => HomeScreen(),
-              //     ),
-              //   );
-              // }
             }
           },
         ),
         BlocListener<CategoriesBloc, CategoriesState>(
           listener: (context, state) {
-            // if (state is CategoriesError) {
-            //   context.showErrorSnackBar(massage: state.message.value);
-            // }
             if (state is CategoryAdded) {
               setState(() => _isEnabled = true);
-              //   context.showSuccessSnackBar(
-              //       massage: "Add new ${widget.title} Successfully");
             }
           },
         ),
@@ -80,9 +62,7 @@ class _CreationScreenState extends State<CreationScreen> {
             body: Stack(
               children: [
                 Column(
-                  children: [
-                    Image.asset(Res.onboarding, fit: BoxFit.fitWidth),
-                  ],
+                  children: [Image.asset(Res.onboarding, fit: BoxFit.fitWidth)],
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(

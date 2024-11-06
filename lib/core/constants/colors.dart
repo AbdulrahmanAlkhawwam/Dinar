@@ -45,7 +45,7 @@ const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
 
   primary: Color(0xff68E571),
-  onPrimary: Color(0xFF000000),
+  onPrimary: Color(0xff112e13),
   primaryContainer: Color(0xff255928),
   onPrimaryContainer: Color(0xffBFFFC4),
 
@@ -228,16 +228,16 @@ final lightGradient = GradientColor(
 final darkGradient = GradientColor(
   fixedDisabledColor: LinearGradient(
     colors: [
-      lightColorScheme.onSurfaceVariant,
-      lightColorScheme.outlineVariant,
+      darkColorScheme.outlineVariant,
+      darkColorScheme.outline,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,
   ),
   fixedPrimaryColor: LinearGradient(
     colors: [
-      darkColorScheme.onTertiaryFixed,
-      darkColorScheme.onPrimaryFixedVariant.withGreen(150),
+      lightColorScheme.primary,
+      darkColorScheme.tertiary,
     ],
     begin: Alignment.bottomCenter,
     end: Alignment.topRight,

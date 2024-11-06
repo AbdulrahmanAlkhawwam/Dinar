@@ -9,7 +9,7 @@ import '../../../../core/components/inters/input_field.dart';
 import '../../../../core/components/buttons/primary_button.dart';
 
 class CategoriesBottomSheet extends StatefulWidget {
-  CategoriesBottomSheet({super.key});
+  const CategoriesBottomSheet({super.key});
 
   @override
   State<CategoriesBottomSheet> createState() => _CategoriesBottomSheetState();

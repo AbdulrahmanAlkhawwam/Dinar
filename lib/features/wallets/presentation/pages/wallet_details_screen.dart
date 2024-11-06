@@ -27,7 +27,7 @@ class WalletDetailsScreen extends StatelessWidget {
           context.pop();
         }
         if (state is WalletsError) {
-          context.showSuccessSnackBar(massage: state.message.value.toString());
+          context.showErrorSnackBar(massage: state.message.value.toString());
         }
       },
       child: BlocBuilder<OperationBloc, OperationState>(

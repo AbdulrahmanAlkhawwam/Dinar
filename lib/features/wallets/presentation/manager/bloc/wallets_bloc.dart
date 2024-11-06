@@ -55,7 +55,6 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
       (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
       (id) => emit(WalletAdded(id: id)),
     );
-    add(LoadWalletsEvent());
   }
 
   FutureOr<void> _deleteWallet(
@@ -72,6 +71,5 @@ class WalletsBloc extends Bloc<WalletsEvent, WalletsState> {
       (failure) => emit(WalletsError(message: Message.fromFailure(failure))),
       (_) => emit(WalletDeleted(wallet: event.wallet)),
     );
-    add(LoadWalletsEvent());
   }
 }
