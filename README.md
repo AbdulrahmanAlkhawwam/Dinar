@@ -1,5 +1,7 @@
 # Dinar
 
+cash flow mobile app 
+
 ## Video Demo:
 
 [youtube video demo](https://www.youtube.com/watch?v=DLoSJ-Sw42Q)
