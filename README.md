@@ -1,20 +1,32 @@
 # Dinar
 
-cash flow mobile app 
+## how to work :
 
-## Video Demo:
+Due to the large size of the project, I removed the configuration files and kept the project files, noting that it is
+difficult for a project built with Flutter to restore the configuration files. For this reason, I added a trial version
+on [GitHub](https://github.com/AbdulrahmanAlkhawwam/Dinar/releases/tag/v1.0.0) that you can download and try. But for more accuracy, the project to which you are adding the basic files
+must be in the following format:
 
-[youtube video demo](https://www.youtube.com/watch?v=DLoSJ-Sw42Q)
+- <span style="color:green">gradle</span> version is gradle-8.9-all in ```gradle/wrapper/gradle-wrapper.properties```
+- <span style="color:green">android</span> plugins is **8.7.2** in ```android/settings.gradle```
+- <span style="color:green">kotlin.android</span> plugins is **1.8.22** in ```android/settings.gradle```
+- <span style="color:green">ndkVersion</span> is **flutter.ndkVersion** OR **"27.0.12077973"** if not work in
+  ```android/app/build.gradle```
+
+but for more conformable you can get the source code form [GitHub](https://github.com/AbdulrahmanAlkhawwam/Dinar) or
+show the tutorial video from [YouTube](https://www.youtube.com/watch?v=DLoSJ-Sw42Q)
 
 ## Tech Was used :-
 
-this project was build step by step with clean [Architecture](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
-in flutter , and use figma website to design the UI/UX , but it is not very perfect ... 
+this project was build step by step with
+clean [Architecture](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
+in flutter , and use figma website to design the UI/UX , but it is not very perfect ...
 i am learned more things in this app like :-
-    
-  - SQL in flutter framework which named [sqflite](https://pub.dev/packages/sqflite)
-  - Flutter from [docs](https://docs.flutter.dev/get-started/learn-flutter)
-  - Architecture for flutter project which named [clean Architecture](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
+
+- SQL in flutter framework which named [sqflite](https://pub.dev/packages/sqflite)
+- Flutter from [docs](https://docs.flutter.dev/get-started/learn-flutter)
+- Architecture for flutter project which
+  named [clean Architecture](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 
 ## Description:
 
